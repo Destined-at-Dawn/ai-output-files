@@ -1,0 +1,635 @@
+{
+  "version": 72,
+  "providers": [
+    {
+      "id": "chat",
+      "presetType": "chatgpt-oauth",
+      "apiType": "openai-responses",
+      "baseUrl": "",
+      "apiKey": "",
+      "additionalSettings": {
+        "requestTransportMode": {
+          "desktop": "node",
+          "mobile": "browser"
+        }
+      }
+    },
+    {
+      "id": "Gemini",
+      "presetType": "gemini-oauth",
+      "apiType": "gemini",
+      "baseUrl": "",
+      "apiKey": "",
+      "additionalSettings": {
+        "requestTransportMode": {
+          "desktop": "node",
+          "mobile": "browser"
+        }
+      }
+    },
+    {
+      "id": "deepseek",
+      "presetType": "deepseek",
+      "apiType": "openai-compatible",
+      "baseUrl": "https://api.deepseek.com",
+      "apiKey": "sk-a3509b698da7443799ac915b3a7e67b5",
+      "additionalSettings": {
+        "requestTransportMode": {
+          "desktop": "browser",
+          "mobile": "browser"
+        }
+      }
+    },
+    {
+      "id": "mimo_max",
+      "presetType": "xiaomimimo",
+      "apiType": "openai-compatible",
+      "baseUrl": "https://api.xiaomimimo.com/v1",
+      "apiKey": "tp-ct75by2obp0jey2cu2pj8hp3q3yjooqm7u77j6izf8ig7tx5",
+      "additionalSettings": {
+        "requestTransportMode": {
+          "desktop": "node",
+          "mobile": "browser"
+        }
+      }
+    }
+  ],
+  "chatModels": [
+    {
+      "providerId": "chat",
+      "id": "chat/gpt-5.5",
+      "model": "gpt-5.5",
+      "name": "gpt-5.5",
+      "reasoningType": "openai",
+      "modalities": [
+        "text",
+        "vision",
+        "pdf"
+      ],
+      "builtinToolProvider": "gpt",
+      "builtinTools": {
+        "gpt": {
+          "webSearch": {
+            "enabled": true
+          }
+        },
+        "openrouter": {
+          "webSearch": {
+            "enabled": false
+          }
+        },
+        "grok": {
+          "webSearch": {
+            "enabled": false
+          }
+        },
+        "gemini": {
+          "webSearch": {
+            "enabled": false
+          },
+          "urlContext": {
+            "enabled": false
+          }
+        }
+      }
+    },
+    {
+      "providerId": "chat",
+      "id": "chat/gpt-5.4",
+      "model": "gpt-5.4",
+      "name": "gpt-5.4",
+      "reasoningType": "openai",
+      "maxContextTokens": 1050000,
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "providerId": "chat",
+      "id": "chat/gpt-5.3-codex",
+      "model": "gpt-5.3-codex",
+      "name": "gpt-5.3-codex",
+      "reasoningType": "openai",
+      "maxContextTokens": 400000,
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "providerId": "Gemini",
+      "id": "Gemini/gemini-2.5-pro",
+      "model": "gemini-2.5-pro",
+      "name": "gemini-2.5-pro",
+      "reasoningType": "gemini",
+      "maxContextTokens": 1048576,
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "providerId": "Gemini",
+      "id": "Gemini/gemini-2.5-flash-lite",
+      "model": "gemini-2.5-flash-lite",
+      "name": "gemini-2.5-flash-lite",
+      "reasoningType": "gemini",
+      "maxContextTokens": 1048576,
+      "modalities": [
+        "text",
+        "vision"
+      ]
+    },
+    {
+      "providerId": "Gemini",
+      "id": "Gemini/gemini-2.5-flash",
+      "model": "gemini-2.5-flash",
+      "name": "gemini-2.5-flash",
+      "reasoningType": "gemini",
+      "maxContextTokens": 1048576,
+      "modalities": [
+        "vision",
+        "text"
+      ]
+    },
+    {
+      "providerId": "deepseek",
+      "id": "deepseek/deepseek-v4-flash",
+      "model": "deepseek-v4-flash",
+      "name": "deepseek-v4-flash",
+      "reasoningType": "none",
+      "maxContextTokens": 1048576,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "providerId": "deepseek",
+      "id": "deepseek/deepseek-v4-pro",
+      "model": "deepseek-v4-pro",
+      "name": "deepseek-v4-pro",
+      "reasoningType": "none",
+      "maxContextTokens": 1048576,
+      "modalities": [
+        "text"
+      ]
+    },
+    {
+      "providerId": "mimo_max",
+      "id": "mimo_max/mimo-v2.5-pro",
+      "model": "mimo-v2.5-pro",
+      "name": "mimo-v2.5-pro",
+      "reasoningType": "anthropic",
+      "maxContextTokens": 1048576,
+      "modalities": [
+        "text",
+        "pdf"
+      ],
+      "builtinToolProvider": "none",
+      "builtinTools": {
+        "gpt": {
+          "webSearch": {
+            "enabled": false
+          }
+        },
+        "openrouter": {
+          "webSearch": {
+            "enabled": false
+          }
+        },
+        "grok": {
+          "webSearch": {
+            "enabled": false
+          }
+        },
+        "gemini": {
+          "webSearch": {
+            "enabled": false
+          },
+          "urlContext": {
+            "enabled": false
+          }
+        }
+      }
+    }
+  ],
+  "embeddingModels": [],
+  "chatModelId": "chat/gpt-5.4",
+  "chatTitleModelId": "chat/gpt-5.4",
+  "embeddingModelId": "",
+  "systemPrompt": "你是 Obsidian 知识库的专属 AI 助手。用户是电气工程专业大学生，同时在做 AI 前沿研究、FPGA/芯片设计、小红书内容创作和私域运营（OPC）。\n\n## 知识库上下文\n当前仓库包含：\n- 百大认知书籍（62本认知科学/心理学，涵盖决策、学习、风险管理、元认知、反脆弱、刻意练习等领域）\n- B站课程分享笔记\n\n回答时优先从仓库内已有笔记中检索引用，标注来源笔记名。如果仓库内没有相关内容，再用通用知识回答，但需声明\"此内容未在仓库中找到来源\"。\n\n## 行为准则\n- 结论先行，再给原因和依据\n- 直接、有判断力，不讨好，不解释显而易见的东西\n- 每个分析和建议尽量有认知科学或数据支撑，不空谈\n- 提炼核心洞察和隐藏连接，关注可落地的行动建议\n- 涉及跨学科内容时，主动连接不同领域的知识（如认知科学 × 工程决策、心理学 × 内容创作）\n- 发现笔记中的知识可以应用到当前问题时，主动指出\n\n## 输出格式\n- 用中文回答，标点用中文全角（\"\" '' —— …… 、）\n- 列表优于表格，短段落优于长段落\n- 引用仓库内笔记时标注来源：来源：《笔记名》\n- 需要时使用 Obsidian wikilink 格式：[[笔记名]]",
+  "timeContextEnabled": true,
+  "softDismissedUpdateVersion": "1.5.12.6",
+  "mutedUpdateVersion": "1.5.12.1",
+  "pluginUpdateAutoDownloadEnabled": true,
+  "ragOptions": {
+    "enabled": true,
+    "chunkSize": 1000,
+    "thresholdTokens": 20000,
+    "minSimilarity": 0,
+    "limit": 10,
+    "embeddingConcurrency": 10,
+    "excludePatterns": [],
+    "excludeYoloBaseDir": true,
+    "includePatterns": [],
+    "indexPdf": true,
+    "autoUpdateEnabled": true,
+    "autoUpdateIntervalHours": 0,
+    "lastAutoUpdateAt": 0
+  },
+  "mcp": {
+    "servers": [],
+    "builtinToolOptions": {
+      "delegate_subagent": {
+        "allowedModelIds": [
+          "chat/gpt-5.4"
+        ],
+        "preferredModelId": "chat/gpt-5.4"
+      }
+    },
+    "enableToolDisclosure": false
+  },
+  "jsSandbox": {},
+  "webSearch": {
+    "providers": [],
+    "common": {
+      "resultSize": 10,
+      "searchTimeoutMs": 120000,
+      "scrapeTimeoutMs": 20000
+    }
+  },
+  "skills": {
+    "disabledSkillIds": []
+  },
+  "yolo": {
+    "baseDir": "YOLO"
+  },
+  "debug": {
+    "captureRawRequestDebug": false
+  },
+  "chatOptions": {
+    "includeCurrentFileContent": true,
+    "mentionDisplayMode": "inline",
+    "mentionContextMode": "light",
+    "chatApplyMode": "review-required",
+    "chatTitlePrompt": "根据对话内容生成标题。规则：\n1. 提取核心主题，不超过15个中文字符\n2. 用陈述式短语，不用疑问句\n3. 不加书名号、引号、句号等标点\n4. 如果涉及书籍、课程、人物或学科，包含名称\n5. 如果涉及具体技术问题，体现技术关键词\n6. 用中文输出\n7. 优先反映对话的实际主题而非泛化描述\n\n示例：\n用户问\"帮我分析《反脆弱》里杠铃策略怎么用在求职上\" → 反脆弱杠铃策略的求职应用\n用户问\"FPGA时序约束怎么写\" → FPGA时序约束编写方法\n用户问\"小红书爆款标题有哪些套路\" → 小红书爆款标题套路分析\n用户问\"认知负荷理论在学习中怎么用\" → 认知负荷理论的学习应用\n用户问\"帮我写一篇关于AI芯片的公众号文章\" → AI芯片公众号文章写作\n用户问\"整理一下B站那个关于深度学习的课程笔记\" → 深度学习课程笔记整理",
+    "chatMode": "ask",
+    "agentModeWarningConfirmed": true,
+    "reasoningLevelByModelId": {
+      "chat/gpt-5.5": "high",
+      "chat/gpt-5.4": "high"
+    },
+    "autoContextCompactionEnabled": true,
+    "autoContextCompactionThresholdMode": "tokens",
+    "autoContextCompactionThresholdTokens": 24000,
+    "autoContextCompactionThresholdRatio": 0.8,
+    "imageReadingEnabled": true,
+    "imageCompressionEnabled": true,
+    "imageCompressionQuality": 85,
+    "externalImageFetchEnabled": false,
+    "chatExportIncludeThinking": false,
+    "chatExportIncludeToolCalls": true,
+    "ribbonClickAction": "sidebar",
+    "lastChatPlacement": "sidebar"
+  },
+  "notificationOptions": {
+    "enabled": false,
+    "channel": "sound",
+    "timing": "when-unfocused",
+    "notifyOnApprovalRequired": true,
+    "notifyOnTaskCompleted": true
+  },
+  "continuationOptions": {
+    "continuationModelId": "",
+    "enableSmartSpace": true,
+    "enableSelectionChat": true,
+    "persistSelectionHighlight": true,
+    "manualContextEnabled": false,
+    "manualContextFolders": [],
+    "referenceRuleFolders": [],
+    "knowledgeBaseFolders": [],
+    "stream": true,
+    "maxContinuationChars": 8000,
+    "enableTabCompletion": false,
+    "tabCompletionModelId": "",
+    "tabCompletionOptions": {
+      "idleTriggerEnabled": false,
+      "autoTriggerDelayMs": 3000,
+      "autoTriggerCooldownMs": 15000,
+      "triggerDelayMs": 3000,
+      "minContextLength": 20,
+      "contextRange": 4000,
+      "maxSuggestionLength": 2000,
+      "temperature": 0.5,
+      "requestTimeoutMs": 12000,
+      "reasoningLevel": "off"
+    },
+    "tabCompletionTriggers": [
+      {
+        "id": "sentence-end-comma",
+        "type": "string",
+        "pattern": ", ",
+        "enabled": true
+      },
+      {
+        "id": "sentence-end-chinese-comma",
+        "type": "string",
+        "pattern": "，",
+        "enabled": true
+      },
+      {
+        "id": "sentence-end-colon",
+        "type": "string",
+        "pattern": ": ",
+        "enabled": true
+      },
+      {
+        "id": "sentence-end-chinese-colon",
+        "type": "string",
+        "pattern": "：",
+        "enabled": true
+      },
+      {
+        "id": "newline",
+        "type": "regex",
+        "pattern": "\\n$",
+        "enabled": true
+      },
+      {
+        "id": "list-item",
+        "type": "regex",
+        "pattern": "(?:^|\\n)[-*+]\\s$",
+        "enabled": true
+      }
+    ],
+    "tabCompletionSystemPrompt": "Your job is to predict the most logical text that should be written at the location of the <mask/>. Your answer can be either code, a single word, or multiple sentences. Your answer must be in the same language as the text that is already there.\n\nAdditional constraints:\n{{tab_completion_constraints}}\n\nOutput only the text that should appear at the <mask/>. Do not include explanations, labels, or formatting.",
+    "tabCompletionConstraints": "",
+    "tabCompletionLengthPreset": "medium",
+    "smartSpaceTriggerMode": "single-space",
+    "smartSpaceUseWebSearch": false,
+    "smartSpaceUseUrlContext": false,
+    "enableQuickAsk": true,
+    "quickAskTrigger": "@",
+    "quickAskMode": "ask",
+    "quickAskAutoDockToTopRight": true,
+    "quickAskContextBeforeChars": 5000,
+    "quickAskContextAfterChars": 2000,
+    "streamFallbackRecoveryEnabled": true,
+    "primaryRequestTimeoutMs": 60000
+  },
+  "assistants": [
+    {
+      "id": "__default_agent__",
+      "name": "Default",
+      "description": "Default editing agent for sidebar chat.",
+      "systemPrompt": "",
+      "persona": "balanced",
+      "modelId": "chat/gpt-5.5",
+      "enableTools": true,
+      "includeBuiltinTools": true,
+      "enabledToolNames": [
+        "yolo_local__fs_list",
+        "yolo_local__fs_search",
+        "yolo_local__fs_read",
+        "yolo_local__fs_edit",
+        "yolo_local__fs_write",
+        "yolo_local__fs_delete",
+        "yolo_local__fs_create_dir",
+        "yolo_local__fs_move",
+        "yolo_local__memory_add",
+        "yolo_local__memory_update",
+        "yolo_local__memory_delete",
+        "yolo_local__open_skill",
+        "yolo_local__web_search",
+        "yolo_local__web_scrape",
+        "yolo_local__delegate_external_agent",
+        "yolo_local__todo_write",
+        "yolo_local__ask_user_question"
+      ],
+      "toolPreferences": {
+        "yolo_local__fs_list": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_search": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_read": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_edit": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_write": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_delete": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_create_dir": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_move": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__memory_add": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__memory_update": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__memory_delete": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__open_skill": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__web_search": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__web_scrape": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__delegate_external_agent": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__todo_write": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__ask_user_question": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        }
+      },
+      "enabledSkills": [],
+      "skillPreferences": {},
+      "enableProjectInstructions": true,
+      "includeCurrentFileContent": true,
+      "timeContextEnabled": true,
+      "createdAt": 1780666400845,
+      "updatedAt": 1780727316195
+    },
+    {
+      "id": "99e23bbf-df34-426f-910b-9428121aa23a",
+      "name": "ChatGPT",
+      "description": "",
+      "systemPrompt": "",
+      "persona": "balanced",
+      "modelId": "",
+      "enableTools": true,
+      "includeBuiltinTools": true,
+      "enabledToolNames": [
+        "yolo_local__fs_list",
+        "yolo_local__fs_search",
+        "yolo_local__fs_read",
+        "yolo_local__fs_edit",
+        "yolo_local__fs_write",
+        "yolo_local__fs_delete",
+        "yolo_local__fs_create_dir",
+        "yolo_local__fs_move",
+        "yolo_local__memory_add",
+        "yolo_local__memory_update",
+        "yolo_local__memory_delete",
+        "yolo_local__open_skill",
+        "yolo_local__web_search",
+        "yolo_local__web_scrape",
+        "yolo_local__delegate_external_agent",
+        "yolo_local__todo_write",
+        "yolo_local__ask_user_question"
+      ],
+      "toolPreferences": {
+        "yolo_local__fs_list": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_search": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_read": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_edit": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_write": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_delete": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_create_dir": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__fs_move": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__memory_add": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__memory_update": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__memory_delete": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__open_skill": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__web_search": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__web_scrape": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__delegate_external_agent": {
+          "enabled": true,
+          "approvalMode": "require_approval",
+          "disclosureMode": "always"
+        },
+        "yolo_local__todo_write": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        },
+        "yolo_local__ask_user_question": {
+          "enabled": true,
+          "approvalMode": "full_access",
+          "disclosureMode": "always"
+        }
+      },
+      "enabledSkills": [],
+      "skillPreferences": {},
+      "enableProjectInstructions": true,
+      "includeCurrentFileContent": true,
+      "timeContextEnabled": true,
+      "createdAt": 1780666445553,
+      "updatedAt": 1780666466162
+    }
+  ],
+  "currentAssistantId": "__default_agent__",
+  "quickAskAssistantId": "99e23bbf-df34-426f-910b-9428121aa23a",
+  "__meta": {
+    "updatedAt": 1782057286052,
+    "deviceId": "a40b10bf-1227-4414-9142-fc34ce0ab55f"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "description": "Ralph Loop 配置 — 自主迭代循环（来源：pig4cloud）",
+  "updated": "2026-05-28",
+
+  "loop_config": {
+    "max_iterations": 10,
+    "completion_marker": "<promise>COMPLETE</promise>",
+    "timeout_minutes": 30,
+    "retry_on_failure": true,
+    "max_retries": 3
+  },
+
+  "prompt_template": "你是一个自我改进的 AI agent。请执行以下进化任务：\n\n{task_description}\n\n完成后输出 <promise>COMPLETE</promise>。\n如果遇到无法解决的问题，输出 <promise>STUCK: {reason}</promise>。",
+
+  "evaluation_criteria": {
+    "pass_conditions": [
+      "所有 eval.json 断言通过",
+      "无新增错误或警告",
+      "修改的文件通过 Read 验证"
+    ],
+    "fail_conditions": [
+      "eval.json 断言失败率 > 20%",
+      "修改的文件不存在或为空",
+      "超过 max_iterations 仍未完成"
+    ]
+  },
+
+  "use_cases": [
+    {
+      "name": "夜间进化优化",
+      "schedule": "每天 02:00",
+      "task": "检查进化日历，执行所有待执行的进化任务",
+      "max_iterations": 5
+    },
+    {
+      "name": "规则一致性检查",
+      "schedule": "每周一 03:00",
+      "task": "验证五区共享规则文件内容一致，修复不一致",
+      "max_iterations": 3
+    },
+    {
+      "name": "记忆健康检查",
+      "schedule": "每月 1 日 04:00",
+      "task": "检查长期记忆过期项，归档低置信度旧记忆",
+      "max_iterations": 2
+    }
+  ]
+}

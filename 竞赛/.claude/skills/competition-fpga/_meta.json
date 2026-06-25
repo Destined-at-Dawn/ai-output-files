@@ -1,0 +1,13 @@
+{
+  "name": "competition-fpga",
+  "version": "1.0",
+  "created": "2026-06-17",
+  "description": "FPGA 竞赛全流程引擎（集创赛/Robei/全国FPGA创新竞赛）",
+  "triggers": [
+    "集创赛", "Robei竞赛", "FPGA比赛", "FPGA安全通信", "FPGA项目规划",
+    "FPGA竞赛文档", "硬件竞赛", "电路竞赛", "RTL竞赛", "FPGA答辩",
+    "国赛FPGA", "省赛FPGA", "FPGA竞赛"
+  ],
+  "links": ["li-hardware", "li-competition", "li-research", "fpga", "systemverilog"],
+  "workspace": "global"
+}

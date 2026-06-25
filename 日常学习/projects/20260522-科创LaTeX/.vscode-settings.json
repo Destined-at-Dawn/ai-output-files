@@ -1,0 +1,63 @@
+{
+    // LaTeX Workshop 核心设置
+    "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": ["%DOCFILE%"]
+        },
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-xelatex",
+                "%DOC%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex",
+            "tools": ["xelatex"]
+        },
+        {
+            "name": "latexmk (xelatex)",
+            "tools": ["latexmk"]
+        },
+        {
+            "name": "xelatex → bibtex → xelatex × 2",
+            "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+        }
+    ],
+    // PDF 浏览器
+    "latex-workshop.view.pdf.viewer": "tab",
+    // 保存时自动编译
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    // 正向搜索
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "ctrl+alt+j",
+    // 鼠标悬停预览公式
+    "latex-workshop.hover.preview.enabled": true,
+    // 自动补全
+    "latex-workshop.intellisense.package.enabled": true,
+    // 编译后清理辅助文件
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind",
+        "*.lof", "*.lot", "*.out", "*.toc", "*.fdb_latexmk",
+        "*.fls", "*.log", "*.synctex.gz", "*.xdv"
+    ]
+}

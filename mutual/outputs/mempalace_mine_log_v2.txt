@@ -1,0 +1,81 @@
+============================================================
+mempalace 全量索引 - 小黎生态系统
+============================================================
+
+[1/9] 知识中枢（跨工作区共享知识）
+  Mining: 知识中枢（跨工作区共享知识）
+  Wing: knowledge-hub
+  Command: C:\Users\13975\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m mempalace mine E:\ai产出文件\牛马\知识中枢 --wing...
+  FAIL (return code: 1, 3s)
+    ERR: mempalace: palace D:\mempalace\palace is held by PID 35636 (C:\Users\13975\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\mempalace\__main__.py mine E:\ai产出文件\牛马\mutual\mutual); wait for it to finish or stop the holder before retrying
+
+[2/9] 生态优化管理区
+  Mining: 生态优化管理区
+  Wing: mutual
+  Command: C:\Users\13975\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m mempalace mine E:\ai产出文件\牛马\mutual\mutual --wing...
+  FAIL (return code: 1, 3s)
+    ERR: mempalace: palace D:\mempalace\palace is held by PID 35636 (C:\Users\13975\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\mempalace\__main__.py mine E:\ai产出文件\牛马\mutual\mutual); wait for it to finish or stop the holder before retrying
+
+[3/9] 个人成长
+  Mining: 个人成长
+  Wing: personal
+  Command: C:\Users\13975\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m mempalace mine E:\ai产出文件\牛马\个人\个人 --wing...
+  FAIL (return code: 1, 3s)
+    ERR: mempalace: palace D:\mempalace\palace is held by PID 35636 (C:\Users\13975\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\mempalace\__main__.py mine E:\ai产出文件\牛马\mutual\mutual); wait for it to finish or stop the holder before retrying
+
+[4/9] 内容创作
+  Mining: 内容创作
+  Wing: creation
+  Command: C:\Users\13975\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m mempalace mine E:\ai产出文件\牛马\创作\创作 --wing...
+  FAIL (return code: 1, 2s)
+    ERR: mempalace: palace D:\mempalace\palace is held by PID 35636 (C:\Users\13975\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\mempalace\__main__.py mine E:\ai产出文件\牛马\mutual\mutual); wait for it to finish or stop the holder before retrying
+
+[5/9] 求职管理
+  Mining: 求职管理
+  Wing: job
+  Command: C:\Users\13975\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m mempalace mine E:\ai产出文件\牛马\求职\求职 --wing...
+  FAIL (return code: 1, 2s)
+    ERR: mempalace: palace D:\mempalace\palace is held by PID 35636 (C:\Users\13975\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\mempalace\__main__.py mine E:\ai产出文件\牛马\mutual\mutual); wait for it to finish or stop the holder before retrying
+
+[6/9] 竞赛备赛
+  Mining: 竞赛备赛
+  Wing: competition
+  Command: C:\Users\13975\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m mempalace mine E:\ai产出文件\牛马\竞赛\竞赛 --wing...
+  FAIL (return code: 1, 2s)
+    ERR: mempalace: palace D:\mempalace\palace is held by PID 35636 (C:\Users\13975\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\mempalace\__main__.py mine E:\ai产出文件\牛马\mutual\mutual); wait for it to finish or stop the holder before retrying
+
+[7/9] 学校课程学习
+  Mining: 学校课程学习
+  Wing: study
+  Command: C:\Users\13975\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m mempalace mine E:\ai产出文件\牛马\学习\学习 --wing...
+  FAIL (return code: 1, 2s)
+    ERR: mempalace: palace D:\mempalace\palace is held by PID 35636 (C:\Users\13975\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\mempalace\__main__.py mine E:\ai产出文件\牛马\mutual\mutual); wait for it to finish or stop the holder before retrying
+
+[8/9] 日常学习
+  Mining: 日常学习
+  Wing: daily-study
+  Command: C:\Users\13975\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m mempalace mine E:\ai产出文件\牛马\日常学习 --wing...
+  FAIL (return code: 1, 2s)
+    ERR: mempalace: palace D:\mempalace\palace is held by PID 35636 (C:\Users\13975\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\mempalace\__main__.py mine E:\ai产出文件\牛马\mutual\mutual); wait for it to finish or stop the holder before retrying
+
+[9/9] li- skill 生态
+  Mining: li- skill 生态
+  Wing: skills
+  Command: C:\Users\13975\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m mempalace mine C:\Users\13975\.newmax\skills --wing...
+  FAIL (return code: 1, 2s)
+    ERR: mempalace: palace D:\mempalace\palace is held by PID 35636 (C:\Users\13975\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\mempalace\__main__.py mine E:\ai产出文件\牛马\mutual\mutual); wait for it to finish or stop the holder before retrying
+
+============================================================
+索引完成汇总
+============================================================
+  [FAIL] knowledge-hub: 知识中枢（跨工作区共享知识）
+  [FAIL] mutual: 生态优化管理区
+  [FAIL] personal: 个人成长
+  [FAIL] creation: 内容创作
+  [FAIL] job: 求职管理
+  [FAIL] competition: 竞赛备赛
+  [FAIL] study: 学校课程学习
+  [FAIL] daily-study: 日常学习
+  [FAIL] skills: li- skill 生态
+
+总计: 0/9 成功, 耗时 23s

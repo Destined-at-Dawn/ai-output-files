@@ -1,0 +1,14 @@
+{
+  "name": "wechat-exporter",
+  "version": "1.0",
+  "author": "小黎",
+  "created": "2026-06-09",
+  "updated": "2026-06-09",
+  "knowledge_sources": [
+    "wechat-analysis 踩坑铁律 22 条",
+    "Camellia 私聊 sender 映射验证",
+    "米蛋糕私聊 sender 映射验证",
+    "群聊 BytesExtra 解析实测"
+  ],
+  "related_skills": ["wechat-analysis", "wechat-distiller", "community-filter"]
+}

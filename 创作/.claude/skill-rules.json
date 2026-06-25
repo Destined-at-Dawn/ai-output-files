@@ -1,0 +1,859 @@
+{
+  "version": "4.0",
+  "description": "创作工作区技能路由——意图驱动（主要）+ 文件匹配（辅助）",
+  "updated": "2026-06-05",
+  "routing_mode": "intent-driven (primary) + file-glob (secondary)",
+  "audit_stats": {
+    "total_installed": 155,
+    "in_routing_table": 81,
+    "core_skills": 15,
+    "note": "v4.0：新增34条意图路由规则，保留17条文件匹配规则，技能覆盖从52提升到100+"
+  },
+  "intent_rules": [
+    {
+      "intent": "公众号写作",
+      "keywords": [
+        "写公众号",
+        "写文章",
+        "创作",
+        "公众号"
+      ],
+      "skills": [
+        "五步写作法",
+        "viral-content-tools",
+        "文风DNA分析",
+        "blog-post-writer",
+        "baoyu-format-markdown",
+        "khazix-writer"
+      ],
+      "action": "公众号创作链",
+      "priority": 5
+    },
+    {
+      "intent": "分析别人文章",
+      "keywords": [
+        "分析文章",
+        "拆解文章",
+        "采集文章",
+        "别人的"
+      ],
+      "skills": [
+        "wechat-article-collector",
+        "文风DNA分析",
+        "案例拆解生成器",
+        "dao-fa-shu-qi"
+      ],
+      "action": "文章分析链",
+      "priority": 5
+    },
+    {
+      "intent": "文风分析",
+      "keywords": [
+        "文风",
+        "风格",
+        "校准",
+        "DNA"
+      ],
+      "skills": [
+        "文风DNA分析",
+        "personal-rag-qa"
+      ],
+      "action": "文风DNA分析",
+      "priority": 4
+    },
+    {
+      "intent": "朋友圈写作",
+      "keywords": [
+        "写朋友圈",
+        "朋友圈文案",
+        "pyq",
+        "朋友圈"
+      ],
+      "skills": [
+        "jincheng-pyq",
+        "viral-content-tools"
+      ],
+      "action": "朋友圈文案",
+      "priority": 4
+    },
+    {
+      "intent": "商业评论",
+      "keywords": [
+        "商业评论",
+        "dontbesilent",
+        "选题",
+        "选题卡片"
+      ],
+      "skills": [
+        "li-content",
+        "li-industry"
+      ],
+      "action": "商业评论/选题",
+      "priority": 4
+    },
+    {
+      "intent": "爆款优化",
+      "keywords": [
+        "爆款",
+        "标题",
+        "开头",
+        "hook",
+        "完播率",
+        "viral"
+      ],
+      "skills": [
+        "viral-content-tools",
+        "五步写作法"
+      ],
+      "action": "爆款内容优化",
+      "priority": 5
+    },
+    {
+      "intent": "内容拆解",
+      "keywords": [
+        "拆解",
+        "道法术器",
+        "案例拆解",
+        "分析这个",
+        "值不值得"
+      ],
+      "skills": [
+        "dao-fa-shu-qi",
+        "案例拆解生成器",
+        "design-extract"
+      ],
+      "action": "内容拆解",
+      "priority": 4
+    },
+    {
+      "intent": "小红书内容",
+      "keywords": [
+        "小红书",
+        "笔记",
+        "ip帖",
+        "换皮"
+      ],
+      "skills": [
+        "小红书留学求职ip号帖子改编",
+        "baoyu-xhs-images",
+        "dbs-xhs-title"
+      ],
+      "action": "小红书内容",
+      "priority": 4
+    },
+    {
+      "intent": "教程撰写",
+      "keywords": [
+        "写教程",
+        "教程",
+        "手册",
+        "tutorial",
+        "指南"
+      ],
+      "skills": [
+        "jc-jiaocheng"
+      ],
+      "action": "教程撰写",
+      "priority": 3
+    },
+    {
+      "intent": "逐字稿处理",
+      "keywords": [
+        "逐字稿",
+        "转录",
+        "清洗",
+        "播客文字"
+      ],
+      "skills": [
+        "li-transcript",
+        "AI方法论学习器"
+      ],
+      "action": "逐字稿处理",
+      "priority": 3
+    },
+    {
+      "intent": "封面配图",
+      "keywords": [
+        "封面",
+        "配图",
+        "图片",
+        "画图",
+        "生成图"
+      ],
+      "skills": [
+        "baoyu-image-gen",
+        "gemini-image",
+        "baoyu-cover-image",
+        "magazine-cover",
+        "baoyu-article-illustrator",
+        "baoyu-compress-image",
+        "baoyu-danger-gemini-web"
+      ],
+      "action": "图片生成",
+      "priority": 3
+    },
+    {
+      "intent": "信息图",
+      "keywords": [
+        "信息图",
+        "infographic",
+        "数据图",
+        "可视化"
+      ],
+      "skills": [
+        "baoyu-infographic",
+        "canvas-design"
+      ],
+      "action": "信息图生成",
+      "priority": 3
+    },
+    {
+      "intent": "漫画创作",
+      "keywords": [
+        "漫画",
+        "知识漫画",
+        "教育漫画"
+      ],
+      "skills": [
+        "baoyu-comic"
+      ],
+      "action": "漫画创作",
+      "priority": 2
+    },
+    {
+      "intent": "海报设计",
+      "keywords": [
+        "海报",
+        "书籍封面",
+        "Mondo",
+        "封面设计"
+      ],
+      "skills": [
+        "qiaomu-mondo-poster-design",
+        "canvas-design"
+      ],
+      "action": "海报设计",
+      "priority": 2
+    },
+    {
+      "intent": "演示制作",
+      "keywords": [
+        "PPT",
+        "演示",
+        "幻灯片",
+        "slides"
+      ],
+      "skills": [
+        "pptx",
+        "baoyu-slide-deck",
+        "frontend-slides"
+      ],
+      "action": "演示制作",
+      "priority": 3
+    },
+    {
+      "intent": "视频处理",
+      "keywords": [
+        "视频",
+        "拆解视频",
+        "爆款拆解",
+        "视频分析"
+      ],
+      "skills": [
+        "video-optimize",
+        "video-creator",
+        "remotion-video",
+        "li-storyboard",
+        "video-use"
+      ],
+      "action": "视频处理",
+      "priority": 3
+    },
+    {
+      "intent": "视频剪辑",
+      "keywords": [
+        "剪映",
+        "剪辑",
+        "视频编辑"
+      ],
+      "skills": [
+        "jianying-editor-skill",
+        "ffmpeg-usage",
+        "video-use"
+      ],
+      "action": "视频剪辑",
+      "priority": 3
+    },
+    {
+      "intent": "AI贴片文案",
+      "keywords": [
+        "AI贴片",
+        "短视频文案",
+        "贴片"
+      ],
+      "skills": [
+        "AI贴片文案生成器"
+      ],
+      "action": "AI贴片文案",
+      "priority": 3
+    },
+    {
+      "intent": "演讲表达",
+      "keywords": [
+        "演讲",
+        "分享",
+        "直播",
+        "销讲",
+        "稿子"
+      ],
+      "skills": [
+        "yanjiang",
+        "xiaojiang"
+      ],
+      "action": "演讲表达",
+      "priority": 3
+    },
+    {
+      "intent": "学习加速",
+      "keywords": [
+        "学习",
+        "搞懂",
+        "入门",
+        "研究",
+        "了解"
+      ],
+      "skills": [
+        "learning-boost",
+        "interactive-learning",
+        "AI方法论学习器"
+      ],
+      "action": "学习加速",
+      "priority": 3
+    },
+    {
+      "intent": "思维训练",
+      "keywords": [
+        "费曼",
+        "思维训练",
+        "模拟",
+        "AI拷问"
+      ],
+      "skills": [
+        "thinking-coach"
+      ],
+      "action": "思维训练",
+      "priority": 3
+    },
+    {
+      "intent": "网页搜索",
+      "keywords": [
+        "搜索",
+        "查一下",
+        "帮我搜",
+        "最新"
+      ],
+      "skills": [
+        "step-search"
+      ],
+      "action": "网页搜索",
+      "priority": 3
+    },
+    {
+      "intent": "内容采集",
+      "keywords": [
+        "抓网页",
+        "采集",
+        "抓内容"
+      ],
+      "skills": [
+        "全能网页采集器",
+        "baoyu-url-to-markdown",
+        "baoyu-danger-x-to-markdown",
+        "feishu-doc-reader"
+      ],
+      "action": "内容采集",
+      "priority": 3
+    },
+    {
+      "intent": "发布公众号",
+      "keywords": [
+        "发公众号",
+        "发布",
+        "publish",
+        "发到公众号"
+      ],
+      "skills": [
+        "baoyu-post-to-wechat",
+        "baoyu-markdown-to-html"
+      ],
+      "action": "发布公众号",
+      "priority": 3
+    },
+    {
+      "intent": "发推特",
+      "keywords": [
+        "发推特",
+        "发X",
+        "tweet",
+        "post to X"
+      ],
+      "skills": [
+        "baoyu-post-to-x",
+        "x-article-publisher"
+      ],
+      "action": "发布X",
+      "priority": 2
+    },
+    {
+      "intent": "知识库检索",
+      "keywords": [
+        "知识库",
+        "RAG",
+        "检索",
+        "查笔记"
+      ],
+      "skills": [
+        "personal-rag-qa",
+        "anything-to-notebooklm"
+      ],
+      "action": "知识检索",
+      "priority": 3
+    },
+    {
+      "intent": "PDF处理",
+      "keywords": [
+        "PDF",
+        "pdf",
+        "读取PDF",
+        "提取PDF",
+        "转换PDF",
+        "合并PDF",
+        "拆分PDF",
+        "PDF提取",
+        "PDF文本",
+        "PDF转",
+        "扫描件",
+        "OCR识别PDF",
+        "阅读PDF",
+        "打开PDF",
+        "查看PDF",
+        "解析PDF"
+      ],
+      "skills": [
+        "pdf"
+      ],
+      "action": "PDF处理",
+      "priority": 4
+    },
+    {
+      "intent": "Word处理",
+      "keywords": [
+        "Word",
+        "word",
+        "docx",
+        "写Word",
+        "Word文档",
+        "文档排版"
+      ],
+      "skills": [
+        "docx"
+      ],
+      "action": "Word处理",
+      "priority": 3
+    },
+    {
+      "intent": "Excel数据",
+      "keywords": [
+        "Excel",
+        "excel",
+        "xlsx",
+        "表格数据",
+        "数据分析",
+        "数据表"
+      ],
+      "skills": [
+        "xlsx",
+        "data-analysis"
+      ],
+      "action": "Excel数据处理",
+      "priority": 3
+    },
+    {
+      "intent": "翻译",
+      "keywords": [
+        "翻译",
+        "translate"
+      ],
+      "skills": [
+        "deepl"
+      ],
+      "action": "翻译",
+      "priority": 2
+    },
+    {
+      "intent": "任务管理",
+      "keywords": [
+        "任务",
+        "计划",
+        "排程"
+      ],
+      "skills": [
+        "smart-task-planner-skill",
+        "li-plan"
+      ],
+      "action": "任务管理",
+      "priority": 3
+    },
+    {
+      "intent": "每日复盘",
+      "keywords": [
+        "复盘",
+        "回顾",
+        "总结"
+      ],
+      "skills": [
+        "daily-review",
+        "deep-review",
+        "session-summary",
+        "post-task-audit"
+      ],
+      "action": "复盘分析",
+      "priority": 3
+    },
+    {
+      "intent": "提示词优化",
+      "keywords": [
+        "提示词",
+        "prompt",
+        "优化prompt"
+      ],
+      "skills": [
+        "BROK提示词优化器",
+        "prompt-optimizer"
+      ],
+      "action": "提示词优化",
+      "priority": 2
+    },
+    {
+      "intent": "写作智能体",
+      "keywords": [
+        "写作智能体",
+        "Agent",
+        "写作Agent"
+      ],
+      "skills": [
+        "写作智能体",
+        "虚构角色智能体生成器"
+      ],
+      "action": "智能体创建",
+      "priority": 2
+    },
+    {
+      "intent": "记忆管理",
+      "keywords": [
+        "记忆",
+        "更新telos",
+        "个人信息",
+        "同步"
+      ],
+      "skills": [
+        "li-sync",
+        "li-memory",
+        "conversation-to-knowledge"
+      ],
+      "action": "记忆管理",
+      "priority": 3
+    },
+    {
+      "intent": "工作区管理",
+      "keywords": [
+        "新建工作区",
+        "新建项目",
+        "脚手架"
+      ],
+      "skills": [
+        "scaffold-workspace",
+        "niuma-help",
+        "li-local-search"
+      ],
+      "action": "工作区管理",
+      "priority": 3
+    },
+    {
+      "intent": "GitHub发布",
+      "keywords": [
+        "开源到GitHub",
+        "创建GitHub仓库",
+        "发布到GitHub",
+        "美化仓库",
+        "检查隐私",
+        "创建Release",
+        "上传封面",
+        "一键发布",
+        "GitHub仓库",
+        "开源发布"
+      ],
+      "skills": [
+        "github-publisher"
+      ],
+      "action": "GitHub发布全流程",
+      "priority": 3
+    },
+    {
+      "intent": "科研决策",
+      "keywords": [
+        "科研日报",
+        "analyze paper",
+        "论文分析",
+        "创新缺口",
+        "writing formula",
+        "科研方向",
+        "paper review"
+      ],
+      "skills": [
+        "research-daily"
+      ],
+      "action": "科研决策引擎",
+      "priority": 3
+    },
+    {
+      "intent": "全量审计",
+      "keywords": [
+        "全量审计",
+        "优化skill",
+        "优化SOP",
+        "系统体检",
+        "全量优化",
+        "skill审计",
+        "SOP审计",
+        "技能审计"
+      ],
+      "skills": [
+        "audit-optimizer"
+      ],
+      "action": "全量Skill/SOP审计",
+      "priority": 4
+    },
+    {
+      "intent": "li系列工具箱",
+      "keywords": ["li系列", "小黎工具", "li工具箱", "li工具", "小黎的工具"],
+      "skills": ["li"],
+      "action": "li系列路由入口",
+      "priority": 2
+    },
+    {
+      "intent": "技能锻造",
+      "keywords": ["创建技能", "造技能", "新技能", "skill创建", "建skill", "写技能", "锻造技能", "技能迭代", "优化技能", "改进技能", "升级技能", "skill迭代", "改skill", "重做技能"],
+      "skills": ["li-skillcreate"],
+      "action": "技能锻造器",
+      "priority": 2
+    },
+    {
+      "intent": "逐字稿清洗升级",
+      "keywords": ["逐字稿", "录音转文字", "会议纪要", "讲座逐字稿", "转录文稿", "语音识别", "会议录音"],
+      "skills": ["li-transcript"],
+      "action": "逐字稿清洗（li系列）",
+      "priority": 3
+    },
+    {
+      "intent": "技能发现与搜索",
+      "keywords": ["找技能", "有没有skill", "推荐skill", "有什么新技能", "最新MCP", "技能更新", "新技能", "技能市场", "awesome skill", "find skill"],
+      "skills": ["li-bestskill"],
+      "action": "跨平台技能发现",
+      "priority": 3
+    },
+    {
+      "intent": "深度调研",
+      "keywords": ["调研", "深度调研", "deep research", "竞品分析", "帮我调研", "搜竞品", "帮我搜", "搜一下类似的", "迭代调研", "继续优化", "再深入", "继续搜", "续跑"],
+      "skills": ["li-research"],
+      "action": "深度调研智能体v4（li系列）：多平台并行搜索+道法术器穿透+一鱼多吃+版本化迭代",
+      "priority": 1
+    },
+    {
+      "intent": "全局记忆管理",
+      "keywords": ["整理记忆", "更新画像", "最近我在干什么", "反思", "工作流审查", "我的偏好", "记住这个", "全局画像", "对话日志", "记忆管理"],
+      "skills": ["li-manage"],
+      "action": "全局记忆与工作流管家",
+      "priority": 3
+    },
+    {
+      "intent": "技能融合拆分",
+      "keywords": ["融合skill", "合并skill", "拆分skill", "拆开skill", "改造skill", "定制skill", "skill太大", "弃用skill", "技能工坊", "skillcraft"],
+      "skills": ["li-skillfusion"],
+      "action": "技能工坊",
+      "priority": 3
+    },
+    {
+      "intent": "本地技能搜索",
+      "keywords": ["本地skill", "已安装的skill", "技能列表", "有什么技能", "你会什么", "能做什么"],
+      "skills": ["li-local-search"],
+      "action": "本地196+技能搜索",
+      "priority": 2
+    },
+    {
+      "intent": "去AI味人性化改写",
+      "keywords": ["去AI味", "人性化改写", "humanizer", "AI痕迹", "不像人话", "AI腔太重", "改自然点", "拟人化"],
+      "skills": ["humanizer-zh"],
+      "action": "去AI味高级改写",
+      "priority": 2
+    },
+    {
+      "intent": "短视频制作",
+      "keywords": ["短视频制作", "拍短视频", "竖屏视频", "15秒视频", "60秒视频", "短视频脚本"],
+      "skills": ["short-video-production"],
+      "action": "短视频全流程",
+      "priority": 2
+    }
+  ],
+  "file_rules": [
+    {
+      "glob": "公众号/产出/**/*.md",
+      "skills": [
+        "五步写作法",
+        "viral-content-tools",
+        "文风DNA分析"
+      ],
+      "action": "公众号写作流程",
+      "reason": "公众号创作：骨架→写作→标题优化→自审"
+    },
+    {
+      "glob": "公众号/别人/**/*.md",
+      "skills": [
+        "wechat-article-collector",
+        "文风DNA分析",
+        "案例拆解生成器"
+      ],
+      "action": "分析别人文章",
+      "reason": "文章采集→文风DNA→技法拆解"
+    },
+    {
+      "glob": "公众号/自己/**/*.md",
+      "skills": [
+        "personal-rag-qa",
+        "文风DNA分析"
+      ],
+      "action": "风格校准/引用检索",
+      "reason": "个人知识库检索+风格一致性"
+    },
+    {
+      "glob": "微信朋友圈/产出/**/*.md",
+      "skills": [
+        "viral-content-tools"
+      ],
+      "action": "朋友圈文案优化",
+      "reason": "朋友圈只用viral-content-tools优化开头"
+    },
+    {
+      "glob": "微信朋友圈/别人/**/*.md",
+      "skills": [
+        "jincheng-pyq",
+        "文风DNA分析"
+      ],
+      "action": "朋友圈风格分析",
+      "reason": "锦成风格分析+技法吸收"
+    },
+    {
+      "glob": "认知之书/**/*.md",
+      "skills": [
+        "AI方法论学习器",
+        "thinking-coach",
+        "personal-rag-qa"
+      ],
+      "action": "认知系统建设",
+      "reason": "方法论提炼+费曼检验+知识库检索"
+    },
+    {
+      "glob": "科研日报/**/*.md",
+      "skills": [
+        "AI方法论学习器"
+      ],
+      "action": "科研内容处理",
+      "reason": "文献检索+方法论提炼"
+    },
+    {
+      "glob": "评论/**/*.md",
+      "skills": [
+        "案例拆解生成器",
+        "thinking-coach"
+      ],
+      "action": "评论拆解",
+      "reason": "结构化拆解+思想压力测试"
+    },
+    {
+      "glob": "IDEAS/**/*.md",
+      "skills": [
+        "li-content",
+        "thinking-coach",
+        "li-industry"
+      ],
+      "action": "选题管理",
+      "reason": "商业分析+压力测试+行业洞察"
+    },
+    {
+      "glob": "outputs/**/*.md",
+      "skills": [
+        "五步写作法",
+        "viral-content-tools"
+      ],
+      "action": "产出优化",
+      "reason": "骨架设计+标题开头优化"
+    },
+    {
+      "glob": "每日完成记录/**",
+      "skills": [
+        "daily-review"
+      ],
+      "action": "每日复盘",
+      "reason": "结构化回顾"
+    },
+    {
+      "glob": "**/*.docx",
+      "skills": [
+        "docx"
+      ],
+      "action": "Word文档处理",
+      "reason": "格式转换/内容提取"
+    },
+    {
+      "glob": "**/*.xlsx",
+      "skills": [
+        "xlsx",
+        "data-analysis"
+      ],
+      "action": "数据分析",
+      "reason": "Excel处理+数据解读"
+    },
+    {
+      "glob": "**/*.pdf",
+      "skills": [
+        "pdf"
+      ],
+      "action": "PDF处理",
+      "reason": "PDF提取/转换"
+    },
+    {
+      "glob": "**/*.pptx",
+      "skills": [
+        "pptx"
+      ],
+      "action": "PPT处理",
+      "reason": "PPT生成/修改"
+    },
+    {
+      "glob": "**/*.{v,sv}",
+      "skills": [
+        "hardware-design"
+      ],
+      "action": "硬件设计",
+      "reason": "Verilog/SystemVerilog代码"
+    },
+    {
+      "glob": "**/*.py",
+      "skills": [
+        "code"
+      ],
+      "action": "Python代码",
+      "reason": "代码编写/调试"
+    }
+  ]
+}

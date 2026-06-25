@@ -1,0 +1,15 @@
+{
+  "name": "wechat-analysis",
+  "version": "3.0",
+  "author": "小黎",
+  "created": "2026-06-07",
+  "updated": "2026-06-09",
+  "knowledge_sources": [
+    "解密数据库 17 个",
+    "导出聊天记录 19 个文件",
+    "22 条踩坑铁律",
+    "ex-skill wechat_parser.py",
+    "nuwa-skill 蒸馏框架"
+  ],
+  "related_skills": ["wechat-exporter", "wechat-distiller", "community-filter"]
+}

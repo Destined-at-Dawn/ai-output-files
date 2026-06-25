@@ -1,0 +1,4 @@
+ 11612 | wxid=49014311339@chatroom | samples=['wxid_ctgzbt3bktyn22:\n哈喽啊', 'wxid_ctgzbt3bktyn22:\n@天玑\u2005这个是群里扛把子']
+ 11937 | wxid=44207639527@chatroom | samples=['wxid_egaemeerfu6s12:\n老师这个科协部是不是含金量挺高的', 'wxid_zek7frmek7m522:\n@25 北师大人工智能\u2005宝子，内部论坛提问哈哈']
+ 10859 | wxid=43844351401@chatroom | samples=['wxid_8vmc7nll0qa922:\n大家可以帮忙投下四营三连嘛[玫瑰][玫瑰][玫瑰]', 'wxid_aus3hj889x3y22:\n大家帮投一下食品呗，谢谢了']
+ 11320 | wxid=49441814871@chatroom | samples=['wxid_w5xav3f8cjb922:\n欢迎欢迎', 'wxid_w5xav3f8cjb922:\n哈哈']

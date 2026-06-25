@@ -1,0 +1,127 @@
+======================================================================
+html
+======================================================================
+  [html]/
+    - 23日分享会.txt  (126KB)
+    - 23日分享会笔记.html  (51KB)
+    - dan-koe-insights-premium-v2.html  (42KB)
+    - dan-koe-insights-premium.html  (295KB)
+    - dan-koe-insights.html  (18KB)
+    - job-hunting-masterclass.html  (41KB)
+    - original.css  (0KB)
+    [.workbuddy]/
+      [memory]/
+        - 2026-05-23.md  (1KB)
+
+======================================================================
+创作\创作\projects\20260609-小黎个人网站
+======================================================================
+  [20260609-小黎个人网站]/
+    - index.html  (55KB)
+    - package.json  (0KB)
+    - xiaoli-personal-site.tar.gz  (6373KB)
+    [assets]/
+      - xiaoli-opc-logo.png  (215KB)
+      - xiaoli-opc-mobile-hero.png  (884KB)
+      - xiaoli-opc-portrait.png  (406KB)
+      - xiaoli-opc-poster.png  (1520KB)
+      - xiaoli-wechat-qr.png  (148KB)
+    [dist]/
+      [client]/
+        - index.html  (55KB)
+      [server]/
+        - index.js  (1KB)
+    [verification]/
+      - desktop-1440.png  (457KB)
+      - mobile-390-cdp.png  (161KB)
+      - mobile-390-old-headless.png  (213KB)
+      - mobile-390.png  (213KB)
+
+======================================================================
+创作\创作\projects\20260521-AI创作与视觉设计\outputs\web-design-kit
+======================================================================
+  [web-design-kit]/
+    - CLAUDE-网页设计.md  (13KB)
+    - README-网页设计资源包.md  (4KB)
+    [references]/
+      - 响应式布局模式.md  (5KB)
+      - 常见页面结构.md  (7KB)
+      - 组件模式库.md  (15KB)
+      - 配色方案速查.md  (3KB)
+    [SOPs]/
+
+======================================================================
+创作\创作\projects\20260521-AI创作与视觉设计\outputs\website_materials
+======================================================================
+  [website_materials]/
+    - 12_网站与HTML生成SOP.md  (14KB)
+    - 13_多Agent并行迭代代码与文档生产SOP.md  (12KB)
+    [webapp-testing]/
+      - LICENSE.txt  (11KB)
+      - SKILL.md  (3KB)
+      [examples]/
+        - console_logging.py  (1KB)
+        - element_discovery.py  (1KB)
+        - static_html_automation.py  (0KB)
+      [scripts]/
+        - with_server.py  (3KB)
+
+======================================================================
+创作\创作\projects\20260425-内容创作系统\讲座HTML
+======================================================================
+  [讲座HTML]/
+    - README.md  (2KB)
+
+======================================================================
+创作\创作\projects\20260425-内容创作系统\社群运营\html
+======================================================================
+  [html]/
+    - SELF_EVOLVE_HTML.md  (41KB)
+    - 社群运营.lnk  (1KB)
+    - 线上链接.txt  (0KB)
+    [ai-os-altruism-share-vercel]/
+      - .gitignore  (0KB)
+      - index.html  (52KB)
+      [.vercel]/
+        - README.txt  (0KB)
+        - project.json  (0KB)
+    [AI直播分享]/
+      - 向亮-AI行业内幕与B端破局-嘉宾分享.html  (18KB)
+      - 生姜-AI流量与第一门生意-嘉宾分享.html  (18KB)
+      - 锦成-AI杠杆与红利-嘉宾分享.html  (24KB)
+    [嘉宾分享]/
+      - 01.OPC分享-文艺杂志版.html  (903KB)
+      - 02.大一如何拿下大厂实习.html  (32KB)
+      - 03.期末复习AI破局-嘉宾分享.html  (29KB)
+      - 04.AI做PPT变现实战笔记-嘉宾分享.html  (30KB)
+      - 04.AI实战与自我认同-嘉宾分享.html  (24KB)
+      - 05-AI操作系统与利他方法论-嘉宾分享.html  (52KB)
+      - 06.竞赛突围.html  (25KB)
+    [实习项目直播]/
+      - 1.分享会笔记.html  (51KB)
+      - 2.简历与AI求职方法论.html  (42KB)
+      - 3.如何AI面试-笔记初稿.html  (52KB)
+      [ai-interview-live-notes-vercel]/
+        - .gitignore  (0KB)
+        - index.html  (52KB)
+    [直播笔记]/
+      - 6.7-个人成长与情绪管理-小黎.html  (36KB)
+      [personal-growth-emotion-management-vercel]/
+        - .gitignore  (0KB)
+        - index.html  (41KB)
+
+======================================================================
+创作\创作\社群运营\html
+======================================================================
+  [html]/
+    [嘉宾分享]/
+      [references]/
+        - gsap-道法术器.md  (18KB)
+
+======================================================================
+创作\创作\讲座\html_output
+======================================================================
+  [html_output]/
+    - 20260428_资本市场讲座.html  (32KB)
+    - build_html.py  (36KB)
+    - raw_transcript.txt  (59KB)

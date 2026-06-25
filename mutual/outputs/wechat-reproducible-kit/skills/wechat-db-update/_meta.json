@@ -1,0 +1,14 @@
+{
+  "name": "wechat-db-update",
+  "version": "1.0",
+  "created": "2026-06-09",
+  "updated": "2026-06-09",
+  "author": "小黎",
+  "description": "微信数据库更新触发器。DB更新后一键触发全套分析流水线（导出+过滤+文风DNA+报告）",
+  "tags": ["wechat", "automation", "pipeline", "incremental"],
+  "dependencies": ["wechat-analysis", "wechat-exporter", "community-filter", "wechat-distiller"],
+  "knowledge_sources": [
+    "百大认知书籍（社群过滤交叉）",
+    "文风DNA基线（创作区 output/writing_dna/）"
+  ]
+}

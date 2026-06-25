@@ -1,0 +1,14 @@
+{
+  "id": "conv-1781782465952-txvz5q3xc",
+  "providerId": "codex",
+  "title": "你现在就根据原来和我们对于核心考点的提取，提取所有的章节的知识点",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1781782465954,
+  "updatedAt": 1781782499223,
+  "lastResponseAt": 1781782499223,
+  "sessionId": null,
+  "providerState": {
+    "transcriptRootPath": "C:\\Users\\13975\\.codex\\sessions"
+  },
+  "currentNote": "20260603-大学物理/第07章-电流与磁场/AI学习/summary.md"
+}

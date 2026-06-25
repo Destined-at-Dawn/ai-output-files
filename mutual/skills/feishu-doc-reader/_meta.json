@@ -1,0 +1,6 @@
+{
+  "name": "feishu-doc-reader",
+  "version": "1.0.0",
+  "description": "飞书文档读取器——通过飞书开放API读取和提取飞书文档内容，支持文档、知识库、云空间。",
+  "triggers": ["飞书", "feishu", "lark", "飞书文档", "读飞书", "飞书文件"]
+}

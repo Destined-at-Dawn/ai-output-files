@@ -1,0 +1,32 @@
+{
+  "name": "li-skillfusion",
+  "version": "1.0.0",
+  "description": "技能融合/拆分/重组",
+  "author": "小黎",
+  "series": "li",
+  "created": "2026-06-08",
+  "updated": "2026-06-08",
+  "dependencies": {
+    "skills": [],
+    "mcp": [],
+    "external": []
+  },
+  "triggers": [
+    "skillcraft",
+    "skill太大",
+    "优化skill",
+    "合并",
+    "合并skill",
+    "定制skill",
+    "弃用skill",
+    "技能合并",
+    "技能工坊",
+    "把skill合起来"
+  ],
+  "category": "meta-skill",
+  "architecture": "progressive-disclosure",
+  "lines": {
+    "main": 381,
+    "references_total": 0
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "hardware-design",
+  "version": "5.0.0",
+  "description": "硬件设计综合指南：Verilog/SystemVerilog编码规范、FPGA开发(Vivado/Quartus)、ASIC设计、时序收敛、Verilator仿真与lint、AXI接口、CDC处理、Yosys综合、FPGABuilder自动构建工具链。v3.0新增：从17个真实Bug提炼的实战调试经验库。v4.0新增：Xilinx 7系列FPGA硬核资源知识库。v4.1新增：BRAM/DSP48E1/MMCME2完整代码。v4.2新增：从12个触摸屏I2C Bug提炼的经验库。v5.0新增：FPGA构建自动化模式库（来源FPGABuilder开源项目）——配置驱动构建、TCL模板系统、Hook系统、工具版本适配器、设备编程封装、三级清理模式，共8个可复用设计模式。",
+  "triggers": ["verilog", "systemverilog", "sv", "fpga", "硬件", "电路", "asic", "vivado", "quartus", "时序", "逻辑", "rtl", "仿真", "综合", "fpgabuilder", "构建", "bitstream", "比特流", "synthesis", "调试", "bug", "testbench", "crc", "uart", "bram", "dsp", "mmcm", "pll", "7series", "artix", "kintex", "spartan", "virtex", "xilinx", "i2c", "触摸屏", "touchscreen", "open-drain", "三态门"],
+  "type": "skill"
+}

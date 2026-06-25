@@ -1,0 +1,60 @@
+=== LI-SERIES AUDIT 2026-06-11 ===
+
+Total active: 41
+
+Skill                     Lines    GR(B)    Eval(B)  Meta   Refs   Status  
+--------------------------------------------------------------------------------
+li                        201      938      3408     True   True   OK      
+li-analyze                224      1234     1217     True   True   OK      
+li-bestskill              296      1257     3425     True   True   OK      
+li-code                   171      935      1536     True   True   OK      
+li-competition            149      1022     3392     True   True   OK      
+li-data                   146      610      3369     True   True   OK      
+li-dbs                    127      918      1270     True   True   OK      
+li-debug                  270      552      1582     True   True   OK      
+li-design                 147      1356     1904     True   True   OK      
+li-devil                  212      1270     1903     True   True   OK      
+li-diagnose               230      542      1021     True   True   OK      
+li-hardware               228      2617     1471     True   True   OK      
+li-image                  142      1329     1903     True   True   OK      
+li-improve                299      1217     1906     True   True   OK      
+li-industry               300      1103     1906     True   True   OK      
+li-infra                  299      1083     1903     True   True   OK      
+li-intent                 173      1214     1583     True   True   OK      
+li-local-search           236      889      1909     True   True   OK      
+li-manage                 246      861      3425     True   True   OK      
+li-memory                 284      1175     3425     True   True   OK      
+li-mindcoach              273      993      1907     True   True   OK      
+li-office                 168      1391     1904     True   True   OK      
+li-plan                   292      1033     1902     True   True   OK      
+li-prompt                 300      973      1583     True   True   OK      
+li-research               297      1193     1906     True   True   OK      
+li-skillcreate            291      3352     3427     True   True   OK      
+li-skillfusion            285      1076     1909     True   True   OK      
+li-skills-mgmt            139      617      3369     True   True   OK      
+li-storyboard             294      1015     1908     True   True   OK      
+li-study                  205      793      3423     True   True   OK      
+li-sync                   300      794      1901     True   True   OK      
+li-transcript             225      894      1907     True   True   OK      
+li-triage                 258      1416     1583     True   True   OK      
+li-video                  149      1579     1903     True   True   OK      
+li-visual                 295      886      1903     True   True   OK      
+li-web                    146      1413     1901     True   True   OK      
+li-webtest                234      950      1904     True   True   OK      
+li-wechat                 145      1373     1270     True   True   OK      
+li-workflow               189      996      1905     True   True   OK      
+li-workspace              206      621      856      True   True   OK      
+li-xhs                    162      1453     1901     True   True   OK      
+
+=== ISSUES (0) ===
+
+=== CONTENT QUALITY ===
+
+=== ROUTING TABLE ===
+Total routes: 56
+li-skills with routes: 49/41
+Cross-skill duplicate triggers: 4
+  "写代码" -> {'karpathy-guidelines', 'li-code'}
+  "代码审查" -> {'karpathy-guidelines', 'li-code'}
+  "自动化脚本" -> {'li-code', 'li-workflow'}
+  "debug" -> {'li-code', 'li-debug'}

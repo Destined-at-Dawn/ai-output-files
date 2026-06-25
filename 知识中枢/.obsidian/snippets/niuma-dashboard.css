@@ -1,0 +1,93 @@
+/* ============================================================
+   牛马AI 知识中枢 — 仪表盘样式
+   ============================================================ */
+
+/* 仪表盘页面中的标题链接卡片化 */
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 1.1em;
+    transition: all 0.2s ease;
+}
+
+/* 求职卡片：橙色背景 */
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="06-求职"] {
+    background-color: rgba(230, 126, 34, 0.12);
+    border: 1px solid rgba(230, 126, 34, 0.3);
+}
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="06-求职"]:hover {
+    background-color: rgba(230, 126, 34, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(230, 126, 34, 0.2);
+}
+
+/* 竞赛卡片：翠绿背景 */
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="07-竞赛"] {
+    background-color: rgba(39, 174, 96, 0.12);
+    border: 1px solid rgba(39, 174, 96, 0.3);
+}
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="07-竞赛"]:hover {
+    background-color: rgba(39, 174, 96, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(39, 174, 96, 0.2);
+}
+
+/* 创作卡片：天蓝背景 */
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="08-创作"] {
+    background-color: rgba(52, 152, 219, 0.12);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+}
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="08-创作"]:hover {
+    background-color: rgba(52, 152, 219, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+}
+
+/* 生态卡片：紫色背景 */
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="09-生态"] {
+    background-color: rgba(142, 68, 173, 0.12);
+    border: 1px solid rgba(142, 68, 173, 0.3);
+}
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="09-生态"]:hover {
+    background-color: rgba(142, 68, 173, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(142, 68, 173, 0.2);
+}
+
+/* 个人档案卡片：珊瑚红背景 */
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="03-个人档案"] {
+    background-color: rgba(231, 76, 60, 0.12);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="03-个人档案"]:hover {
+    background-color: rgba(231, 76, 60, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+}
+
+/* 跨工作区卡片：琥珀背景 */
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="10-跨工作区"] {
+    background-color: rgba(243, 156, 18, 0.12);
+    border: 1px solid rgba(243, 156, 18, 0.3);
+}
+.workspace-leaf-content[data-path*="00-仪表盘"] h3 a.internal-link[href*="10-跨工作区"]:hover {
+    background-color: rgba(243, 156, 18, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(243, 156, 18, 0.2);
+}
+
+/* 仪表盘分隔线美化 */
+.workspace-leaf-content[data-path*="00-仪表盘"] hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(243, 156, 18, 0.3), transparent);
+    margin: 20px 0;
+}
+
+/* 仪表盘 blockquote 导航栏样式 */
+.workspace-leaf-content[data-path*="00-仪表盘"] blockquote {
+    border-left: 3px solid #f39c12;
+    background-color: rgba(243, 156, 18, 0.05);
+    border-radius: 0 6px 6px 0;
+}

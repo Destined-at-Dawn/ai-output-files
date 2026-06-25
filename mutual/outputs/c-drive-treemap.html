@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C盘空间分析 - 小黎的电脑</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+.header {
+  padding: 24px 32px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-bottom: 1px solid #1e293b;
+}
+.header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+.stats {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.stat {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 16px 24px;
+  min-width: 160px;
+  border: 1px solid #334155;
+}
+.stat-label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+.stat-value { font-size: 28px; font-weight: 700; margin-top: 4px; }
+.stat-value.green { color: #34d399; }
+.stat-value.amber { color: #fbbf24; }
+.stat-value.red { color: #f87171; }
+.stat-value.blue { color: #60a5fa; }
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #1e293b;
+  border-radius: 4px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #34d399, #fbbf24, #f87171);
+  transition: width 0.3s;
+}
+.legend {
+  display: flex;
+  gap: 16px;
+  padding: 12px 32px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #1e293b;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+.treemap-container {
+  padding: 16px 32px;
+  flex: 1;
+}
+.treemap {
+  width: 100%;
+  height: 520px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1e293b;
+}
+.cell {
+  position: absolute;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  border: 1px solid rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4px;
+}
+.cell:hover {
+  opacity: 0.85;
+  z-index: 10;
+  border-color: #fff;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+.cell-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cell-size {
+  font-size: 11px;
+  color: rgba(255,255,255,0.8);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  margin-top: 2px;
+}
+.breadcrumb {
+  padding: 8px 32px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+.breadcrumb span {
+  cursor: pointer;
+  color: #60a5fa;
+}
+.breadcrumb span:hover { text-decoration: underline; }
+.tooltip {
+  display: none;
+  position: fixed;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  max-width: 400px;
+}
+.tooltip .tt-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.tooltip .tt-size { color: #60a5fa; font-size: 14px; }
+.tooltip .tt-pct { color: #94a3b8; font-size: 12px; margin-top: 4px; }
+.tooltip .tt-hint { color: #64748b; font-size: 11px; margin-top: 8px; }
+.table-section {
+  padding: 16px 32px 32px;
+}
+.table-section h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #e2e8f0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #1e293b;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #334155;
+}
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #1e293b;
+}
+tr:hover td { background: #1e293b; }
+.bar {
+  height: 6px;
+  background: #334155;
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 100px;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+.footer {
+  text-align: center;
+  padding: 16px;
+  color: #475569;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>C:\ 盘空间分析</h1>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">总容量</div>
+      <div class="stat-value blue">289.8 GB</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">已使用</div>
+      <div class="stat-value amber">232.2 GB</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">可用</div>
+      <div class="stat-value green">57.6 GB</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">使用率</div>
+      <div class="stat-value amber">80.1%</div>
+    </div>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: 80.1%"></div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>系统文件</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div>已安装程序</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>用户数据</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div>可清理</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#06b6d4"></div>工作工具</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ec4899"></div>社交/娱乐</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#374151"></div>系统保留</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#6b7280"></div>回收站</div>
+</div>
+
+<div class="breadcrumb" id="breadcrumb">
+  <span onclick="goRoot()">C:\</span>
+</div>
+
+<div class="treemap-container">
+  <div class="treemap" id="treemap"></div>
+</div>
+
+<div class="tooltip" id="tooltip">
+  <div class="tt-name"></div>
+  <div class="tt-size"></div>
+  <div class="tt-pct"></div>
+  <div class="tt-hint">点击展开子目录</div>
+</div>
+
+<div class="table-section">
+  <h2>Top 15 目录</h2>
+  <table>
+    <thead><tr><th>#</th><th>目录</th><th>大小</th><th>占比</th><th></th></tr></thead>
+    <tbody id="table-body"></tbody>
+  </table>
+</div>
+
+<div class="footer">
+  Generated by Storage Analyzer | 80.1% used of 289.8 GB
+</div>
+
+<script>
+const RAW = [
+  {"n": "Users", "v": 140057.2, "c": "#f59e0b", "ch": [
+    {"n": "13975", "v": 140057.2, "c": "#f59e0b", "ch": [
+      {"n": "AppData", "v": 109543.6, "c": "#f59e0b"},
+      {"n": ".workbuddy", "v": 8077.4, "c": "#06b6d4"},
+      {"n": ".newmax", "v": 7602.1, "c": "#06b6d4"},
+      {"n": ".mempalace", "v": 6190.8, "c": "#06b6d4"},
+      {"n": ".codex", "v": 2311.8, "c": "#06b6d4"},
+      {"n": ".cache", "v": 1605.1, "c": "#ef4444"},
+      {"n": ".local", "v": 962.9, "c": "#06b6d4"},
+      {"n": ".qoder", "v": 568.1, "c": "#06b6d4"},
+      {"n": "Obsidian", "v": 349.7, "c": "#06b6d4"},
+      {"n": ".cursor", "v": 349.3, "c": "#06b6d4"},
+      {"n": ".nuget", "v": 306.9, "c": "#6366f1"},
+      {"n": "Documents", "v": 286.9, "c": "#f59e0b"},
+      {"n": ".coli", "v": 229.1, "c": "#06b6d4"},
+      {"n": ".niumaai", "v": 228.5, "c": "#06b6d4"},
+      {"n": "WorkBuddy", "v": 191.2, "c": "#06b6d4"}
+    ]}
+  ]},
+  {"n": "Windows", "v": 35013.9, "c": "#3b82f6", "ch": [
+    {"n": "System32", "v": 11204.1, "c": "#3b82f6"},
+    {"n": "WinSxS", "v": 10884.3, "c": "#3b82f6"},
+    {"n": "assembly", "v": 4449.7, "c": "#6366f1"},
+    {"n": "Installer", "v": 3208.1, "c": "#6366f1"},
+    {"n": "SysWOW64", "v": 1357.7, "c": "#6366f1"},
+    {"n": "SystemApps", "v": 1071.9, "c": "#6366f1"},
+    {"n": "Microsoft.NET", "v": 769.2, "c": "#6366f1"},
+    {"n": "Fonts", "v": 706.0, "c": "#6366f1"},
+    {"n": "SystemResources", "v": 206.8, "c": "#6366f1"},
+    {"n": "servicing", "v": 182.4, "c": "#6366f1"},
+    {"n": "Log", "v": 104.6, "c": "#6366f1"},
+    {"n": "Speech_OneCore", "v": 92.9, "c": "#6366f1"},
+    {"n": "INF", "v": 92.1, "c": "#6366f1"},
+    {"n": "InputMethod", "v": 88.2, "c": "#6366f1"},
+    {"n": "Boot", "v": 72.1, "c": "#6366f1"}
+  ]},
+  {"n": "Program Files", "v": 30447.7, "c": "#8b5cf6", "ch": [
+    {"n": "WindowsApps", "v": 12440.2, "c": "#3b82f6"},
+    {"n": "Microsoft Visual Studio", "v": 6028.6, "c": "#6366f1"},
+    {"n": "Microsoft Office", "v": 4682.7, "c": "#6366f1"},
+    {"n": "dotnet", "v": 1172.7, "c": "#6366f1"},
+    {"n": "NVIDIA Corporation", "v": 916.8, "c": "#6366f1"},
+    {"n": "ASUS", "v": 908.9, "c": "#6366f1"},
+    {"n": "LibreOffice", "v": 662.7, "c": "#6366f1"},
+    {"n": "Microsoft OneDrive", "v": 564.1, "c": "#6366f1"},
+    {"n": "Electronic Arts", "v": 551.0, "c": "#ec4899"},
+    {"n": "Google", "v": 470.9, "c": "#6366f1"},
+    {"n": "Tencent", "v": 406.5, "c": "#ec4899"},
+    {"n": "Git", "v": 381.4, "c": "#06b6d4"},
+    {"n": "Microsoft OfficePLUS", "v": 244.4, "c": "#6366f1"},
+    {"n": "Tesseract-OCR", "v": 237.9, "c": "#06b6d4"},
+    {"n": "DAUM", "v": 173.6, "c": "#6366f1"}
+  ]},
+  {"n": "pagefile.sys", "v": 24576.0, "c": "#374151"},
+  {"n": "hiberfil.sys", "v": 12770.3, "c": "#374151"},
+  {"n": "Program Files (x86)", "v": 11112.7, "c": "#8b5cf6", "ch": [
+    {"n": "Microsoft", "v": 4757.1, "c": "#6366f1"},
+    {"n": "Windows Kits", "v": 2132.4, "c": "#3b82f6"},
+    {"n": "VMware", "v": 672.4, "c": "#6366f1"},
+    {"n": "dotnet", "v": 521.3, "c": "#6366f1"},
+    {"n": "Google", "v": 498.9, "c": "#6366f1"},
+    {"n": "ASUS", "v": 443.2, "c": "#6366f1"},
+    {"n": "Reference Assemblies", "v": 344.1, "c": "#6366f1"},
+    {"n": "Common Files", "v": 336.0, "c": "#6366f1"},
+    {"n": "Canon", "v": 305.9, "c": "#6366f1"},
+    {"n": "Microsoft Visual Studio", "v": 218.7, "c": "#6366f1"},
+    {"n": "R-Studio", "v": 211.2, "c": "#06b6d4"},
+    {"n": "NVIDIA Corporation", "v": 209.7, "c": "#6366f1"},
+    {"n": "InstallShield Installation Information", "v": 162.4, "c": "#6366f1"},
+    {"n": "Microsoft SDKs", "v": 148.4, "c": "#6366f1"},
+    {"n": "Sangfor", "v": 104.0, "c": "#6366f1"}
+  ]},
+  {"n": "ProgramData", "v": 10729.9, "c": "#8b5cf6", "ch": [
+    {"n": "Microsoft", "v": 3929.5, "c": "#6366f1"},
+    {"n": "Package Cache", "v": 1279.6, "c": "#ef4444"},
+    {"n": "Robei", "v": 1115.5, "c": "#06b6d4"},
+    {"n": "NVIDIA", "v": 902.9, "c": "#6366f1"},
+    {"n": "NVIDIA Corporation", "v": 883.6, "c": "#6366f1"},
+    {"n": "liming", "v": 640.8, "c": "#6366f1"},
+    {"n": "ASUS", "v": 456.0, "c": "#6366f1"},
+    {"n": "miniconda3", "v": 381.4, "c": "#06b6d4"},
+    {"n": "Epic", "v": 277.7, "c": "#ec4899"},
+    {"n": "Huorong", "v": 176.0, "c": "#6366f1"},
+    {"n": "Tencent", "v": 173.7, "c": "#ec4899"},
+    {"n": "Hogwarts Legacy", "v": 121.0, "c": "#ec4899"},
+    {"n": "SGAIAssistant", "v": 111.7, "c": "#06b6d4"},
+    {"n": "USOShared", "v": 78.6, "c": "#6366f1"},
+    {"n": "SogouInput", "v": 71.8, "c": "#6366f1"}
+  ]},
+  {"n": "eSupport", "v": 6667.9, "c": "#6366f1", "ch": [
+    {"n": "eDriver", "v": 6667.9, "c": "#6366f1"}
+  ]},
+  {"n": "Keil_v5", "v": 2838.3, "c": "#06b6d4", "ch": [
+    {"n": "ARM", "v": 2749.9, "c": "#06b6d4"},
+    {"n": "UV4", "v": 84.5, "c": "#06b6d4"}
+  ]},
+  {"n": "$Recycle.Bin", "v": 683.5, "c": "#6b7280"},
+  {"n": "v2rayN", "v": 444.0, "c": "#06b6d4"},
+  {"n": "图吧工具箱", "v": 429.1, "c": "#06b6d4"},
+  {"n": "codex_ppt_workspace", "v": 146.2, "c": "#06b6d4"},
+  {"n": "onnx_pkg", "v": 91.9, "c": "#06b6d4"},
+  {"n": "tmp", "v": 79.1, "c": "#ef4444"},
+  {"n": "swapfile.sys", "v": 16.0, "c": "#374151"},
+  {"n": "temp", "v": 8.3, "c": "#ef4444"},
+  {"n": "7zip", "v": 5.6, "c": "#6366f1"}
+];
+const TOTAL_DISK = 311177842688;
+const TOTAL_USED = 249364049920;
+
+const container = document.getElementById('treemap');
+const tooltip = document.getElementById('tooltip');
+let currentNode = null;
+let history = [];
+
+function fmt(mb) {
+  if (mb >= 1024) return (mb/1024).toFixed(1) + ' GB';
+  return Math.round(mb) + ' MB';
+}
+
+function layoutSquarify(items, x, y, w, h) {
+  if (!items.length || w <= 0 || h <= 0) return [];
+  const total = items.reduce((s, d) => s + d.v, 0);
+  if (total <= 0) return [];
+
+  const rects = [];
+  let remaining = [...items];
+  let rx = x, ry = y, rw = w, rh = h;
+
+  while (remaining.length > 0) {
+    const remTotal = remaining.reduce((s, d) => s + d.v, 0);
+    const isWide = rw >= rh;
+    const side = isWide ? rh : rw;
+
+    let row = [remaining[0]];
+    let rowSum = remaining[0].v;
+    let bestAR = worstAR(row, rowSum, side, remTotal, rw, rh, isWide);
+
+    for (let i = 1; i < remaining.length; i++) {
+      const testRow = [...row, remaining[i]];
+      const testSum = rowSum + remaining[i].v;
+      const testAR = worstAR(testRow, testSum, side, remTotal, rw, rh, isWide);
+      if (testAR <= bestAR) {
+        row = testRow;
+        rowSum = testSum;
+        bestAR = testAR;
+      } else break;
+    }
+
+    const rowFrac = rowSum / remTotal;
+    const rowSize = isWide ? rw * rowFrac : rh * rowFrac;
+
+    let pos = isWide ? ry : rx;
+    for (const item of row) {
+      const itemFrac = item.v / rowSum;
+      const itemSize = (isWide ? rh : rw) * itemFrac;
+      const rect = isWide
+        ? { x: rx, y: pos, w: rowSize, h: itemSize, data: item }
+        : { x: pos, y: ry, w: itemSize, h: rowSize, data: item };
+      rects.push(rect);
+      pos += itemSize;
+    }
+
+    if (isWide) { rx += rowSize; rw -= rowSize; }
+    else { ry += rowSize; rh -= rowSize; }
+    remaining = remaining.slice(row.length);
+  }
+  return rects;
+}
+
+function worstAR(row, rowSum, side, total, rw, rh, isWide) {
+  const rowFrac = rowSum / total;
+  const rowSize = isWide ? rw * rowFrac : rh * rowFrac;
+  let worst = 0;
+  for (const item of row) {
+    const itemFrac = item.v / rowSum;
+    const itemSize = (isWide ? rh : rw) * itemFrac;
+    const ar = Math.max(rowSize / itemSize, itemSize / rowSize);
+    worst = Math.max(worst, ar);
+  }
+  return worst;
+}
+
+function render(data, label) {
+  container.innerHTML = '';
+  const rect = container.getBoundingClientRect();
+  const w = rect.width - 2;
+  const h = rect.height - 2;
+
+  const sorted = [...data].sort((a, b) => b.v - a.v);
+  const rects = layoutSquarify(sorted, 1, 1, w, h);
+
+  rects.forEach(r => {
+    const el = document.createElement('div');
+    el.className = 'cell';
+    el.style.left = r.x + 'px';
+    el.style.top = r.y + 'px';
+    el.style.width = r.w + 'px';
+    el.style.height = r.h + 'px';
+    el.style.background = r.data.c || '#475569';
+
+    const showLabel = r.w > 50 && r.h > 30;
+    const showSize = r.w > 60 && r.h > 44;
+
+    if (showLabel) {
+      const nameEl = document.createElement('div');
+      nameEl.className = 'cell-name';
+      nameEl.textContent = r.data.n;
+      el.appendChild(nameEl);
+    }
+    if (showSize) {
+      const sizeEl = document.createElement('div');
+      sizeEl.className = 'cell-size';
+      sizeEl.textContent = fmt(r.data.v);
+      el.appendChild(sizeEl);
+    }
+
+    el.addEventListener('mouseenter', e => showTooltip(e, r.data));
+    el.addEventListener('mousemove', e => moveTooltip(e));
+    el.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+
+    if (r.data.ch && r.data.ch.length > 0) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', () => {
+        history.push({ data: currentNode || data, label: label || 'C:\\' });
+        currentNode = r.data.ch;
+        document.getElementById('breadcrumb').innerHTML =
+          '<span onclick="goRoot()">C:\\</span> &gt; <span>' + r.data.n + '</span>';
+        render(r.data.ch, r.data.n);
+        updateTable(r.data.ch);
+      });
+    }
+
+    container.appendChild(el);
+  });
+
+  updateTable(data);
+}
+
+function showTooltip(e, data) {
+  const pct = (data.v * 1024 * 1024 / TOTAL_USED * 100).toFixed(1);
+  tooltip.querySelector('.tt-name').textContent = data.n;
+  tooltip.querySelector('.tt-size').textContent = fmt(data.v);
+  tooltip.querySelector('.tt-pct').textContent = '占已用空间 ' + pct + '%';
+  tooltip.querySelector('.tt-hint').textContent = data.ch ? '点击展开子目录' : '';
+  tooltip.style.display = 'block';
+  moveTooltip(e);
+}
+
+function moveTooltip(e) {
+  const x = Math.min(e.clientX + 12, window.innerWidth - 320);
+  const y = Math.min(e.clientY + 12, window.innerHeight - 120);
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+}
+
+function goRoot() {
+  currentNode = null;
+  history = [];
+  document.getElementById('breadcrumb').innerHTML = '<span onclick="goRoot()">C:\\</span>';
+  render(RAW, 'C:\\');
+}
+
+function updateTable(data) {
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = '';
+  const total = data.reduce((s, d) => s + d.v, 0);
+  const sorted = [...data].sort((a, b) => b.v - a.v).slice(0, 15);
+  sorted.forEach((item, i) => {
+    const pct = (item.v / total * 100).toFixed(1);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${i+1}</td>
+      <td>${item.n}</td>
+      <td>${fmt(item.v)}</td>
+      <td>${pct}%</td>
+      <td><div class="bar"><div class="bar-fill" style="width:${pct}%;background:${item.c || '#6366f1'}"></div></div></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+render(RAW, 'C:\\');
+</script>
+</body>
+</html>

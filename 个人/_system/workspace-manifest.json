@@ -1,0 +1,1 @@
+{"workspace":"个人","name_cn":"个人工作区","role":"百大认知原始库+身份信息源","version":"4.8","reading_order":{"step1_forced":"CLAUDE.md顶部强制读取序列","step2_auto":".claude/rules/","step3_forced":"memory/long-term.md + today","step4_forced":"self-evolution/evolution-calendar.md","step5_on_demand":"SOPs/"},"sibling_workspaces":["mutual","创作","竞赛","求职"]}

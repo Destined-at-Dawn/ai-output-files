@@ -1,0 +1,181 @@
+{
+  "fear_greed": {
+    "score": 37.2571428571429,
+    "rating": "fear",
+    "timestamp": "2026-06-19T00:59:47+00:00",
+    "previous_close": 37.5142857142857,
+    "one_week_ago": 35.5142857142857,
+    "one_month_ago": 59.3714285714286,
+    "one_year_ago": 54.285714285714285
+  },
+  "treasury": {
+    "date": "06/18/2026",
+    "y10": 4.46,
+    "y2": 4.19,
+    "y30": 4.9,
+    "spread_10y_2y": 0.2699999999999996,
+    "all_points": {
+      "1M": 3.69,
+      "1.5M": 3.69,
+      "2M": 3.74,
+      "3M": 3.83,
+      "4M": 3.85,
+      "6M": 3.92,
+      "1Y": 4.0,
+      "2Y": 4.19,
+      "3Y": 4.19,
+      "5Y": 4.23,
+      "7Y": 4.34,
+      "10Y": 4.46,
+      "20Y": 4.91,
+      "30Y": 4.9
+    }
+  },
+  "cftc_gold": {
+    "date": "2026-06-09",
+    "market": "GOLD - COMMODITY EXCHANGE INC.",
+    "mm_long": 126280,
+    "mm_short": 20417,
+    "mm_net": 105863,
+    "prod_net": 0,
+    "open_interest": 332709,
+    "all_reports": [
+      {
+        "date": "2026-06-09",
+        "mm_net": 105863,
+        "open_interest": 332709
+      },
+      {
+        "date": "2026-06-02",
+        "mm_net": 112179,
+        "open_interest": 326052
+      },
+      {
+        "date": "2026-05-26",
+        "mm_net": 97446,
+        "open_interest": 353489
+      },
+      {
+        "date": "2026-05-19",
+        "mm_net": 93540,
+        "open_interest": 379325
+      },
+      {
+        "date": "2026-05-12",
+        "mm_net": 98015,
+        "open_interest": 376496
+      }
+    ]
+  },
+  "cftc_crude_oil": {
+    "date": "2026-06-09",
+    "market": "WTI-PHYSICAL - NEW YORK MERCANTILE EXCHANGE",
+    "mm_long": 213483,
+    "mm_short": 118758,
+    "mm_net": 94725,
+    "prod_net": 0,
+    "open_interest": 2006635,
+    "all_reports": [
+      {
+        "date": "2026-06-09",
+        "mm_net": 94725,
+        "open_interest": 2006635
+      }
+    ]
+  },
+  "coingecko_bitcoin": {
+    "price_usd": 62584.0,
+    "market_cap_usd": 1254323428685.1367,
+    "volume_24h_usd": 30133375300.684586,
+    "price_change_24h_pct": null
+  },
+  "coingecko_error": {
+    "error": "unsupported format string passed to NoneType.__format__"
+  },
+  "polymarket": [
+    {
+      "title": "World Cup Winner ",
+      "slug": "world-cup-winner",
+      "volume_24hr": 62811229.772468,
+      "liquidity": 596414922.72284,
+      "yes_prob": 0.0095
+    },
+    {
+      "title": "Next Prime Minister of Ethiopia?",
+      "slug": "next-prime-minister-of-ethiopia",
+      "volume_24hr": 4809924.003988001,
+      "liquidity": 94383.98205,
+      "yes_prob": 0.005
+    },
+    {
+      "title": "Democratic Presidential Nominee 2028",
+      "slug": "democratic-presidential-nominee-2028",
+      "volume_24hr": 3586595.092549,
+      "liquidity": 67929450.27665,
+      "yes_prob": 0.0205
+    },
+    {
+      "title": "United States vs. Australia",
+      "slug": "fifwc-usa-aus-2026-06-19",
+      "volume_24hr": 3172296.7442219947,
+      "liquidity": 6361633.5883,
+      "yes_prob": 0.605
+    },
+    {
+      "title": "US x Iran diplomatic meeting by...?",
+      "slug": "us-x-iran-diplomatic-meeting-by-329",
+      "volume_24hr": 2337223.4207800026,
+      "liquidity": 2440836.10754,
+      "yes_prob": 0.012
+    },
+    {
+      "title": "What Iranian demands will Trump agree to by June 30?",
+      "slug": "what-iranian-demands-will-trump-agree-to-by-june-30",
+      "volume_24hr": 2214400.4893580005,
+      "liquidity": 3400114.14516,
+      "yes_prob": 0.9995
+    },
+    {
+      "title": "US-Iran deal text released by...?",
+      "slug": "us-iran-deal-text-released-byptptpt-20260615224044572",
+      "volume_24hr": 2198335.562823,
+      "liquidity": 4602312.21297,
+      "yes_prob": 0.0005
+    },
+    {
+      "title": " Iran agrees to end enrichment of uranium by June 30?",
+      "slug": "iran-agrees-to-end-enrichment-of-uranium-by-june-30",
+      "volume_24hr": 1894331.4547219982,
+      "liquidity": 188928.8054,
+      "yes_prob": 0.545
+    },
+    {
+      "title": "Strait of Hormuz traffic returns to normal by end of June?",
+      "slug": "strait-of-hormuz-traffic-returns-to-normal-by-end-of-june",
+      "volume_24hr": 1655237.1498290014,
+      "liquidity": 575052.2867,
+      "yes_prob": 0.085
+    },
+    {
+      "title": "World Cup: Golden Boot Winner",
+      "slug": "world-cup-golden-boot-winner",
+      "volume_24hr": 1565322.9316169997,
+      "liquidity": 6378655.92432,
+      "yes_prob": 0.0015
+    },
+    {
+      "title": "Bitcoin above ___ on June 19?",
+      "slug": "bitcoin-above-on-june-19-2026",
+      "volume_24hr": 1428634.9436599999,
+      "liquidity": 939330.01849,
+      "yes_prob": 0.001
+    },
+    {
+      "title": "LoL: T1 Academy vs KT Rolster Challengers (BO5) - Asia Masters Playoffs",
+      "slug": "lol-t1a-ktc-2026-06-19",
+      "volume_24hr": 1379032.2497329996,
+      "liquidity": 590758.26605,
+      "yes_prob": null
+    }
+  ]
+}

@@ -1,0 +1,640 @@
+{
+  "_deprecated": true,
+  "_deprecated_date": "2026-06-08",
+  "_deprecated_reason": "与 skill-routing-table.json 重复且格式不兼容，后者是经 CLAUDE.md Step 4.5 加载的唯一路由文件。本文件保留仅供历史参考，禁止 AI 在新对话中依赖。",
+  "_replacement": "E:\\ai产出文件\\牛马\\竞赛\\竞赛\\skill-routing-table.json",
+  "version": "4.0",
+  "description": "⚠️ 已废弃——竞赛工作区技能路由。请使用 skill-routing-table.json",
+  "updated": "2026-06-05",
+  "routing_mode": "intent-driven",
+  "rules": [
+    {
+      "intent": "硬件设计",
+      "keywords": [
+        "verilog",
+        "systemverilog",
+        "fpga",
+        "硬件",
+        "电路",
+        "asic",
+        "vivado",
+        "quartus",
+        "时序",
+        "rtl",
+        "仿真",
+        "综合",
+        "fpgabuilder"
+      ],
+      "skills": [
+        "hardware-design"
+      ],
+      "action": "硬件设计",
+      "priority": 5
+    },
+    {
+      "intent": "竞赛全流程",
+      "keywords": [
+        "竞赛",
+        "比赛",
+        "contest",
+        "集创赛",
+        "电赛",
+        "C919"
+      ],
+      "skills": [
+        "competition-workflow"
+      ],
+      "action": "竞赛全流程",
+      "priority": 5
+    },
+    {
+      "intent": "代码开发",
+      "keywords": [
+        "代码",
+        "写代码",
+        "coding",
+        "python",
+        "调试",
+        "编程"
+      ],
+      "skills": [
+        "code"
+      ],
+      "action": "代码开发",
+      "priority": 4
+    },
+    {
+      "intent": "厂商代码移植",
+      "keywords": [
+        "厂商代码",
+        "移植",
+        "对比",
+        "一一对应",
+        "Demo",
+        "参考代码"
+      ],
+      "skills": [
+        "claude-skill-verilog"
+      ],
+      "action": "厂商代码移植",
+      "priority": 4
+    },
+    {
+      "intent": "学习加速",
+      "keywords": [
+        "学习",
+        "学",
+        "搞懂",
+        "入门",
+        "研究",
+        "了解"
+      ],
+      "skills": [
+        "learning-boost",
+        "interactive-learning"
+      ],
+      "action": "学习加速",
+      "priority": 4
+    },
+    {
+      "intent": "概念与操作学习",
+      "keywords": [
+        "教我",
+        "怎么操作",
+        "怎么用",
+        "一步步来",
+        "只学方法",
+        "实操",
+        "上手",
+        "手把手"
+      ],
+      "skills": [
+        "claude-skill-verilog",
+        "learning-boost"
+      ],
+      "action": "概念与操作学习",
+      "priority": 4
+    },
+    {
+      "intent": "思维训练",
+      "keywords": [
+        "费曼",
+        "AI拷问",
+        "测试",
+        "模拟答辩",
+        "思维训练"
+      ],
+      "skills": [
+        "thinking-coach"
+      ],
+      "action": "思维训练",
+      "priority": 4
+    },
+    {
+      "intent": "内容拆解",
+      "keywords": [
+        "拆解",
+        "道法术器",
+        "分析这个",
+        "案例"
+      ],
+      "skills": [
+        "dao-fa-shu-qi",
+        "案例拆解生成器"
+      ],
+      "action": "内容拆解",
+      "priority": 3
+    },
+    {
+      "intent": "网页搜索",
+      "keywords": [
+        "搜索",
+        "查一下",
+        "帮我搜",
+        "查资料"
+      ],
+      "skills": [
+        "step-search"
+      ],
+      "action": "网页搜索",
+      "priority": 3
+    },
+    {
+      "intent": "内容采集",
+      "keywords": [
+        "抓网页",
+        "采集",
+        "抓内容",
+        "论文"
+      ],
+      "skills": [
+        "全能网页采集器"
+      ],
+      "action": "内容采集",
+      "priority": 3
+    },
+    {
+      "intent": "知识检索",
+      "keywords": [
+        "知识库",
+        "RAG",
+        "检索",
+        "查笔记"
+      ],
+      "skills": [
+        "personal-rag-qa"
+      ],
+      "action": "知识检索",
+      "priority": 3
+    },
+    {
+      "intent": "记忆管理",
+      "keywords": [
+        "记忆",
+        "记忆管理",
+        "自我改进",
+        "跨会话"
+      ],
+      "skills": [
+        "li-memory",
+        "li-improve",
+        "conversation-to-knowledge"
+      ],
+      "action": "记忆管理",
+      "priority": 3
+    },
+    {
+      "intent": "复盘分析",
+      "keywords": [
+        "复盘",
+        "回顾",
+        "总结"
+      ],
+      "skills": [
+        "daily-review",
+        "deep-review",
+        "session-summary",
+        "post-task-audit"
+      ],
+      "action": "复盘分析",
+      "priority": 3
+    },
+    {
+      "intent": "任务管理",
+      "keywords": [
+        "任务",
+        "计划",
+        "排程",
+        "进度"
+      ],
+      "skills": [
+        "smart-task-planner-skill",
+        "li-plan"
+      ],
+      "action": "任务管理",
+      "priority": 3
+    },
+    {
+      "intent": "演示制作",
+      "keywords": [
+        "PPT",
+        "演示",
+        "幻灯片",
+        "答辩"
+      ],
+      "skills": [
+        "pptx",
+        "frontend-slides"
+      ],
+      "action": "演示制作",
+      "priority": 3
+    },
+    {
+      "intent": "技术文档",
+      "keywords": [
+        "写报告",
+        "写文档",
+        "技术文档",
+        "论文",
+        "报告"
+      ],
+      "skills": [
+        "doc-coauthoring",
+        "docx",
+        "writing-plans"
+      ],
+      "action": "技术文档",
+      "priority": 3
+    },
+    {
+      "intent": "图片生成",
+      "keywords": [
+        "图片",
+        "画图",
+        "配图",
+        "示意图"
+      ],
+      "skills": [
+        "baoyu-image-gen",
+        "gemini-image"
+      ],
+      "action": "图片生成",
+      "priority": 2
+    },
+    {
+      "intent": "视频处理",
+      "keywords": [
+        "视频",
+        "拆解视频",
+        "演示视频"
+      ],
+      "skills": [
+        "video-optimize",
+        "video-creator",
+        "ffmpeg-usage"
+      ],
+      "action": "视频处理",
+      "priority": 2
+    },
+    {
+      "intent": "PDF处理",
+      "keywords": [
+        "PDF",
+        "pdf",
+        "读取PDF",
+        "提取PDF",
+        "转换PDF",
+        "合并PDF",
+        "拆分PDF",
+        "PDF提取",
+        "PDF文本",
+        "PDF转",
+        "扫描件",
+        "OCR识别PDF",
+        "阅读PDF",
+        "打开PDF",
+        "查看PDF",
+        "解析PDF",
+        "datasheet"
+      ],
+      "skills": [
+        "pdf"
+      ],
+      "action": "PDF处理",
+      "priority": 4
+    },
+    {
+      "intent": "Word处理",
+      "keywords": [
+        "Word",
+        "word",
+        "docx",
+        "写Word",
+        "Word文档",
+        "文档排版",
+        "报告"
+      ],
+      "skills": [
+        "docx"
+      ],
+      "action": "Word处理",
+      "priority": 3
+    },
+    {
+      "intent": "Excel数据",
+      "keywords": [
+        "Excel",
+        "excel",
+        "xlsx",
+        "表格数据",
+        "数据分析"
+      ],
+      "skills": [
+        "xlsx",
+        "data-analysis"
+      ],
+      "action": "Excel数据处理",
+      "priority": 3
+    },
+    {
+      "intent": "翻译",
+      "keywords": [
+        "翻译",
+        "translate",
+        "datasheet"
+      ],
+      "skills": [
+        "deepl"
+      ],
+      "action": "翻译",
+      "priority": 2
+    },
+    {
+      "intent": "前端开发",
+      "keywords": [
+        "前端",
+        "网页",
+        "web",
+        "HTML",
+        "界面"
+      ],
+      "skills": [
+        "frontend-design",
+        "code"
+      ],
+      "action": "前端开发",
+      "priority": 2
+    },
+    {
+      "intent": "MCP开发",
+      "keywords": [
+        "MCP",
+        "服务器",
+        "插件",
+        "API"
+      ],
+      "skills": [
+        "mcp-builder"
+      ],
+      "action": "MCP开发",
+      "priority": 2
+    },
+    {
+      "intent": "项目初始化",
+      "keywords": [
+        "项目初始化",
+        "init",
+        "新建项目",
+        "搭建"
+      ],
+      "skills": [
+        "project-init"
+      ],
+      "action": "项目初始化",
+      "priority": 3
+    },
+    {
+      "intent": "问题澄清",
+      "keywords": [
+        "澄清",
+        "想不清楚",
+        "理清",
+        "需求"
+      ],
+      "skills": [
+        "jc-clarifier"
+      ],
+      "action": "问题澄清",
+      "priority": 2
+    },
+    {
+      "intent": "教程撰写",
+      "keywords": [
+        "教程",
+        "手册",
+        "写教程",
+        "文档"
+      ],
+      "skills": [
+        "jc-jiaocheng"
+      ],
+      "action": "教程撰写",
+      "priority": 2
+    },
+    {
+      "intent": "演讲表达",
+      "keywords": [
+        "演讲",
+        "分享",
+        "答辩准备",
+        "汇报"
+      ],
+      "skills": [
+        "yanjiang"
+      ],
+      "action": "演讲表达",
+      "priority": 3
+    },
+    {
+      "intent": "telos同步",
+      "keywords": [
+        "记忆",
+        "更新telos",
+        "个人信息"
+      ],
+      "skills": [
+        "li-sync"
+      ],
+      "action": "记忆管理",
+      "priority": 3
+    },
+    {
+      "intent": "工作区管理",
+      "keywords": [
+        "新建工作区",
+        "新建项目",
+        "脚手架"
+      ],
+      "skills": [
+        "scaffold-workspace",
+        "niuma-help",
+        "li-local-search"
+      ],
+      "action": "工作区管理",
+      "priority": 3
+    },
+    {
+      "intent": "OCR识别",
+      "keywords": [
+        "OCR",
+        "识别文字",
+        "提取文字",
+        "截图识别"
+      ],
+      "skills": [
+        "ppocrv5"
+      ],
+      "action": "文字识别",
+      "priority": 2
+    },
+    {
+      "intent": "信息图",
+      "keywords": [
+        "信息图",
+        "infographic",
+        "数据可视化"
+      ],
+      "skills": [
+        "baoyu-infographic"
+      ],
+      "action": "信息图生成",
+      "priority": 2
+    },
+    {
+      "intent": "科研决策",
+      "keywords": [
+        "科研日报",
+        "daily report",
+        "today's papers",
+        "analyze paper",
+        "论文分析",
+        "创新缺口",
+        "find gaps",
+        "writing formula",
+        "写作技巧",
+        "research guidance",
+        "科研方向",
+        "paper review",
+        "论文",
+        "paper",
+        "arXiv"
+      ],
+      "skills": [
+        "research-daily"
+      ],
+      "action": "科研决策引擎",
+      "priority": 4
+    },
+    {
+      "intent": "GitHub发布",
+      "keywords": [
+        "开源到GitHub",
+        "创建GitHub仓库",
+        "发布到GitHub",
+        "美化仓库",
+        "检查隐私",
+        "创建Release",
+        "上传封面",
+        "一键发布",
+        "GitHub仓库",
+        "开源发布"
+      ],
+      "skills": [
+        "github-publisher"
+      ],
+      "action": "GitHub发布全流程",
+      "priority": 3
+    },
+    {
+      "intent": "全量审计",
+      "keywords": [
+        "全量审计",
+        "优化skill",
+        "优化SOP",
+        "系统体检",
+        "全量优化",
+        "skill审计",
+        "SOP审计",
+        "技能审计"
+      ],
+      "skills": [
+        "audit-optimizer"
+      ],
+      "action": "全量Skill/SOP审计",
+      "priority": 4
+    },
+    {
+      "intent": "li系列工具箱",
+      "keywords": ["li系列", "小黎工具", "li工具箱", "li工具", "小黎的工具"],
+      "skills": ["li"],
+      "action": "li系列路由入口",
+      "priority": 2
+    },
+    {
+      "intent": "技能锻造",
+      "keywords": ["创建技能", "造技能", "新技能", "skill创建", "建skill", "写技能", "锻造技能", "技能迭代", "优化技能", "改进技能", "升级技能", "skill迭代", "改skill", "重做技能"],
+      "skills": ["li-skillcreate"],
+      "action": "技能锻造器",
+      "priority": 2
+    },
+    {
+      "intent": "逐字稿清洗升级",
+      "keywords": ["逐字稿", "录音转文字", "会议纪要", "讲座逐字稿", "转录文稿", "语音识别", "会议录音"],
+      "skills": ["li-transcript"],
+      "action": "逐字稿清洗（li系列）",
+      "priority": 3
+    },
+    {
+      "intent": "技能发现与搜索",
+      "keywords": ["找技能", "有没有skill", "推荐skill", "有什么新技能", "最新MCP", "技能更新", "新技能", "技能市场", "awesome skill", "find skill"],
+      "skills": ["li-bestskill"],
+      "action": "跨平台技能发现",
+      "priority": 3
+    },
+    {
+      "intent": "深度调研",
+      "keywords": ["调研", "深度调研", "deep research", "竞品分析", "帮我调研", "搜竞品", "帮我搜", "搜一下类似的", "迭代调研", "继续优化", "再深入", "继续搜", "续跑"],
+      "skills": ["li-research"],
+      "action": "深度调研智能体v4（li系列）：多平台并行搜索+道法术器穿透+一鱼多吃+版本化迭代",
+      "priority": 1
+    },
+    {
+      "intent": "全局记忆管理",
+      "keywords": ["整理记忆", "更新画像", "最近我在干什么", "反思", "工作流审查", "我的偏好", "记住这个", "全局画像", "对话日志", "记忆管理"],
+      "skills": ["li-manage"],
+      "action": "全局记忆与工作流管家",
+      "priority": 3
+    },
+    {
+      "intent": "技能融合拆分",
+      "keywords": ["融合skill", "合并skill", "拆分skill", "拆开skill", "改造skill", "定制skill", "skill太大", "弃用skill", "技能工坊", "skillcraft"],
+      "skills": ["li-skillfusion"],
+      "action": "技能工坊",
+      "priority": 3
+    },
+    {
+      "intent": "本地技能搜索",
+      "keywords": ["本地skill", "已安装的skill", "技能列表", "有什么技能", "你会什么", "能做什么"],
+      "skills": ["li-local-search"],
+      "action": "本地196+技能搜索",
+      "priority": 2
+    },
+    {
+      "intent": "去AI味人性化改写",
+      "keywords": ["去AI味", "人性化改写", "humanizer", "AI痕迹", "不像人话", "AI腔太重", "改自然点", "拟人化"],
+      "skills": ["humanizer-zh"],
+      "action": "去AI味高级改写",
+      "priority": 2
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "newFileLocation": "folder",
+  "newFileFolderPath": "05-每日记忆",
+  "attachmentFolderPath": "附件",
+  "showLineNumber": true,
+  "strictLineBreaks": false,
+  "readableLineLength": true,
+  "graph": {
+    "collapse-filter": false,
+    "search": "",
+    "showTags": true,
+    "showAttachments": false,
+    "hideUnresolved": false,
+    "showOrphans": true,
+    "collapse-color-groups": false,
+    "colorGroups": [
+      {
+        "query": "path:06-求职",
+        "color": {
+          "a": 1,
+          "rgb": 15112226
+        }
+      },
+      {
+        "query": "path:07-竞赛",
+        "color": {
+          "a": 1,
+          "rgb": 2599520
+        }
+      },
+      {
+        "query": "path:08-创作",
+        "color": {
+          "a": 1,
+          "rgb": 3447131
+        }
+      },
+      {
+        "query": "path:09-生态",
+        "color": {
+          "a": 1,
+          "rgb": 9335981
+        }
+      },
+      {
+        "query": "path:03-个人档案",
+        "color": {
+          "a": 1,
+          "rgb": 15158332
+        }
+      },
+      {
+        "query": "path:10-跨工作区",
+        "color": {
+          "a": 1,
+          "rgb": 15974674
+        }
+      },
+      {
+        "query": "path:00-主页",
+        "color": {
+          "a": 1,
+          "rgb": 15395562
+        }
+      },
+      {
+        "query": "path:02-共享规则",
+        "color": {
+          "a": 1,
+          "rgb": 8388736
+        }
+      },
+      {
+        "query": "path:04-SOP",
+        "color": {
+          "a": 1,
+          "rgb": 8388736
+        }
+      }
+    ],
+    "collapse-display": false,
+    "showArrow": true,
+    "textFadeMultiplier": 0,
+    "nodeSizeMultiplier": 1.3,
+    "lineSizeMultiplier": 1,
+    "collapse-forces": true,
+    "centerStrength": 0.5,
+    "repelStrength": 10,
+    "linkStrength": 1,
+    "linkDistance": 250
+  }
+}

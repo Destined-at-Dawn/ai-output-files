@@ -1,0 +1,554 @@
+{
+  "version": "4.0",
+  "description": "个人成长工作区技能路由——意图驱动，认知+学习+管理",
+  "updated": "2026-06-05",
+  "routing_mode": "intent-driven",
+  "rules": [
+    {
+      "intent": "学习加速",
+      "keywords": [
+        "学习",
+        "学",
+        "搞懂",
+        "入门",
+        "研究一下",
+        "了解"
+      ],
+      "skills": [
+        "learning-boost",
+        "interactive-learning",
+        "AI方法论学习器"
+      ],
+      "action": "学习加速",
+      "priority": 5
+    },
+    {
+      "intent": "思维训练",
+      "keywords": [
+        "费曼",
+        "教你",
+        "AI拷问",
+        "测试",
+        "模拟面试",
+        "思维训练"
+      ],
+      "skills": [
+        "thinking-coach"
+      ],
+      "action": "思维训练",
+      "priority": 5
+    },
+    {
+      "intent": "认知拆解",
+      "keywords": [
+        "拆解",
+        "道法术器",
+        "值不值得",
+        "分析这个"
+      ],
+      "skills": [
+        "dao-fa-shu-qi",
+        "案例拆解生成器"
+      ],
+      "action": "认知拆解",
+      "priority": 5
+    },
+    {
+      "intent": "记忆管理",
+      "keywords": [
+        "记忆",
+        "记忆管理",
+        "跨会话",
+        "自我改进"
+      ],
+      "skills": [
+        "li-memory",
+        "li-improve",
+        "conversation-to-knowledge"
+      ],
+      "action": "记忆管理",
+      "priority": 4
+    },
+    {
+      "intent": "复盘分析",
+      "keywords": [
+        "复盘",
+        "回顾",
+        "总结",
+        "深度分析"
+      ],
+      "skills": [
+        "deep-review",
+        "daily-review",
+        "session-summary",
+        "post-task-audit"
+      ],
+      "action": "复盘分析",
+      "priority": 4
+    },
+    {
+      "intent": "人生规划",
+      "keywords": [
+        "规划",
+        "大学规划",
+        "四年规划",
+        "人生规划",
+        "目标"
+      ],
+      "skills": [
+        "university-planner",
+        "li-plan"
+      ],
+      "action": "人生规划",
+      "priority": 4
+    },
+    {
+      "intent": "问题澄清",
+      "keywords": [
+        "澄清",
+        "想不清楚",
+        "帮我理清",
+        "决策"
+      ],
+      "skills": [
+        "jc-clarifier"
+      ],
+      "action": "问题澄清",
+      "priority": 3
+    },
+    {
+      "intent": "AI协作诊断",
+      "keywords": [
+        "诊断AI",
+        "AI用法",
+        "审视做法",
+        "余一"
+      ],
+      "skills": [
+        "ai-yuyi"
+      ],
+      "action": "AI协作诊断",
+      "priority": 3
+    },
+    {
+      "intent": "网页搜索",
+      "keywords": [
+        "搜索",
+        "查一下",
+        "帮我搜"
+      ],
+      "skills": [
+        "step-search"
+      ],
+      "action": "网页搜索",
+      "priority": 3
+    },
+    {
+      "intent": "内容采集",
+      "keywords": [
+        "抓网页",
+        "采集",
+        "抓内容"
+      ],
+      "skills": [
+        "全能网页采集器"
+      ],
+      "action": "内容采集",
+      "priority": 3
+    },
+    {
+      "intent": "知识检索",
+      "keywords": [
+        "知识库",
+        "RAG",
+        "检索",
+        "查笔记"
+      ],
+      "skills": [
+        "personal-rag-qa",
+        "anything-to-notebooklm"
+      ],
+      "action": "知识检索",
+      "priority": 4
+    },
+    {
+      "intent": "教程撰写",
+      "keywords": [
+        "教程",
+        "手册",
+        "指南",
+        "写教程"
+      ],
+      "skills": [
+        "jc-jiaocheng"
+      ],
+      "action": "教程撰写",
+      "priority": 2
+    },
+    {
+      "intent": "内容创作",
+      "keywords": [
+        "写文章",
+        "写内容",
+        "公众号"
+      ],
+      "skills": [
+        "blog-post-writer",
+        "五步写作法"
+      ],
+      "action": "内容创作",
+      "priority": 2
+    },
+    {
+      "intent": "演讲表达",
+      "keywords": [
+        "演讲",
+        "分享",
+        "直播"
+      ],
+      "skills": [
+        "yanjiang"
+      ],
+      "action": "演讲表达",
+      "priority": 2
+    },
+    {
+      "intent": "方法论提炼",
+      "keywords": [
+        "AI方法",
+        "提炼方法论",
+        "从播客学习",
+        "方法论"
+      ],
+      "skills": [
+        "AI方法论学习器",
+        "li-transcript"
+      ],
+      "action": "方法论提炼",
+      "priority": 3
+    },
+    {
+      "intent": "知识汇总",
+      "keywords": [
+        "播客",
+        "NotebookLM",
+        "汇总",
+        "生成播客"
+      ],
+      "skills": [
+        "anything-to-notebooklm"
+      ],
+      "action": "知识汇总",
+      "priority": 3
+    },
+    {
+      "intent": "演示制作",
+      "keywords": [
+        "PPT",
+        "演示",
+        "幻灯片"
+      ],
+      "skills": [
+        "pptx",
+        "frontend-slides"
+      ],
+      "action": "演示制作",
+      "priority": 2
+    },
+    {
+      "intent": "图片生成",
+      "keywords": [
+        "图片",
+        "画图",
+        "配图"
+      ],
+      "skills": [
+        "baoyu-image-gen",
+        "gemini-image"
+      ],
+      "action": "图片生成",
+      "priority": 2
+    },
+    {
+      "intent": "视频处理",
+      "keywords": [
+        "视频",
+        "拆解视频"
+      ],
+      "skills": [
+        "video-optimize",
+        "video-creator"
+      ],
+      "action": "视频处理",
+      "priority": 2
+    },
+    {
+      "intent": "PDF处理",
+      "keywords": [
+        "PDF",
+        "pdf",
+        "读取PDF",
+        "提取PDF",
+        "转换PDF",
+        "合并PDF",
+        "拆分PDF",
+        "PDF提取",
+        "PDF文本",
+        "PDF转",
+        "扫描件",
+        "OCR识别PDF",
+        "阅读PDF",
+        "打开PDF",
+        "查看PDF",
+        "解析PDF"
+      ],
+      "skills": [
+        "pdf"
+      ],
+      "action": "PDF处理",
+      "priority": 4
+    },
+    {
+      "intent": "Word处理",
+      "keywords": [
+        "Word",
+        "word",
+        "docx",
+        "写Word",
+        "Word文档",
+        "文档排版"
+      ],
+      "skills": [
+        "docx"
+      ],
+      "action": "Word处理",
+      "priority": 3
+    },
+    {
+      "intent": "Excel数据",
+      "keywords": [
+        "Excel",
+        "excel",
+        "xlsx",
+        "表格数据",
+        "数据分析"
+      ],
+      "skills": [
+        "xlsx",
+        "data-analysis"
+      ],
+      "action": "Excel数据处理",
+      "priority": 3
+    },
+    {
+      "intent": "翻译",
+      "keywords": [
+        "翻译"
+      ],
+      "skills": [
+        "deepl"
+      ],
+      "action": "翻译",
+      "priority": 2
+    },
+    {
+      "intent": "任务管理",
+      "keywords": [
+        "任务",
+        "计划",
+        "排程"
+      ],
+      "skills": [
+        "smart-task-planner-skill",
+        "li-plan"
+      ],
+      "action": "任务管理",
+      "priority": 3
+    },
+    {
+      "intent": "日程管理",
+      "keywords": [
+        "定时任务",
+        "提醒",
+        "日程"
+      ],
+      "skills": [
+        "li-plan"
+      ],
+      "action": "日程管理",
+      "priority": 3
+    },
+    {
+      "intent": "telos同步",
+      "keywords": [
+        "更新telos",
+        "个人信息",
+        "同步"
+      ],
+      "skills": [
+        "li-sync",
+        "li-memory"
+      ],
+      "action": "记忆管理",
+      "priority": 4
+    },
+    {
+      "intent": "工作区管理",
+      "keywords": [
+        "新建工作区",
+        "新建项目",
+        "脚手架"
+      ],
+      "skills": [
+        "scaffold-workspace",
+        "niuma-help",
+        "li-local-search"
+      ],
+      "action": "工作区管理",
+      "priority": 3
+    },
+    {
+      "intent": "li-industry",
+      "keywords": [
+        "li-industry",
+        "了解行业",
+        "市场"
+      ],
+      "skills": [
+        "li-industry",
+        "step-search"
+      ],
+      "action": "li-industry",
+      "priority": 2
+    },
+    {
+      "intent": "视觉内容",
+      "keywords": [
+        "漫画",
+        "信息图",
+        "配图"
+      ],
+      "skills": [
+        "baoyu-comic",
+        "baoyu-infographic",
+        "baoyu-xhs-images"
+      ],
+      "action": "视觉内容",
+      "priority": 2
+    },
+    {
+      "intent": "深度学习",
+      "keywords": [
+        "深度学习",
+        "系统学习",
+        "体系化",
+        "搞透"
+      ],
+      "skills": [
+        "learning-boost",
+        "interactive-learning",
+        "thinking-coach",
+        "dao-fa-shu-qi"
+      ],
+      "action": "深度学习链路",
+      "priority": 5
+    },
+    {
+      "intent": "科研决策",
+      "keywords": [
+        "科研日报",
+        "论文分析",
+        "paper review",
+        "创新缺口",
+        "find gaps",
+        "writing formula",
+        "写作技巧"
+      ],
+      "skills": [
+        "research-daily"
+      ],
+      "action": "科研决策引擎",
+      "priority": 3
+    },
+    {
+      "intent": "全量审计",
+      "keywords": [
+        "全量审计",
+        "优化skill",
+        "优化SOP",
+        "系统体检",
+        "全量优化",
+        "skill审计",
+        "SOP审计"
+      ],
+      "skills": [
+        "audit-optimizer"
+      ],
+      "action": "全量Skill/SOP审计",
+      "priority": 3
+    },
+    {
+      "intent": "li系列工具箱",
+      "keywords": ["li系列", "小黎工具", "li工具箱", "li工具", "小黎的工具"],
+      "skills": ["li"],
+      "action": "li系列路由入口",
+      "priority": 2
+    },
+    {
+      "intent": "技能锻造",
+      "keywords": ["创建技能", "造技能", "新技能", "skill创建", "建skill", "写技能", "锻造技能", "技能迭代", "优化技能", "改进技能", "升级技能", "skill迭代", "改skill", "重做技能"],
+      "skills": ["li-skillcreate"],
+      "action": "技能锻造器",
+      "priority": 2
+    },
+    {
+      "intent": "逐字稿清洗",
+      "keywords": ["逐字稿", "录音转文字", "会议纪要", "讲座逐字稿", "转录文稿", "语音识别", "会议录音"],
+      "skills": ["li-transcript"],
+      "action": "逐字稿清洗",
+      "priority": 3
+    },
+    {
+      "intent": "技能发现与搜索",
+      "keywords": ["找技能", "有没有skill", "推荐skill", "有什么新技能", "最新MCP", "技能更新", "新技能", "技能市场", "awesome skill", "find skill"],
+      "skills": ["li-bestskill"],
+      "action": "跨平台技能发现",
+      "priority": 3
+    },
+    {
+      "intent": "深度调研",
+      "keywords": ["调研", "深度调研", "deep research", "竞品分析", "帮我调研", "搜竞品", "帮我搜", "搜一下类似的", "迭代调研", "继续优化", "再深入", "继续搜", "续跑"],
+      "skills": ["li-research"],
+      "action": "深度调研智能体v4（li系列）：多平台并行搜索+道法术器穿透+一鱼多吃+版本化迭代",
+      "priority": 1
+    },
+    {
+      "intent": "全局记忆管理",
+      "keywords": ["整理记忆", "更新画像", "最近我在干什么", "反思", "工作流审查", "我的偏好", "记住这个", "全局画像", "对话日志", "记忆管理"],
+      "skills": ["li-manage"],
+      "action": "全局记忆与工作流管家",
+      "priority": 3
+    },
+    {
+      "intent": "技能融合拆分",
+      "keywords": ["融合skill", "合并skill", "拆分skill", "拆开skill", "改造skill", "定制skill", "skill太大", "弃用skill", "技能工坊", "skillcraft"],
+      "skills": ["li-skillfusion"],
+      "action": "技能工坊",
+      "priority": 3
+    },
+    {
+      "intent": "本地技能搜索",
+      "keywords": ["本地skill", "已安装的skill", "技能列表", "有什么技能", "你会什么", "能做什么"],
+      "skills": ["li-local-search"],
+      "action": "本地196+技能搜索",
+      "priority": 2
+    },
+    {
+      "intent": "去AI味人性化改写",
+      "keywords": ["去AI味", "人性化改写", "humanizer", "AI痕迹", "不像人话", "AI腔太重", "改自然点", "拟人化"],
+      "skills": ["humanizer-zh"],
+      "action": "去AI味高级改写",
+      "priority": 2
+    }
+  ]
+}

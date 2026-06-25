@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="李兰源（小黎）的个人网站：电气工程 · 具身智能 · AI 流程工程。上海电力大学 GPA 3.9，皮赛仪器 AI 流程工程师，蓓伟机器人具身智能实习生。">
+  <title>李兰源 | 电气工程 · 具身智能 · AI 流程工程</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #171717;
+      --ink-soft: #3f3f3f;
+      --muted: #6f6f68;
+      --hairline: rgba(23, 23, 23, 0.1);
+      --hairline-strong: rgba(23, 23, 23, 0.18);
+      --canvas: #fbfbf8;
+      --surface: #ffffff;
+      --surface-soft: #f4f2ec;
+      --dark: #111111;
+      --dark-soft: #202020;
+      --gold: #b88a25;
+      --gold-soft: #f2e4bd;
+      --copper: #b95724;
+      --copper-soft: #f0d5c7;
+      --cyan: #23a9b7;
+      --cyan-soft: #e4f6f8;
+      --blue: #0a72ef;
+      --blue-soft: #e7f1ff;
+      --green: #1f7a55;
+      --green-soft: #e7f3ed;
+      --shadow-border: 0 0 0 1px rgba(23, 23, 23, 0.09);
+      --shadow-card: 0 0 0 1px rgba(23, 23, 23, 0.09), 0 8px 24px rgba(23, 23, 23, 0.07);
+      --radius: 8px;
+      --radius-sm: 6px;
+      --nav-height: 64px;
+      --max: 1180px;
+      --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: "SFMono-Regular", "Cascadia Mono", "Consolas", "Liberation Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--canvas); color: var(--ink);
+      font-family: var(--font-sans); line-height: 1.6; letter-spacing: 0; overflow-x: hidden;
+    }
+    body[data-density="compact"] { --max: 1260px; }
+    body[data-density="compact"] .section { padding: 52px 20px; }
+    body[data-density="compact"] .card, body[data-density="compact"] .proof-card, body[data-density="compact"] .service-card { padding: 18px; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; letter-spacing: 0; }
+    img { display: block; max-width: 100%; }
+    .skip-link {
+      position: fixed; left: 16px; top: -60px; z-index: 200;
+      background: var(--ink); color: white; padding: 10px 14px;
+      border-radius: var(--radius-sm); transition: top 0.2s ease;
+    }
+    .skip-link:focus { top: 14px; }
+    .topbar {
+      position: sticky; top: 0; z-index: 80; height: var(--nav-height);
+      background: rgba(251, 251, 248, 0.86); backdrop-filter: blur(18px) saturate(1.4);
+      box-shadow: var(--shadow-border);
+    }
+    .topbar-inner {
+      max-width: var(--max); height: 100%; margin: 0 auto; padding: 0 20px;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; min-width: 0; font-weight: 700; }
+    .brand-mark {
+      width: 28px; height: 28px; border-radius: var(--radius-sm);
+      display: grid; place-items: center; background: var(--ink);
+      color: white; font-family: var(--font-mono); font-size: 12px;
+    }
+    .brand-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nav-links {
+      display: flex; justify-content: center; align-items: center; gap: 2px;
+      padding: 4px; background: var(--surface); border-radius: var(--radius);
+      box-shadow: var(--shadow-border);
+    }
+    .nav-links a {
+      min-height: 44px; display: inline-flex; align-items: center;
+      padding: 0 12px; border-radius: var(--radius-sm); color: var(--muted);
+      font-size: 14px; transition: background 0.18s ease, color 0.18s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible { background: var(--surface-soft); color: var(--ink); outline: none; }
+    .top-actions { justify-self: end; display: flex; align-items: center; gap: 8px; }
+    .icon-button, .button {
+      min-height: 44px; border: 0; border-radius: var(--radius-sm); cursor: pointer;
+      transition: transform 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+    }
+    .icon-button {
+      width: 44px; display: grid; place-items: center;
+      background: var(--surface); color: var(--ink); box-shadow: var(--shadow-border);
+    }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 0 16px; background: var(--ink); color: white; font-weight: 600; box-shadow: none; min-width: 0;
+    }
+    .button.secondary { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-border); }
+    .button.copper { background: var(--copper); color: white; }
+    .icon-button:hover, .button:hover { transform: translateY(-1px); }
+    .icon-button:active, .button:active { transform: scale(0.98); }
+    .mobile-menu {
+      display: none; position: fixed; inset: var(--nav-height) 0 auto 0;
+      background: rgba(251, 251, 248, 0.96); backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-card); padding: 12px 20px 18px;
+    }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a { display: flex; min-height: 48px; align-items: center; border-bottom: 1px solid var(--hairline); color: var(--ink-soft); }
+    .section { padding: 72px 20px; }
+    .section.dark { background: var(--dark); color: white; }
+    .section.soft { background: var(--surface-soft); }
+    .container { max-width: var(--max); margin: 0 auto; }
+    .hero { padding: 56px 20px 46px; min-height: calc(100vh - var(--nav-height) - 70px); display: flex; align-items: center; }
+    .hero-grid {
+      max-width: var(--max); width: 100%; margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(360px, 0.86fr);
+      gap: 48px; align-items: center;
+    }
+    .hero-grid > * { min-width: 0; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; min-height: 32px;
+      padding: 0 10px; border-radius: var(--radius-sm); background: var(--surface);
+      color: var(--gold); font-family: var(--font-mono); font-size: 12px;
+      box-shadow: var(--shadow-border); margin-bottom: 18px;
+    }
+    .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 18px; font-size: 56px; line-height: 1.1; font-weight: 750; letter-spacing: 0; text-wrap: pretty; overflow-wrap: anywhere; word-break: break-word; }
+    .hero-lead { max-width: 680px; margin-bottom: 28px; color: var(--ink-soft); font-size: 19px; line-height: 1.78; text-wrap: pretty; overflow-wrap: anywhere; word-break: break-word; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+    .identity-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .identity-chip {
+      min-height: 72px; padding: 12px; background: var(--surface);
+      border-radius: var(--radius); box-shadow: var(--shadow-border);
+    }
+    .identity-chip b { display: block; font-family: var(--font-mono); font-size: 19px; line-height: 1.2; }
+    .identity-chip span { display: block; margin-top: 7px; color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .visual-stack { position: relative; min-height: 560px; display: grid; align-items: center; }
+    .poster-frame {
+      position: relative; width: min(100%, 390px); justify-self: center;
+      background: var(--surface); border-radius: var(--radius);
+      box-shadow: var(--shadow-card); overflow: hidden;
+    }
+    .poster-frame.opc { background: #ffffff; }
+    .poster-frame img { width: 100%; height: auto; }
+    .terminal-panel {
+      position: absolute; left: 0; bottom: 28px; width: 315px; padding: 16px;
+      background: rgba(17, 17, 17, 0.94); color: white;
+      border-radius: var(--radius); box-shadow: 0 18px 40px rgba(17, 17, 17, 0.28);
+    }
+    .identity-orbit {
+      position: absolute; right: 0; top: 52px; width: 190px; padding: 14px;
+      border-radius: var(--radius); background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow-card);
+    }
+    .identity-orbit img { width: 100%; border-radius: var(--radius-sm); }
+    .identity-orbit span { display: block; margin-top: 10px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; line-height: 1.35; }
+    .terminal-panel code { font-family: var(--font-mono); font-size: 12px; color: #bfbfbf; white-space: pre-wrap; }
+    .terminal-panel strong { display: block; margin-bottom: 8px; font-size: 14px; }
+    .scroll-cue { max-width: var(--max); margin: 0 auto; padding: 0 20px 18px; color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
+    .section-heading { display: grid; grid-template-columns: minmax(0, 0.58fr) minmax(0, 0.42fr); gap: 36px; align-items: end; margin-bottom: 30px; }
+    .section-kicker { margin-bottom: 8px; color: var(--copper); font-family: var(--font-mono); font-size: 12px; }
+    .section-heading h2 { margin-bottom: 0; font-size: 34px; line-height: 1.18; letter-spacing: 0; }
+    .section-heading p { margin-bottom: 0; color: var(--muted); font-size: 16px; }
+    .section.dark .section-kicker { color: #f0b28e; }
+    .section.dark .section-heading p { color: rgba(255, 255, 255, 0.62); }
+    .track-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .track {
+      min-height: 300px; padding: 28px; border-radius: var(--radius);
+      background: var(--surface); box-shadow: var(--shadow-border);
+      display: grid; gap: 20px; align-content: start;
+    }
+    .track.dark-track { background: var(--dark); color: white; box-shadow: none; }
+    .track-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+    .track-label { font-family: var(--font-mono); color: var(--muted); font-size: 12px; }
+    .dark-track .track-label { color: rgba(255, 255, 255, 0.58); }
+    .track h3 { margin-bottom: 8px; font-size: 24px; line-height: 1.25; }
+    .track p { color: var(--ink-soft); }
+    .dark-track p { color: rgba(255, 255, 255, 0.72); }
+    .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .metrics li { padding: 12px; border-radius: var(--radius-sm); background: var(--surface-soft); }
+    .dark-track .metrics li { background: var(--dark-soft); }
+    .metrics b { display: block; font-family: var(--font-mono); font-size: 18px; line-height: 1.1; color: var(--copper); }
+    .dark-track .metrics b { color: #f0b28e; }
+    .metrics span { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.35; }
+    .dark-track .metrics span { color: rgba(255, 255, 255, 0.58); }
+    .quote-band {
+      margin-top: 14px; padding: 22px 24px;
+      display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+      gap: 22px; align-items: center; background: var(--ink);
+      color: white; border-radius: var(--radius);
+    }
+    .quote-band p { margin: 0; color: rgba(255, 255, 255, 0.76); }
+    .quote-band blockquote { margin: 0; font-size: 26px; line-height: 1.32; font-weight: 700; }
+    .business-ladder { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+    .ladder-card { padding: 18px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-border); }
+    .ladder-card b { display: block; margin-bottom: 8px; color: var(--gold); font-family: var(--font-mono); font-size: 13px; }
+    .ladder-card h3 { margin-bottom: 8px; font-size: 20px; }
+    .ladder-card p { margin-bottom: 0; color: var(--muted); font-size: 14px; }
+    .quote-band cite { display: block; margin-top: 10px; color: #bdbdbd; font-family: var(--font-mono); font-size: 12px; font-style: normal; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .tab {
+      min-height: 44px; padding: 0 14px; border: 0; border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--muted); box-shadow: var(--shadow-border);
+      cursor: pointer; transition: color 0.16s ease, background 0.16s ease;
+    }
+    .tab.active, .tab:hover, .tab:focus-visible { background: var(--ink); color: white; outline: none; }
+    .proof-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .proof-card {
+      min-height: 250px; padding: 22px; background: var(--surface);
+      border-radius: var(--radius); box-shadow: var(--shadow-border);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    }
+    .proof-card[hidden] { display: none; }
+    .proof-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); }
+    .proof-number { font-family: var(--font-mono); color: var(--copper); font-size: 13px; }
+    .proof-card h3 { margin: 10px 0; font-size: 22px; line-height: 1.28; }
+    .proof-card p { min-height: 90px; margin-bottom: 18px; color: var(--ink-soft); font-size: 15px; }
+    .text-button { min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--blue); cursor: pointer; font-weight: 600; }
+    .project-link, .contact-note a, .modal-body a { color: var(--blue); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .project-link { white-space: nowrap; }
+    .services { display: grid; grid-template-columns: minmax(280px, 0.35fr) minmax(0, 0.65fr); gap: 16px; align-items: start; }
+    .service-nav { position: sticky; top: calc(var(--nav-height) + 18px); display: grid; gap: 8px; }
+    .service-nav button {
+      min-height: 52px; padding: 0 14px; border: 0; border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.66);
+      text-align: left; cursor: pointer; transition: background 0.16s ease, color 0.16s ease;
+    }
+    .service-nav button.active, .service-nav button:hover, .service-nav button:focus-visible { background: white; color: var(--ink); outline: none; }
+    .service-panel { min-height: 430px; padding: 28px; border-radius: var(--radius); background: white; color: var(--ink); }
+    .service-panel h3 { margin-bottom: 12px; font-size: 30px; line-height: 1.22; }
+    .service-panel p { color: var(--ink-soft); font-size: 17px; }
+    .service-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+    .service-card { padding: 18px; border-radius: var(--radius); background: var(--surface-soft); }
+    .service-card b { display: block; margin-bottom: 8px; }
+    .service-card span { color: var(--muted); font-size: 14px; }
+    .sop-layout { display: grid; grid-template-columns: minmax(0, 0.58fr) minmax(300px, 0.42fr); gap: 16px; align-items: stretch; }
+    .pipeline { padding: 28px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-border); }
+    .pipeline ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .pipeline li {
+      display: grid; grid-template-columns: 42px 1fr; gap: 14px; min-height: 74px;
+      align-items: start; padding: 14px; background: var(--canvas);
+      border: 1px solid transparent; border-radius: var(--radius-sm);
+      overflow: hidden; position: relative;
+      transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+    .pipeline li::before, .system-node::before {
+      content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .pipeline li:hover, .system-node:hover { background: var(--surface); border-color: rgba(184, 138, 37, 0.34); transform: translateX(4px); }
+    .pipeline li:hover::before, .system-node:hover::before { opacity: 1; }
+    .pipeline strong { display: grid; place-items: center; width: 42px; height: 42px; background: var(--ink); color: white; border-radius: var(--radius-sm); font-family: var(--font-mono); }
+    .pipeline b { display: block; margin-bottom: 4px; }
+    .pipeline span { color: var(--muted); font-size: 14px; }
+    .system-card { padding: 28px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-border); display: grid; align-content: space-between; gap: 20px; }
+    .system-card h3 { font-size: 28px; line-height: 1.2; }
+    .system-map { display: grid; gap: 8px; }
+    .system-node {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 48px; padding: 0 14px; background: var(--surface-soft);
+      border: 1px solid transparent; border-radius: var(--radius-sm);
+      font-family: var(--font-mono); font-size: 12px; overflow: hidden;
+      position: relative; transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+    .system-node[data-state="live"] { background: var(--green-soft); color: var(--green); }
+    .system-node[data-state="building"] { background: var(--blue-soft); color: var(--blue); }
+    .contact-grid { display: grid; grid-template-columns: minmax(0, 0.48fr) minmax(0, 0.52fr); gap: 16px; align-items: stretch; }
+    .contact-card { padding: 28px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-border); }
+    .contact-card h3 { margin-bottom: 12px; font-size: 28px; }
+    .contact-card p { color: var(--ink-soft); }
+    .qr-grid { display: grid; grid-template-columns: minmax(260px, 0.76fr) minmax(0, 1fr); gap: 12px; }
+    .qr-card { padding: 14px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-border); }
+    .qr-card img { width: 100%; background: var(--canvas); border-radius: var(--radius-sm); }
+    .qr-card.primary-qr { display: grid; align-content: start; }
+    .qr-card.primary-qr img { max-width: 330px; margin: 0 auto; }
+    .contact-notes { display: grid; gap: 10px; }
+    .contact-note { padding: 16px; background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-border); }
+    .contact-note b { display: block; margin-bottom: 6px; }
+    .contact-note span { color: var(--muted); font-size: 14px; }
+    .qr-card h3 { margin: 12px 0 4px; font-size: 18px; }
+    .qr-card p { margin-bottom: 12px; color: var(--muted); font-size: 14px; }
+    .footer { padding: 32px 20px; background: var(--dark); color: rgba(255, 255, 255, 0.64); font-size: 13px; }
+    .footer .container { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: center; }
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 120; display: grid; place-items: center;
+      background: radial-gradient(circle at var(--modal-origin-x, 50%) var(--modal-origin-y, 50%), rgba(255, 255, 255, 0.24), transparent 26%), rgba(17, 17, 17, 0.52);
+      padding: 18px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.34s linear;
+    }
+    .modal-backdrop.active { opacity: 1; visibility: visible; pointer-events: auto; }
+    .modal-backdrop.closing { opacity: 0; visibility: visible; pointer-events: none; }
+    .modal {
+      width: min(680px, 100%); max-height: min(720px, calc(100vh - 36px));
+      overflow: auto; background: var(--surface); color: var(--ink);
+      border-radius: var(--radius); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+      opacity: 0; transform-origin: top left; will-change: transform, opacity;
+      transition: transform 0.62s cubic-bezier(0.18, 0.95, 0.22, 1), opacity 0.28s ease, border-radius 0.62s cubic-bezier(0.18, 0.95, 0.22, 1), box-shadow 0.62s cubic-bezier(0.18, 0.95, 0.22, 1);
+    }
+    .modal-backdrop.active .modal { opacity: 1; }
+    .modal-header {
+      position: sticky; top: 0; display: flex; justify-content: space-between;
+      gap: 16px; align-items: start; padding: 20px;
+      background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-border);
+    }
+    .modal-header h3 { margin-bottom: 2px; font-size: 24px; }
+    .modal-header span { color: var(--muted); font-family: var(--font-mono); font-size: 12px; }
+    .modal-body { padding: 22px; }
+    .modal-body p { color: var(--ink-soft); }
+    .modal-body ul { padding-left: 20px; }
+    .toast {
+      position: fixed; right: 18px; bottom: 18px; z-index: 180; display: none;
+      padding: 12px 14px; border-radius: var(--radius-sm);
+      background: var(--ink); color: white;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24); font-size: 14px;
+    }
+    .toast.active { display: block; }
+    .progress {
+      position: fixed; left: 0; top: 0; z-index: 180;
+      height: 2px; width: 0; background: var(--copper);
+    }
+    [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity 0.45s ease, transform 0.45s ease; }
+    [data-reveal].visible { opacity: 1; transform: translateY(0); }
+    .footer a { color: rgba(255, 255, 255, 0.8); text-decoration: underline; text-underline-offset: 3px; }
+    .footer a:hover { color: white; }
+
+    /* ambient + micro-animations */
+    .ambient {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(42% 32% at 12% 6%, rgba(184, 138, 37, 0.10), transparent 70%), radial-gradient(40% 30% at 88% 26%, rgba(185, 87, 36, 0.08), transparent 70%), radial-gradient(44% 38% at 74% 72%, rgba(35, 169, 183, 0.07), transparent 72%), radial-gradient(54% 40% at 26% 100%, rgba(10, 114, 239, 0.05), transparent 72%);
+      animation: ambientDrift 22s ease-in-out infinite alternate;
+    }
+    @keyframes ambientDrift {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(0, -1.4%, 0) scale(1.04); }
+    }
+    main, .footer { position: relative; z-index: 1; }
+    .section.dark { position: relative; isolation: isolate; }
+    .section.dark::after {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(46% 44% at 16% 4%, rgba(240, 178, 142, 0.12), transparent 60%), radial-gradient(40% 50% at 90% 100%, rgba(35, 169, 183, 0.10), transparent 62%);
+    }
+    .section.dark .container { position: relative; z-index: 1; }
+    .glow-card {
+      position: relative; overflow: hidden;
+      transition: transform 0.26s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.3s ease, border-color 0.24s ease;
+    }
+    .glow-card::after {
+      content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--copper), var(--gold), var(--cyan), transparent);
+      transform: scaleX(0); transform-origin: center;
+      transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1); z-index: 3;
+    }
+    .glow-card.lit::after, .glow-card:hover::after, .glow-card:focus-visible::after { transform: scaleX(1); }
+    .glow-card:hover, .glow-card:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 0 0 1px rgba(184, 138, 37, 0.30), 0 16px 38px rgba(184, 138, 37, 0.14), 0 4px 12px rgba(23, 23, 23, 0.08);
+      outline: none;
+    }
+    .dark-track.glow-card:hover, .section.dark .glow-card:hover, .dark-track.glow-card:focus-visible, .section.dark .glow-card:focus-visible {
+      box-shadow: 0 0 0 1px rgba(240, 178, 142, 0.34), 0 16px 40px rgba(240, 178, 142, 0.14);
+    }
+    .eyebrow::before { animation: dotPulse 2.6s ease-in-out infinite; }
+    @keyframes dotPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(184, 138, 37, 0.55); opacity: 1; }
+      50% { box-shadow: 0 0 0 6px rgba(184, 138, 37, 0); opacity: 0.6; }
+    }
+    .system-node b { position: relative; padding-left: 15px; }
+    .system-node b::before {
+      content: ""; position: absolute; left: 0; top: 50%; width: 7px; height: 7px;
+      margin-top: -3.5px; border-radius: 50%; background: currentColor;
+      animation: dotPulse 2.2s ease-in-out infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+      [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity 0.45s ease !important, transform 0.45s ease !important; }
+      [data-reveal].visible { opacity: 1 !important; transform: translateY(0) !important; }
+      .ambient { animation: none; }
+      .glow-card::after { transform: scaleX(1); transition: none; }
+      .glow-card:hover, .glow-card:focus-visible { transform: none; }
+      .eyebrow::before, .system-node b::before { animation: none; }
+    }
+    @media (max-width: 1080px) {
+      h1 { font-size: 44px; }
+      .hero-grid, .section-heading, .sop-layout, .contact-grid, .services { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .visual-stack { min-height: 500px; }
+      .terminal-panel { left: 20px; }
+      .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .service-nav { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px) {
+      :root { --nav-height: 58px; }
+      .topbar-inner { grid-template-columns: 1fr auto; }
+      .nav-links, .top-actions .button { display: none; }
+      .menu-toggle { display: grid; }
+      .hero { padding-top: 30px; }
+      h1 { font-size: 34px; }
+      .hero-lead { font-size: 17px; }
+      .identity-row, .track-grid, .proof-grid, .service-list, .qr-grid, .metrics, .quote-band, .business-ladder { grid-template-columns: 1fr; }
+      .section { padding: 50px 18px; }
+      .section-heading h2 { font-size: 28px; }
+      .track, .pipeline, .system-card, .contact-card, .service-panel { padding: 20px; }
+      .visual-stack { min-height: auto; padding-bottom: 120px; }
+      .poster-frame { width: min(100%, 360px); }
+      .terminal-panel { left: 0; right: 0; bottom: 0; width: auto; }
+      .identity-orbit { display: none; }
+      .service-nav { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 420px) {
+      h1 { font-size: 30px; }
+      .brand-text { max-width: 160px; }
+      .hero-actions .button { flex: 1 1 100%; width: 100%; }
+      .section { padding-left: 14px; padding-right: 14px; }
+    }
+  </style>
+</head>
+<body data-density="normal">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="progress" id="progress"></div>
+  <a href="#main" class="skip-link">跳到正文</a>
+
+  <header class="topbar" aria-label="主导航">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="回到顶部">
+        <span class="brand-mark">LLY</span>
+        <span class="brand-text">李兰源 · Loop Engineering</span>
+      </a>
+      <nav class="nav-links" aria-label="页面章节">
+        <a href="#tracks">学术与职业</a>
+        <a href="#proof">成果证据</a>
+        <a href="#services">交付方向</a>
+        <a href="#system">商业系统</a>
+        <a href="#contact">联系入口</a>
+      </nav>
+      <div class="top-actions">
+        <button class="icon-button menu-toggle" type="button" id="menuToggle" aria-label="打开菜单" aria-expanded="false">≡</button>
+        <button class="icon-button" type="button" id="densityToggle" aria-label="切换内容密度">A</button>
+        <a class="button" href="#contact">联系我</a>
+      </div>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="移动端菜单">
+      <a href="#tracks">学术与职业</a>
+      <a href="#proof">成果证据</a>
+      <a href="#services">交付方向</a>
+      <a href="#system">商业系统</a>
+      <a href="#contact">联系入口</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div data-reveal>
+          <div class="eyebrow">Li Lanyuan / EE & Embodied AI</div>
+          <h1 id="hero-title">我在做一件事：写循环，让 AI 驱动电气化与具身智能。</h1>
+          <p class="hero-lead">
+            我是李兰源，上海电力大学电气工程及其自动化专业，GPA 3.9/4.0。我在皮赛仪器担任 AI 流程工程师，在蓓伟机器人探索具身智能。我把工程经验沉淀为可复用的 SOP 和 AI 循环——不写步骤，写循环；不给指令，给目标。
+          </p>
+          <div class="hero-actions">
+            <a class="button copper" href="#contact">加我微信</a>
+            <a class="button secondary" href="#proof">看真实成果</a>
+            <button class="button secondary" type="button" data-copy="你好李兰源，我在 lilanyuan.cn 看到你的网站，想交流电气工程 / 具身智能 / AI 流程工程。我的背景是：___，想聊的是：___。">复制联系话术</button>
+          </div>
+          <div class="identity-row" aria-label="核心数据">
+            <div class="identity-chip glow-card"><b>GPA 3.9</b><span>电气工程及其自动化</span></div>
+            <div class="identity-chip glow-card"><b>皮赛仪器</b><span>AI 流程工程师</span></div>
+            <div class="identity-chip glow-card"><b>蓓伟机器人</b><span>具身智能实习生</span></div>
+            <div class="identity-chip glow-card"><b>OPC</b><span>破界青年 · 正式会员</span></div>
+          </div>
+        </div>
+        <div class="visual-stack" data-reveal>
+          <figure class="poster-frame opc" aria-label="小黎 OPC 个人身份海报">
+            <img src="assets/xiaoli-opc-poster.png" alt="小黎 OPC Alliance 破界青年正式会员个人海报。" loading="eager">
+          </figure>
+        </div>
+      </div>
+    </section>
+    <div class="scroll-cue">向下看：学术与职业、成果证据、商业系统、联系入口。</div>
+
+    <!-- ===== 学术与职业 ===== -->
+    <section class="section" id="tracks" aria-labelledby="tracks-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <div class="section-kicker">01 / POSITIONING</div>
+            <h2 id="tracks-title">电气工程打底，具身智能向前。</h2>
+          </div>
+          <p>我的根基在电力系统和电气化，我的前沿在具身智能和 AI 流程工程。两条腿走路：一条踩稳体制内基本面，一条伸向未来技术边界。</p>
+        </div>
+
+        <div class="track-grid">
+          <article class="track glow-card" data-reveal>
+            <div class="track-head">
+              <div>
+                <div class="track-label">TRACK A</div>
+                <h3>电气工程 + AI 流程重构</h3>
+              </div>
+              <span class="track-label">industrial ai</span>
+            </div>
+            <p>在皮赛仪器担任 AI 流程工程师，负责把传统电气测试设备的调试经验转化为 AI 知识库和自动化 SOP。目标：让工业流程像代码一样可版本管理、可自动执行。</p>
+            <ul class="metrics">
+              <li><b>皮赛仪器</b><span>AI 流程工程师</span></li>
+              <li><b>GPA 3.9</b><span>电气工程专精</span></li>
+              <li><b>常州电网</b><span>保底目标</span></li>
+            </ul>
+            <button class="text-button" type="button" data-detail="track-industrial">展开细节</button>
+          </article>
+
+          <article class="track dark-track glow-card" data-reveal>
+            <div class="track-head">
+              <div>
+                <div class="track-label">TRACK B</div>
+                <h3>具身智能 + 机器人研发</h3>
+              </div>
+              <span class="track-label">embodied ai</span>
+            </div>
+            <p>在蓓伟机器人（威裕新能源成员企业）实习，参与底盘控制和 VLA（视觉-语言-动作）模型应用研究。从电气底层到 AI 顶层，打通物理世界与数字智能。</p>
+            <ul class="metrics">
+              <li><b>蓓伟机器人</b><span>具身智能实习</span></li>
+              <li><b>1500万</b><span>企业注册资本</span></li>
+              <li><b>31项</b><span>企业专利</span></li>
+            </ul>
+            <button class="text-button" type="button" data-detail="track-embodied">展开细节</button>
+          </article>
+        </div>
+
+        <div class="quote-band glow-card" data-reveal>
+          <div>
+            <div class="section-kicker">source quote</div>
+            <blockquote>“工程师的本质不是知道答案，而是把未知拆成可执行的步骤。”</blockquote>
+            <cite>Source: 《系统之美》005 — 反馈闭环</cite>
+          </div>
+          <p>电气工程教给我严谨的系统思维；具身智能教给我如何让 AI 理解物理世界。两者不是对立，而是同一枚硬币的两面——底层都是"把复杂系统拆成可验证的循环"。</p>
+        </div>
+
+        <div class="business-ladder" data-reveal aria-label="产品阶梯">
+          <article class="ladder-card glow-card">
+            <b>TRUST</b>
+            <h3>信任入口</h3>
+            <p>飞书知识库、公开笔记、小白指南——先给价值，再谈合作。</p>
+            <button class="text-button" type="button" data-detail="ladder-free">展开细节</button>
+          </article>
+          <article class="ladder-card glow-card">
+            <b>CONSULT</b>
+            <h3>AI 咨询诊断</h3>
+            <p>帮企业和个人判断"AI 应该从哪里切入"，输出可执行方案而非概念科普。</p>
+            <button class="text-button" type="button" data-detail="ladder-low">展开细节</button>
+          </article>
+          <article class="ladder-card glow-card">
+            <b>DELIVER</b>
+            <h3>流程重构交付</h3>
+            <p>为传统工业/电气企业搭建 AI 知识库、自动化 SOP 和 Agent 工作流。</p>
+            <button class="text-button" type="button" data-detail="ladder-mid">展开细节</button>
+          </article>
+          <article class="ladder-card glow-card">
+            <b>PARTNER</b>
+            <h3>长期技术合作</h3>
+            <p>季度陪跑、企业 AI 培训，把个人判断力沉淀为企业 AI 资产。</p>
+            <button class="text-button" type="button" data-detail="ladder-high">展开细节</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 成果证据 ===== -->
+    <section class="section soft" id="proof" aria-labelledby="proof-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <div class="section-kicker">02 / PROOF</div>
+            <h2 id="proof-title">不只是规划，已经有结果样本。</h2>
+          </div>
+          <p>从电网保底到具身智能前沿，从企业 AI 改造到个人知识系统——这里只保留能证明执行力的证据。</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="成果筛选">
+          <button class="tab active" type="button" data-filter="all">全部</button>
+          <button class="tab" type="button" data-filter="industrial">企业 AI</button>
+          <button class="tab" type="button" data-filter="embodied">具身智能</button>
+          <button class="tab" type="button" data-filter="career">求职</button>
+          <button class="tab" type="button" data-filter="competition">竞赛</button>
+          <button class="tab" type="button" data-filter="workflow">SOP 系统</button>
+        </div>
+
+        <div class="proof-grid">
+          <article class="proof-card glow-card" data-category="industrial" data-reveal>
+            <div class="proof-number">01 / industrial</div>
+            <h3>皮赛仪器 AI 知识库搭建</h3>
+            <p>为上海皮赛仪器建立企业级 AI 知识库，将设备调试经验、测试协议转化为可检索、可自动执行的 SOP 流程，预计提升调试效率 40%。</p>
+            <button class="text-button" type="button" data-detail="progSys">展开细节</button>
+          </article>
+          <article class="proof-card glow-card" data-category="embodied" data-reveal>
+            <div class="proof-number">02 / embodied</div>
+            <h3>蓓伟机器人具身智能实习</h3>
+            <p>在威裕新能源旗下蓓伟机器人参与底盘控制与 AI 工作流编排，由企业董事长直接面试通过。企业拥有 31 项专利、18 项商标。</p>
+            <button class="text-button" type="button" data-detail="beiwei">展开细节</button>
+          </article>
+          <article class="proof-card glow-card" data-category="career" data-reveal>
+            <div class="proof-number">03 / career</div>
+            <h3>3 场专业相关面试全部通过</h3>
+            <p>其中一场由具身智能企业董事长直接面试；求职表达方法已沉淀为 <a class="project-link" href="https://github.com/Destined-at-Dawn/career-breakthrough" target="_blank" rel="noopener noreferrer">career-breakthrough</a>。</p>
+            <button class="text-button" type="button" data-detail="career">展开细节</button>
+          </article>
+          <article class="proof-card glow-card" data-category="competition" data-reveal>
+            <div class="proof-number">04 / competition</div>
+            <h3>A 类赛事入围华东赛区总决赛</h3>
+            <p>独立完成初赛选题、核心代码、技术文档、PPT 和录制展示，用创新性拿到入围结果。</p>
+            <button class="text-button" type="button" data-detail="competition">展开细节</button>
+          </article>
+          <article class="proof-card glow-card" data-category="workflow" data-reveal>
+            <div class="proof-number">05 / loop</div>
+            <h3>li-skills AI 循环系统</h3>
+            <p>公众号自动化、竞赛、求职和 <a class="project-link" href="https://github.com/Destined-at-Dawn/research-daily" target="_blank" rel="noopener noreferrer">research-daily</a> 科研日报，沉淀为可复用 AI 循环。包含 60+ 个自主开发的 li- 系列技能。</p>
+            <button class="text-button" type="button" data-detail="workflow">展开细节</button>
+          </article>
+          <article class="proof-card glow-card" data-category="career" data-reveal>
+            <div class="proof-number">06 / academic</div>
+            <h3>转专业 + 学术基础扎实</h3>
+            <p>从集成电路成功转入电气工程及其自动化，GPA 3.9/4.0。与副教授合作开发牛马 AI 小白配置包，对应工程见 <a class="project-link" href="https://github.com/Destined-at-Dawn/niuma-engine" target="_blank" rel="noopener noreferrer">niuma-engine</a>。</p>
+            <button class="text-button" type="button" data-detail="academic">展开细节</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 交付方向 ===== -->
+    <section class="section dark" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <div class="section-kicker">03 / DELIVERY</div>
+            <h2 id="services-title">我能交付的不是信息，而是转变。</h2>
+          </div>
+          <p>从工业 AI 流程改造到个人竞争力提升，我的交付逻辑是同一件事：把问题拆成能执行、能复盘、能迁移的流程。</p>
+        </div>
+
+        <div class="services" data-reveal>
+          <div class="service-nav" role="tablist" aria-label="服务方向">
+            <button type="button" class="active" data-service="industrial">工业 AI 流程改造</button>
+            <button type="button" data-service="career">求职表达训练</button>
+            <button type="button" data-service="ai">AI 工作流搭建</button>
+            <button type="button" data-service="competition">竞赛交付陪跑</button>
+            <button type="button" data-service="growth">学习与成长路径</button>
+          </div>
+          <article class="service-panel" id="servicePanel" aria-live="polite"></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 商业系统 ===== -->
+    <section class="section" id="system" aria-labelledby="system-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <div class="section-kicker">04 / BUSINESS SYSTEM</div>
+            <h2 id="system-title">商业闭环 + 工业 AI 资产化</h2>
+          </div>
+          <p>从免费信任到付费转变，从个人咨询到企业 AI 流程重构。每次交付都沉淀为可复用的数字资产。</p>
+        </div>
+
+        <div class="sop-layout">
+          <article class="pipeline glow-card" data-reveal>
+            <ol>
+              <li><strong>01</strong><div><b>免费层建立信任</b><span>飞书知识库、公开笔记、小白指南、社群互助——用价值先筛选同频人。</span></div></li>
+              <li><strong>02</strong><div><b>咨询层诊断需求</b><span>AI 机会诊断、求职表达评估、企业流程审计——帮客户看清"问题到底在哪"。</span></div></li>
+              <li><strong>03</strong><div><b>交付层推动转变</b><span>AI 实战营、竞赛陪跑、企业 AI 流程重构——交付从不会到会的完整过程。</span></div></li>
+              <li><strong>04</strong><div><b>合作层深度绑定</b><span>季度陪跑、企业 AI 培训、长期技术顾问——卖解决方案而非时间。</span></div></li>
+              <li><strong>05</strong><div><b>沉淀为 AI 资产</b><span>每次交付归档为 SOP、模板、案例库和 Social Proof，越做越快、越做越深。</span></div></li>
+            </ol>
+          </article>
+
+          <aside class="system-card glow-card" data-reveal>
+            <div>
+              <h3>Loop Engineering：让价值自动产生。</h3>
+              <p>我不在卖"我会用 AI"，我在设计环境——让模型、工具、知识库、检查点和人类反馈形成稳定闭环。工业场景如此，个人成长也是如此。</p>
+            </div>
+            <div class="system-map" aria-label="系统状态">
+              <div class="system-node" data-state="live"><span>工业 AI 资产化</span><b>live</b></div>
+              <div class="system-node" data-state="live"><span>AI 入门路径循环</span><b>live</b></div>
+              <div class="system-node" data-state="live"><span>求职表达循环</span><b>live</b></div>
+              <div class="system-node" data-state="building"><span>具身智能工作流</span><b>building</b></div>
+              <div class="system-node" data-state="building"><span>社群信任闭环</span><b>building</b></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 联系入口 ===== -->
+    <section class="section soft" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div>
+            <div class="section-kicker">05 / CONNECT</div>
+            <h2 id="contact-title">加我微信，说明你想聊哪件事。</h2>
+          </div>
+          <p>这里放个人微信，不放过期社群码。备注越具体，我越容易判断怎么接住你的需求。</p>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card glow-card" data-reveal>
+            <h3>适合找我聊的方向。</h3>
+            <p>电气工程与电网求职、具身智能与机器人研发、企业 AI 流程改造、AI 入门路径、竞赛交付方法、OPC 商业闭环。如果你是高手，也欢迎直接聊方法和系统设计。</p>
+            <div class="hero-actions">
+              <button class="button copper" type="button" data-copy="你好李兰源，我想和你聊工业 AI 流程改造 / 具身智能 / 电网求职。我的背景是：___，想解决的问题是：___。">复制高手交流备注</button>
+              <button class="button secondary" type="button" data-copy="你好李兰源，我想咨询 AI 入门 / 求职表达 / 竞赛交付。我的当前情况是：___，最卡的是：___。">复制咨询备注</button>
+            </div>
+          </article>
+
+          <div class="qr-grid" data-reveal>
+            <article class="qr-card primary-qr glow-card">
+              <img src="assets/xiaoli-wechat-qr.jpg" alt="小黎个人微信二维码。" loading="lazy">
+              <h3>个人微信</h3>
+              <p>扫码添加我为朋友。建议备注来意，不要只发"你好"。</p>
+              <button class="text-button" type="button" data-copy="你好李兰源，我从 lilanyuan.cn 来，想聊：___。我的背景/问题是：___。">复制通用备注</button>
+            </article>
+            <div class="contact-notes">
+              <article class="contact-note glow-card">
+                <b>我的飞书知识库</b>
+                <span>这是我持续更新的个人知识大脑，包含 AI 工程、电气笔记、竞赛 SOP、百大认知等。👉 <a href="https://vcnogbywj044.feishu.cn/wiki/G49awLm91i2ZObkWXBmcLnmFncf" target="_blank" rel="noopener noreferrer">点击访问飞书文档</a></span>
+              </article>
+              <article class="contact-note glow-card">
+                <b>想做付费咨询</b>
+                <span>备注"咨询 + 具体问题"。我会先判断适合轻量解答、系统诊断，还是暂时给免费资料。</span>
+              </article>
+              <article class="contact-note glow-card">
+                <b>想聊合作（企业 / 工业 AI）</b>
+                <span>备注"合作 + 企业名/场景"。适合聊工业 AI 流程改造、电气设备智能化、企业 AI 培训。</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© 2026 李兰源 · lilanyuan.cn · Loop Engineering</span>
+      <span><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">沪ICP备xxxxxxxx号</a></span>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div>
+          <h3 id="modalTitle">标题</h3>
+          <span id="modalKicker">detail</span>
+        </div>
+        <button class="icon-button" type="button" id="modalClose" aria-label="关闭弹窗">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">已复制</div>
+
+  <script>
+    const details = {
+      "track-industrial": {
+        title: "电气工程 + AI 流程重构",
+        kicker: "track A / industrial ai",
+        body: "<p>我在上海皮赛仪器科技有限公司担任 AI 流程工程师，负责将传统电气测试设备的调试经验转化为 AI 知识库和自动化 SOP。</p><ul><li>为企业搭建专属 AI 知识库，将非结构化调试经验转化为可检索、可执行的数字资产。</li><li>设计工业 Agent 工作流，让 AI 自动解析设备日志、生成诊断建议。</li><li>目标：让工业流程像代码一样可版本管理、可自动执行、可跨人复用。</li><li>同时以上海电力大学电气工程专业（GPA 3.9）为基础，常州电网市局为保底目标。</li></ul>"
+      },
+      "track-embodied": {
+        title: "具身智能 + 机器人研发",
+        kicker: "track B / embodied ai",
+        body: "<p>我在蓓伟机器人科技（上海）有限公司（威裕新能源成员企业）实习，参与底盘控制和 VLA（视觉-语言-动作）模型应用研究。</p><ul><li>企业注册资本 1500 万，拥有 31 项专利、18 项商标、5 项著作权。</li><li>由企业董事长直接面试通过，获得具身智能方向实习机会。</li><li>研究方向：AI 工作流编排 + 机器人底层控制——从电气底层到 AI 顶层打通。</li><li>与皮赛仪器的 AI 流程工程经验形成互补：一个在纯数字域，一个在物理域。</li></ul>"
+      },
+      "ladder-free": {
+        title: "TRUST / 信任入口",
+        kicker: "product ladder / 00",
+        body: "<p>飞书知识库、公开笔记、小白指南——用价值先筛选同频的人。</p><ul><li>飞书文档持续更新：AI 工程、电气笔记、竞赛 SOP、百大认知。</li><li>把'围观者'转成'能提问、能动手、能反馈的人'。</li></ul>"
+      },
+      "ladder-low": {
+        title: "CONSULT / AI 咨询诊断",
+        kicker: "product ladder / 01",
+        body: "<p>帮企业和个人判断'AI 应该从哪里切入'，输出可执行方案而非概念科普。</p><ul><li>企业端：工业 AI 流程审计、设备智能化诊断。</li><li>个人端：AI 入门路径、求职表达评估。</li><li>交付物：可执行文档，不只是聊天记录。</li></ul>"
+      },
+      "ladder-mid": {
+        title: "DELIVER / 流程重构交付",
+        kicker: "product ladder / 02",
+        body: "<p>为传统工业/电气企业搭建 AI 知识库、自动化 SOP 和 Agent 工作流。</p><ul><li>交付从'不会'到'会'的完整过程，不是一堆资料。</li><li>有督促、有复盘、有可验证的结果。</li></ul>"
+      },
+      "ladder-high": {
+        title: "PARTNER / 长期技术合作",
+        kicker: "product ladder / 03",
+        body: "<p>季度陪跑、企业 AI 培训、长期技术顾问——卖解决方案而非时间。</p><ul><li>每次交付归档为 SOP、模板和案例库。</li><li>帮企业建立自己的 AI 能力，而非依赖外部顾问。</li></ul>"
+      },
+      progSys: {
+        title: "皮赛仪器 AI 知识库搭建",
+        kicker: "industrial proof",
+        body: "<p>我为上海皮赛仪器科技有限公司搭建企业级 AI 知识库，将设备调试经验、测试协议转化为可检索、可自动执行的 SOP 流程。</p><ul><li>核心价值：把工程师头脑里的'默会知识'变成企业可传承的数字资产。</li><li>技术方案：Claude Team + 向量知识库 + Agent 工作流编排。</li><li>预期效果：设备调试效率提升约 40%，新人上手时间缩短 60%。</li></ul>"
+      },
+      beiwei: {
+        title: "蓓伟机器人具身智能实习",
+        kicker: "embodied proof",
+        body: "<p>在威裕新能源旗下蓓伟机器人科技（上海）有限公司参与具身智能研发。</p><ul><li>由企业董事长直接面试，获具身智能（Embodied AI）方向实习机会。</li><li>参与底盘控制与 VLA（视觉-语言-动作）模型应用相关研究。</li><li>企业背景：注册资本 1500 万，31 项专利，18 项商标。</li><li>这不仅是实习——这是我从电气工程跨越到具身智能前沿的关键桥梁。</li></ul>"
+      },
+      career: {
+        title: "求职表达链路",
+        kicker: "career proof",
+        body: "<p>三份专业对口实习面试全部通过，其中一份由具身智能企业董事长直接面试；求职表达方法沉淀为 <a class='project-link' href='https://github.com/Destined-at-Dawn/career-breakthrough' target='_blank' rel='noopener noreferrer'>career-breakthrough</a>。</p><ul><li>不是只改简历——是把表达、岗位理解、工作链路和面试心态一起训练。</li><li>技术岗小白、营销岗转实习、面试紧张但有潜力的同学——都适合。</li></ul>"
+      },
+      competition: {
+        title: "竞赛交付链路",
+        kicker: "competition proof",
+        body: "<p>独立完成国家 A 类赛事初赛选题、核心代码、技术文档、PPT 和录制展示，入围华东赛区分赛区总决赛。</p><ul><li>从选题到汇演的完整交付——项目管理、技术拆解、文档表达、答辩话术。</li><li>适合连接：竞赛队、导师项目、学生技术社群。</li></ul>"
+      },
+      workflow: {
+        title: "AI 工作流资产",
+        kicker: "workflow proof",
+        body: "<p>已沉淀 60+ 个 li- 系列技能：公众号自动化、竞赛全流程、求职全流程、百大认知等 SOP，以及 <a class='project-link' href='https://github.com/Destined-at-Dawn/research-daily' target='_blank' rel='noopener noreferrer'>research-daily</a> 科研日报。</p><ul><li>公众号：下载原文→文风分析→视觉设计→注入知识库→输出文章。</li><li>竞赛：选竞赛→队友选拔→流程规划→代码→文档→PPT→汇演。</li><li>求职：岗位筛选→行业热点捕捉→简历修改→面试表达。</li></ul>"
+      },
+      academic: {
+        title: "学术基础 + 转专业",
+        kicker: "academic proof",
+        body: "<p>从集成电路成功转入电气工程及其自动化专业，GPA 3.9/4.0。与学校副教授合作开发牛马 AI 小白配置包，帮上百学生快速入门 AI 工具。</p><ul><li>对同龄人：这是学习路径和决策方法的信号。</li><li>对合作方：这是执行力和自我驱动的信号。</li><li>工程沉淀：<a class='project-link' href='https://github.com/Destined-at-Dawn/niuma-engine' target='_blank' rel='noopener noreferrer'>niuma-engine</a></li></ul>"
+      }
+    };
+
+    const services = {
+      industrial: {
+        title: "工业 AI 流程改造",
+        lead: "为传统电气/工业企业搭建 AI 知识库、自动化 SOP 和 Agent 工作流。把工程师头脑里的默会知识变成企业可传承的数字资产。",
+        cards: [
+          ["流程审计", "梳理企业现有工作流，识别 AI 可自动化的重复环节。"],
+          ["知识库搭建", "将设备手册、调试记录、测试协议向量化，建立可语义检索的企业知识库。"],
+          ["Agent 编排", "设计多 Agent 协作流程：诊断 Agent → 方案 Agent → 验证 Agent。"],
+          ["SOP 资产化", "每次改造沉淀为可复用的标准化流程，越做越快。"]
+        ]
+      },
+      career: {
+        title: "技术岗实习求职训练",
+        lead: "核心不是包装——是把岗位要求翻译成你能讲清楚、能展示、能接住追问的证据链。",
+        cards: [
+          ["简历重写", "重点是成果表达和岗位匹配，而非堆砌技能关键词。"],
+          ["面试表达", "结构化表达训练：讲清项目、动机和成长性。"],
+          ["岗位链路", "技术岗看工作流，工业岗看系统性思维。"],
+          ["模拟追问", "提前暴露漏洞，再补证据。"]
+        ]
+      },
+      ai: {
+        title: "AI 实战与工作流搭建",
+        lead: "把 AI 接到真实任务上：工业设备诊断、科研信息流、内容生产、企业流程自动化。",
+        cards: [
+          ["Agent 配置", "让本地环境能稳定执行，不是停留在演示。"],
+          ["知识库注入", "把企业资料、行业标准、个人风格变成可调用上下文。"],
+          ["SOP 自动化", "把重复任务做成流程，减少每次从零开始。"],
+          ["验证机制", "用结果反馈判断工作流是否有效。"]
+        ]
+      },
+      competition: {
+        title: "竞赛实战与交付方法",
+        lead: "从选题、组队、日程、代码、文档、PPT 到汇演——不只冲奖，更沉淀可讲的项目经历。",
+        cards: [
+          ["选题判断", "看创新性、可实现性、展示效果和评委理解成本。"],
+          ["队友协作", "明确角色、交付节奏和文档边界。"],
+          ["技术文档", "把代码变成评委能看懂的系统说明。"],
+          ["答辩训练", "让展示不是读稿，而是说服。"]
+        ]
+      },
+      growth: {
+        title: "学习路径与个人成长",
+        lead: "从电气工程到具身智能，从电网保底到 AI 前沿——我把自己的路径公开出来，做同龄人的同行者。",
+        cards: [
+          ["目标拆解", "把长期目标拆成能执行的一周行动。"],
+          ["信息差筛选", "从资料洪水里筛出真能改变行动的部分。"],
+          ["跨域迁移", "把电气系统思维迁移到 AI 工程领域。"],
+          ["高手链接", "把圈子变成学习环境，而非名片墙。"]
+        ]
+      }
+    };
+
+    const progress = document.getElementById("progress");
+    const densityToggle = document.getElementById("densityToggle");
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modal = modalBackdrop.querySelector(".modal");
+    const modalClose = document.getElementById("modalClose");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalKicker = document.getElementById("modalKicker");
+    const modalBody = document.getElementById("modalBody");
+    const servicePanel = document.getElementById("servicePanel");
+    const toast = document.getElementById("toast");
+
+    function goToHash(hash) {
+      const target = document.querySelector(hash);
+      if (!target) return;
+      const offset = target.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top: offset, behavior: "smooth" });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const hash = link.getAttribute("href");
+        if (hash && hash.length > 1) {
+          event.preventDefault();
+          goToHash(hash);
+          mobileMenu.classList.remove("active");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    menuToggle.addEventListener("click", () => {
+      const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!expanded));
+      mobileMenu.classList.toggle("active");
+    });
+
+    densityToggle.addEventListener("click", () => {
+      const compact = document.body.dataset.density === "compact";
+      document.body.dataset.density = compact ? "normal" : "compact";
+      densityToggle.textContent = compact ? "A" : "S";
+    });
+
+    window.addEventListener("scroll", () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      progress.style.width = `${Math.min(100, Math.max(0, ratio * 100))}%`;
+    }, { passive: true });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll("[data-reveal]").forEach((node) => revealObserver.observe(node));
+
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
+        tab.classList.add("active");
+        const filter = tab.dataset.filter;
+        document.querySelectorAll(".proof-card").forEach((card) => {
+          card.hidden = filter !== "all" && card.dataset.category !== filter;
+        });
+      });
+    });
+
+    function renderService(key) {
+      const data = services[key];
+      servicePanel.innerHTML = `
+        <h3>${data.title}</h3>
+        <p>${data.lead}</p>
+        <div class="service-list">
+          ${data.cards.map(([title, text]) => `<div class="service-card glow-card"><b>${title}</b><span>${text}</span></div>`).join("")}
+        </div>
+      `;
+    }
+
+    document.querySelectorAll(".service-nav button").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".service-nav button").forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        renderService(button.dataset.service);
+      });
+    });
+
+    renderService("industrial");
+
+    let modalSourceRect = null;
+    let modalCloseTimer = null;
+
+    function getMotionAllowed() {
+      return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+
+    function getModalSourceEl(el) {
+      return el?.closest(".proof-card, .track, .ladder-card, .service-card, .glow-card") || el;
+    }
+
+    function setModalFromRect(sourceRect) {
+      const finalRect = modal.getBoundingClientRect();
+      if (!sourceRect || !finalRect.width || !finalRect.height) return;
+      const scaleX = Math.max(0.18, Math.min(1, sourceRect.width / finalRect.width));
+      const scaleY = Math.max(0.16, Math.min(1, sourceRect.height / finalRect.height));
+      const translateX = sourceRect.left - finalRect.left;
+      const translateY = sourceRect.top - finalRect.top;
+      modalBackdrop.style.setProperty("--modal-origin-x", `${sourceRect.left + sourceRect.width / 2}px`);
+      modalBackdrop.style.setProperty("--modal-origin-y", `${sourceRect.top + sourceRect.height / 2}px`);
+      modal.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scaleX}, ${scaleY})`;
+      modal.style.borderRadius = "16px";
+      modal.style.boxShadow = "0 8px 24px rgba(0, 0, 0, 0.12)";
+      modal.style.opacity = "0.18";
+    }
+
+    function openModal(key, sourceEl) {
+      const data = details[key];
+      if (!data) return;
+      const sourceRect = getModalSourceEl(sourceEl)?.getBoundingClientRect();
+      modalSourceRect = sourceRect ? {
+        left: sourceRect.left, top: sourceRect.top, width: sourceRect.width, height: sourceRect.height
+      } : null;
+      window.clearTimeout(modalCloseTimer);
+      modalTitle.textContent = data.title;
+      modalKicker.textContent = data.kicker;
+      modalBody.innerHTML = data.body;
+      modalBackdrop.classList.remove("closing");
+      modal.style.transition = "none";
+      modal.style.transform = "none";
+      modal.style.opacity = "1";
+      modal.style.borderRadius = "";
+      modal.style.boxShadow = "";
+      modalBackdrop.classList.add("active");
+      modalBackdrop.setAttribute("aria-hidden", "false");
+      if (getMotionAllowed()) {
+        setModalFromRect(modalSourceRect);
+        modal.getBoundingClientRect();
+        requestAnimationFrame(() => {
+          modal.style.transition = "";
+          modal.style.transform = "none";
+          modal.style.opacity = "1";
+          modal.style.borderRadius = "";
+          modal.style.boxShadow = "";
+        });
+      } else {
+        modal.style.transition = "";
+      }
+      modalClose.focus();
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      if (!modalBackdrop.classList.contains("active")) return;
+      if (getMotionAllowed() && modalSourceRect) {
+        modalBackdrop.classList.add("closing");
+        setModalFromRect(modalSourceRect);
+        modalCloseTimer = window.setTimeout(() => {
+          modalBackdrop.classList.remove("active", "closing");
+          modalBackdrop.setAttribute("aria-hidden", "true");
+          modal.style.transform = "none";
+          modal.style.opacity = "1";
+          modal.style.borderRadius = "";
+          modal.style.boxShadow = "";
+          modalSourceRect = null;
+        }, 640);
+      } else {
+        modalBackdrop.classList.remove("active", "closing");
+        modalBackdrop.setAttribute("aria-hidden", "true");
+        modalSourceRect = null;
+      }
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll("[data-detail]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        openModal(button.dataset.detail, event.currentTarget);
+      });
+    });
+
+    modalClose.addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", (event) => {
+      if (event.target === modalBackdrop) closeModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modalBackdrop.classList.contains("active")) closeModal();
+    });
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("active");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("active"), 1800);
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("已复制到剪贴板");
+      } catch { showToast("复制失败，请手动选择文字"); }
+    }
+
+    document.querySelectorAll("[data-copy]").forEach((button) => {
+      button.addEventListener("click", () => copyText(button.dataset.copy));
+    });
+
+    const glowObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("lit");
+          glowObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll(".glow-card").forEach((card) => glowObserver.observe(card));
+
+  </script>
+</body>
+</html>

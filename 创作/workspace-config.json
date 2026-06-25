@@ -1,0 +1,20 @@
+{
+  "workspace": "创作",
+  "architecture": "R16",
+  "version": "1.0",
+  "lastAudit": "2026-05-25",
+  "features": {
+    "rootAuthority": true,
+    "readOrder": true,
+    "memoryRootOnly": true,
+    "outputRootOnly": true,
+    "noDuplicateConstraints": true,
+    "projectNamingConvention": true,
+    "antiDuplicateCheck": true,
+    "crossWorkspaceRef": true,
+    "sopAlignment": true,
+    "sessionLifecycle": true
+  },
+  "ruleCount": 20,
+  "sopCount": 21
+}

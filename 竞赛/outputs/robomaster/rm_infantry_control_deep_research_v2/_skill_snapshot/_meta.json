@@ -1,0 +1,72 @@
+{
+  "name": "deep-research",
+  "version": "4.0.0",
+  "created": "2026-05-31",
+  "updated": "2026-05-31",
+  "author": "小黎",
+  "description": "深度调研+迭代打磨双模式智能体 v4。调研是贯穿学习/自媒体/竞赛/产品/技能/学术的底层能力。融合60+个参考skill。一鱼多吃架构。YouTube字幕提取。信息源头质量阶梯。",
+  "tags": ["research", "iteration", "ecosystem", "multi-platform", "one-fish-many-meals", "youtube-transcript", "learning", "content", "competition"],
+  "modes": {
+    "research": {
+      "triggers": ["调研", "竞品调研", "市场调研", "帮我调研", "搜竞品", "产品调研", "需求调研", "deep research", "帮我搜一下", "找一下", "查一下", "有哪些", "怎么学", "什么工具好", "帮我搜", "帮我找"],
+      "phases": [0, 1, 2, 3, 4, 5, 7]
+    },
+    "iteration": {
+      "triggers": ["迭代", "继续优化", "再深入", "迭代打磨", "不要节约token", "再来一轮", "继续搜", "加深", "续跑", "继续迭代", "继续调研"],
+      "phases": [0, 6, 7],
+      "requires": "outputs/已有调研报告"
+    }
+  },
+  "scenarios": {
+    "learning": ["学习", "高数", "大物", "电路", "四级", "考试", "课程", "应试"],
+    "content": ["小红书", "公众号", "爆款", "标题", "选题", "变现", "创作"],
+    "competition": ["竞赛", "FPGA", "RTL", "硬件", "代码", "方案"],
+    "product": ["产品", "竞品", "需求", "市场", "用户", "功能"],
+    "skill": ["技能", "skill", "工具", "插件", "效率"],
+    "academic": ["论文", "研究", "方向", "创新", "文献"]
+  },
+  "ecosystem": {
+    "reads": [
+      "memory/research-profile.md",
+      "memory/long-term.md",
+      "memory/{today}.md",
+      "outputs/*调研*.md",
+      "skill-routing-table.json",
+      "artifact-registry.md"
+    ],
+    "writes": [
+      "outputs/{主题}-调研报告-{日期}.md",
+      "outputs/youtube-transcripts/{标题}-{日期}.md",
+      "memory/{today}.md",
+      "memory/research-profile.md",
+      "memory/skill-usage-log.md",
+      "artifact-registry.md",
+      "memory/long-term.md (候选)",
+      "evolution-calendar.md (信号)"
+    ],
+    "side_effects_count": 8
+  },
+  "reference_skills": {
+    "total": 60,
+    "categories": {
+      "research_search": ["step-search", "research-daily", "li-industry", "find-skills", "web-access", "lazyweb-skill", "follow-builders", "X搜索语法生成器", "全能网页采集器", "baoyu-url-to-markdown"],
+      "dbs_cognition": ["dbs-diagnosis", "dbs-action", "li-content", "dbs-deconstruct", "dbs-goal", "dbs-hook", "dbs-slowisfast", "dao-fa-shu-qi", "li-devil", "cold-water", "karpathy-guidelines", "BROK提示词优化器", "prompt-optimizer", "taste-skill", "gpt-tasteskill"],
+      "iteration_workflow": ["li-improve", "executing-plans", "smart-task-planner-skill", "li-plan", "writing-plans", "li-plan", "li-workflow", "conversation-to-knowledge", "session-summary", "daily-review", "post-task-audit", "li-sync", "longmemory", "li-memory", "skill-creator"],
+      "learning_content": ["interactive-learning", "thinking-coach", "learning-boost", "AI方法论学习器", "shizhanying-coach", "li-mindcoach", "nature-skills", "blog-post-writer", "khazix-writer", "viral-content-tools", "案例拆解生成器", "文风DNA分析", "chinese-natural-voice-revision", "niuma-voice-dna", "jc-clarifier"],
+      "tools_collection": ["baoyu-danger-x-to-markdown", "wechat-article-collector", "transcript-cleaner", "pdf", "deepl", "data-analysis", "deep-review", "personal-rag-qa", "anything-to-notebooklm", "output-skill"]
+    }
+  },
+  "key_design_decisions": [
+    "调研是底层能力：6大场景覆盖（学习/自媒体/竞赛/产品/技能/学术）",
+    "问题消解优先：来源 dbs-diagnosis，99%的调研需求是假问题",
+    "信息源头质量阶梯：GitHub > X > Reddit > YouTube > 学术 > 中文",
+    "YouTube字幕提取：必执行，保存到本地并做道法术器分析",
+    "版本化迭代+黄金法则：来源 案例拆解生成器，每轮必须提炼永久性规则",
+    "一鱼多吃：每次调研产出8个生态副作用",
+    "行动锁：来源 jc-clarifier，不澄清不搜索",
+    "1.25倍递增：来源 auto-evolution + 用户要求",
+    "S/A/B分级：来源 research-daily，每个发现带分级理由",
+    "唯一写入者+语义去重：来源 longmemory，防止记忆冲突",
+    "触发词从数据中长出来：来源 li-devil，路由自进化"
+  ]
+}

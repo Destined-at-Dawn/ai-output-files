@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Personal data (do NOT commit)
+personal/
+memory/
+自我进化/
+assets/IMAGE_PROMPT_GUIDE.md
+*.docx
+*.pdf
+*.jpg
+*.png
+*.xlsx
+
+# Allow preview image (override *.png block)
+!assets/preview.png
+
+# Temp
+*.tmp
+*.bak

@@ -1,0 +1,1 @@
+{"workspace":"创作","name_cn":"创作工作区","role":"公众号+小红书+朋友圈内容生产","version":"5.3","reading_order":{"step1_forced":"CLAUDE.md顶部强制读取序列","step2_auto":".claude/rules/","step3_forced":"memory/long-term.md + today","step4_forced":"self-evolution/evolution-calendar.md","step5_on_demand":"SOPs/"},"sibling_workspaces":["mutual","个人","竞赛","求职"]}

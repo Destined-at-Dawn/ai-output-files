@@ -1,0 +1,34 @@
+Robei掌心八角板-RX50T
+RX50T开发板是一款专为初学者、学生打造的实用型FPGA开发板。轻巧便捷，内置高性能FPGA与多样外设，帮助初学者快速上手，激发
+无限创意。
+开发板整体相当于一个手掌心大小，具备了基础的输入输出设备，便携，无需底板即可运行，真正的装在口袋里面的开发板。
+Fatal error: Uncaught
+mysqli_sql_exception: Truncated i
+DOUBLE value: '165yy' in
+/var/www/html/mysql.php:62 Stac
+#0 /var/www/html/mysql.php(62)
+mysqli_query() #1
+/var/www/html/read.php(52): mys
+>query() #2 {main} thrown in
+/var/www/html/mysql.php on li
+Search
+English
+ 
+自适应芯片
+EDA 软件
+IP库
+Robei快讯
+工作机会
+校企合作
+ 
+购买
+ 
+登录
+02/28/2025  浏览次数:1749
+字体大小: 14px  16px  18px
+返回
+开发板接口丰富，包含DVP摄像头接口，HDMI接口，Type C USB下载器，无须转接，直接接电脑即可下载。配备了6位7段LED数码
+管，3个RGB幻彩灯，蓝牙模组，LM75A温度传感器，9个按键按照3X3排列方式，EEPROM存储器，微型蜂鸣器和一个TF卡槽。
+八角板外部引出相应的IO，用户可以根据自己需要连接不同的引脚。电源设置了防反插，避免在使用对接设备的时候短路。
+我们提供足量的设计案例和代码。
+联系购买：18562888017

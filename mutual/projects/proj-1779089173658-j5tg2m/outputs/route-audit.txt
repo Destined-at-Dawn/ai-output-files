@@ -1,0 +1,75 @@
+Routes: 237 | li-routes: 39
+Skills with routes: 236
+Duplicate triggers: 30
+
+  "PPT" -> ['li-office', 'li-office']
+  "健康检查" -> ['li-improve', 'li-infra']
+  "图片生成" -> ['li-visual', 'li-image']
+  "小红书图片" -> ['image-editing', 'baoyu-xhs-images']
+  "工作区健康" -> ['li-infra', 'li-workspace']
+  "微信导出" -> ['wechat-analysis', 'wechat-exporter']
+  "批量处理" -> ['li-workflow', 'li-office']
+  "找skill" -> ['li-local-search', 'li-bestskill']
+  "找技能" -> ['li-local-search', 'li-bestskill']
+  "技能合并" -> ['li-skillfusion', 'li-skills-mgmt']
+  "抖音视频" -> ['li-storyboard', 'li-video']
+  "报告" -> ['li-office', 'li-office']
+  "推荐skill" -> ['li-local-search', 'li-bestskill']
+  "搜索skill" -> ['li-local-search', 'li-bestskill']
+  "数据可视化" -> ['xlsx', 'baoyu-infographic']
+  "有什么skill" -> ['li-local-search', 'li-bestskill']
+  "朋友圈文案" -> ['siyuliebian', 'jincheng-pyq']
+  "深度研究" -> ['auto-evolution', 'deep-research']
+  "演示文稿" -> ['li-office', 'li-office']
+  "生成图片" -> ['li-visual', 'li-image']
+  "知识管理" -> ['li-manage', 'li-dbs']
+  "短视频文案" -> ['short-video-production', 'koubo-script-writer']
+  "私域运营" -> ['siyuliebian', 'opc-private-domain']
+  "融合skill" -> ['li-skillfusion', 'li-skills-mgmt']
+  "视觉风格" -> ['li-visual', 'li-design']
+  "视频制作" -> ['li-storyboard', 'li-video']
+  "认知科学" -> ['li-analyze', 'li-study']
+  "记忆系统" -> ['li-memory', 'li-infra']
+  "诊断" -> ['li-diagnose', 'li-dbs']
+  "里程碑" -> ['li-plan', 'li-competition']
+
+--- li- skills with trigger counts ---
+  li: 8 triggers (route r049)
+  li-improve: 45 triggers (route r081)
+  li-local-search: 23 triggers (route r082)
+  li-research: 57 triggers (route r083)
+  li-devil: 12 triggers (route r084)
+  li-transcript: 30 triggers (route r085)
+  li-skillcreate: 22 triggers (route r086)
+  li-sync: 25 triggers (route r087)
+  li-bestskill: 26 triggers (route r088)
+  li-manage: 26 triggers (route r089)
+  li-skillfusion: 17 triggers (route r090)
+  li-mindcoach: 24 triggers (route r091)
+  li-industry: 24 triggers (route r093)
+  li-memory: 20 triggers (route r094)
+  li-plan: 10 triggers (route r095)
+  li-workflow: 25 triggers (route r096)
+  li-webtest: 26 triggers (route r097)
+  li-storyboard: 33 triggers (route r098)
+  li-visual: 32 triggers (route r099)
+  li-hardware: 132 triggers (route r100)
+  li-diagnose: 40 triggers (route r101)
+  li-debug: 40 triggers (route r102)
+  li-triage: 37 triggers (route r103)
+  li-prompt: 30 triggers (route r105)
+  li-analyze: 51 triggers (route r108)
+  li-xhs: 20 triggers (route r110)
+  li-design: 20 triggers (route r111)
+  li-web: 19 triggers (route r112)
+  li-image: 19 triggers (route r113)
+  li-video: 18 triggers (route r114)
+  li-office: 19 triggers (route r115)
+  li-competition: 24 triggers (route r282)
+  li-dbs: 19 triggers (route r284)
+  li-infra: 20 triggers (route r287)
+  li-office: 20 triggers (route r290)
+  li-skills-mgmt: 16 triggers (route r293)
+  li-study: 28 triggers (route r294)
+  li-wechat: 22 triggers (route r296)
+  li-workspace: 23 triggers (route r297)

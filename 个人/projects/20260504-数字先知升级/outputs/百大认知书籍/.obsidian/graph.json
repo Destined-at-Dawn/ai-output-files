@@ -1,0 +1,79 @@
+{
+  "collapse-filter": true,
+  "search": "",
+  "showTags": true,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "tag:#认知科学",
+      "color": {
+        "a": 1,
+        "rgb": 5431531
+      }
+    },
+    {
+      "query": "tag:#决策与判断",
+      "color": {
+        "a": 1,
+        "rgb": 15158332
+      }
+    },
+    {
+      "query": "tag:#个人成长",
+      "color": {
+        "a": 1,
+        "rgb": 4521535
+      }
+    },
+    {
+      "query": "tag:#系统思维",
+      "color": {
+        "a": 1,
+        "rgb": 10401023
+      }
+    },
+    {
+      "query": "tag:#社会与人文",
+      "color": {
+        "a": 1,
+        "rgb": 16744703
+      }
+    },
+    {
+      "query": "tag:#生命哲学",
+      "color": {
+        "a": 1,
+        "rgb": 61439
+      }
+    },
+    {
+      "query": "tag:#工具方法",
+      "color": {
+        "a": 1,
+        "rgb": 16711935
+      }
+    },
+    {
+      "query": "tag:#索引",
+      "color": {
+        "a": 1,
+        "rgb": 15978788
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": -0.5,
+  "nodeSizeMultiplier": 1.5,
+  "lineSizeMultiplier": 2.5,
+  "collapse-forces": false,
+  "centerStrength": 0.45,
+  "repelStrength": 12,
+  "linkStrength": 0.8,
+  "linkDistance": 280,
+  "scale": 0.27268599173598884,
+  "close": true
+}

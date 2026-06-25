@@ -1,0 +1,848 @@
+{
+  "fear_greed": {
+    "score": 30.9428571428571,
+    "rating": "fear",
+    "timestamp": "2026-06-12T11:40:01+00:00",
+    "previous_close": 29.6857142857143,
+    "one_week_ago": 41.7714285714286,
+    "one_month_ago": 65.68571428571428,
+    "one_year_ago": 64.6
+  },
+  "treasury": {
+    "date": "06/11/2026",
+    "spread_10y_2y": 0.4,
+    "y10": 4.45,
+    "y2": 4.05,
+    "all_rates": {
+      "1.5M": 3.69,
+      "10Y": 4.45,
+      "1M": 3.69,
+      "1Y": 3.85,
+      "20Y": 4.96,
+      "2M": 3.7,
+      "2Y": 4.05,
+      "30Y": 4.95,
+      "3M": 3.78,
+      "3Y": 4.09,
+      "4M": 3.79,
+      "5Y": 4.18,
+      "6M": 3.81,
+      "7Y": 4.31
+    }
+  },
+  "cftc_gold": [
+    {
+      "date": "2026-06-02",
+      "mm_long": 129367,
+      "mm_short": 17188,
+      "mm_net": 112179,
+      "open_interest": 326052,
+      "market": "GOLD - COMMODITY EXCHANGE INC."
+    },
+    {
+      "date": "2026-05-26",
+      "mm_long": 124277,
+      "mm_short": 26831,
+      "mm_net": 97446,
+      "open_interest": 353489,
+      "market": "GOLD - COMMODITY EXCHANGE INC."
+    },
+    {
+      "date": "2026-05-19",
+      "mm_long": 122894,
+      "mm_short": 29354,
+      "mm_net": 93540,
+      "open_interest": 379325,
+      "market": "GOLD - COMMODITY EXCHANGE INC."
+    }
+  ],
+  "cftc_oil": [
+    {
+      "date": "2026-06-02",
+      "mm_long": 0,
+      "mm_short": 0,
+      "mm_net": 0,
+      "open_interest": 200211,
+      "market": "WTI FINANCIAL CRUDE OIL - NEW YORK MERCANTILE EXCHANGE"
+    }
+  ],
+  "crypto_prices": {
+    "bitcoin": {
+      "price_usd": 63620.0,
+      "market_cap_usd": 1276425350885.971,
+      "volume_24h_usd": 30707550530.439304,
+      "price_change_24h_pct": null
+    },
+    "ethereum": {
+      "price_usd": 1669.19,
+      "market_cap_usd": 201784427708.04422,
+      "volume_24h_usd": 11656691432.713615,
+      "price_change_24h_pct": null
+    }
+  },
+  "crypto_global": {
+    "total_market_cap_usd": 2265494230594.8765,
+    "total_volume_24h_usd": 79549631923.82343,
+    "btc_dominance_pct": 56.39024536626768,
+    "eth_dominance_pct": 8.911795910598542,
+    "market_cap_change_24h_pct": 0.9211875554056373,
+    "active_cryptos": 17411
+  },
+  "pm_bitcoin": [
+    {
+      "title": "Bitcoin above ___ on June 12?",
+      "slug": "bitcoin-above-on-june-12-2026",
+      "end_date": "2026-06-12T16:00:00Z",
+      "markets": [
+        {
+          "question": "Will the price of Bitcoin be above $50,000 on June 12?",
+          "best_ask": 1.0,
+          "best_bid": 0.999,
+          "last_trade_price": 0.999,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.9995
+            },
+            {
+              "name": "No",
+              "probability": 0.0005
+            }
+          ]
+        },
+        {
+          "question": "Will the price of Bitcoin be above $52,000 on June 12?",
+          "best_ask": 1.0,
+          "best_bid": 0.999,
+          "last_trade_price": 0.999,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.9995
+            },
+            {
+              "name": "No",
+              "probability": 0.0005
+            }
+          ]
+        },
+        {
+          "question": "Will the price of Bitcoin be above $54,000 on June 12?",
+          "best_ask": 1.0,
+          "best_bid": 0.999,
+          "last_trade_price": 0.999,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.9995
+            },
+            {
+              "name": "No",
+              "probability": 0.0005
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What price will Bitcoin hit in June?",
+      "slug": "what-price-will-bitcoin-hit-in-june-2026",
+      "end_date": "2026-07-01T04:00:00Z",
+      "markets": [
+        {
+          "question": "Will Bitcoin reach $90,000 in June?",
+          "best_ask": 0.006,
+          "best_bid": 0.005,
+          "last_trade_price": 0.007,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0055
+            },
+            {
+              "name": "No",
+              "probability": 0.9945
+            }
+          ]
+        },
+        {
+          "question": "Will Bitcoin reach $82,500 in June?",
+          "best_ask": 0.015,
+          "best_bid": 0.014,
+          "last_trade_price": 0.015,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0145
+            },
+            {
+              "name": "No",
+              "probability": 0.9855
+            }
+          ]
+        },
+        {
+          "question": "Will Bitcoin reach $77,500 in June?",
+          "best_ask": 0.032,
+          "best_bid": 0.031,
+          "last_trade_price": 0.032,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0315
+            },
+            {
+              "name": "No",
+              "probability": 0.9685
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Bitcoin above ___ on June 13?",
+      "slug": "bitcoin-above-on-june-13-2026",
+      "end_date": "2026-06-13T16:00:00Z",
+      "markets": [
+        {
+          "question": "Will the price of Bitcoin be above $50,000 on June 13?",
+          "best_ask": 1.0,
+          "best_bid": 0.999,
+          "last_trade_price": 0.999,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.9995
+            },
+            {
+              "name": "No",
+              "probability": 0.0005
+            }
+          ]
+        },
+        {
+          "question": "Will the price of Bitcoin be above $52,000 on June 13?",
+          "best_ask": 1.0,
+          "best_bid": 0.999,
+          "last_trade_price": 0.999,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.9995
+            },
+            {
+              "name": "No",
+              "probability": 0.0005
+            }
+          ]
+        },
+        {
+          "question": "Will the price of Bitcoin be above $54,000 on June 13?",
+          "best_ask": 1.0,
+          "best_bid": 0.999,
+          "last_trade_price": 0.999,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.9995
+            },
+            {
+              "name": "No",
+              "probability": 0.0005
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pm_fed": [
+    {
+      "title": "Fed Decision in June?",
+      "slug": "fed-decision-in-june-825",
+      "end_date": "2026-06-17T00:00:00Z",
+      "markets": [
+        {
+          "question": "Will the Fed decrease interest rates by 25 bps after the June 2026 meeting?",
+          "best_ask": 0.003,
+          "best_bid": 0.002,
+          "last_trade_price": 0.003,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0025
+            },
+            {
+              "name": "No",
+              "probability": 0.9975
+            }
+          ]
+        },
+        {
+          "question": "Will the Fed increase interest rates by 25 bps after the June 2026 meeting?",
+          "best_ask": 0.004,
+          "best_bid": 0.003,
+          "last_trade_price": 0.004,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0035
+            },
+            {
+              "name": "No",
+              "probability": 0.9965
+            }
+          ]
+        },
+        {
+          "question": "Will the Fed decrease interest rates by 50+ bps after the June 2026 meeting?",
+          "best_ask": 0.002,
+          "best_bid": 0.001,
+          "last_trade_price": 0.002,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0015
+            },
+            {
+              "name": "No",
+              "probability": 0.9985
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How many Fed rate cuts in 2026?",
+      "slug": "how-many-fed-rate-cuts-in-2026",
+      "end_date": "2026-12-31T00:00:00Z",
+      "markets": [
+        {
+          "question": "Will no Fed rate cuts happen in 2026?",
+          "best_ask": 0.784,
+          "best_bid": 0.783,
+          "last_trade_price": 0.788,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.7835
+            },
+            {
+              "name": "No",
+              "probability": 0.2165
+            }
+          ]
+        },
+        {
+          "question": "Will 1 Fed rate cut happen in 2026?",
+          "best_ask": 0.15,
+          "best_bid": 0.14,
+          "last_trade_price": 0.15,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.145
+            },
+            {
+              "name": "No",
+              "probability": 0.855
+            }
+          ]
+        },
+        {
+          "question": "Will 2 Fed rate cuts happen in 2026?",
+          "best_ask": 0.031,
+          "best_bid": 0.03,
+          "last_trade_price": 0.033,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0305
+            },
+            {
+              "name": "No",
+              "probability": 0.9695
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Fed Decision in July?",
+      "slug": "fed-decision-in-july-181",
+      "end_date": "2026-07-29T00:00:00Z",
+      "markets": [
+        {
+          "question": "Will there be no change in Fed interest rates after the July 2026 meeting?",
+          "best_ask": 0.93,
+          "best_bid": 0.92,
+          "last_trade_price": 0.93,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.925
+            },
+            {
+              "name": "No",
+              "probability": 0.075
+            }
+          ]
+        },
+        {
+          "question": "Will the Fed increase interest rates by 25 bps after the July 2026 meeting?",
+          "best_ask": 0.05,
+          "best_bid": 0.048,
+          "last_trade_price": 0.049,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.049
+            },
+            {
+              "name": "No",
+              "probability": 0.951
+            }
+          ]
+        },
+        {
+          "question": "Will the Fed decrease interest rates by 50+ bps after the July 2026 meeting?",
+          "best_ask": 0.008,
+          "best_bid": 0.007,
+          "last_trade_price": 0.008,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0075
+            },
+            {
+              "name": "No",
+              "probability": 0.9925
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pm_recession": [
+    {
+      "title": "Japan recession in 2026?",
+      "slug": "japan-recession-in-2026",
+      "end_date": "2027-03-31T00:00:00Z",
+      "markets": [
+        {
+          "question": "Japan recession in 2026?",
+          "best_ask": 0.34,
+          "best_bid": 0.16,
+          "last_trade_price": 0.35,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.25
+            },
+            {
+              "name": "No",
+              "probability": 0.75
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pm_iran": [
+    {
+      "title": "US x Iran permanent peace deal by...?",
+      "slug": "us-x-iran-permanent-peace-deal-by",
+      "end_date": "2026-12-31T00:00:00Z",
+      "markets": [
+        {
+          "question": "US x Iran permanent peace deal by April 22, 2026?",
+          "best_ask": 0.001,
+          "best_bid": null,
+          "last_trade_price": 0.001,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0
+            },
+            {
+              "name": "No",
+              "probability": 1.0
+            }
+          ]
+        },
+        {
+          "question": "US x Iran permanent peace deal by April 30, 2026?",
+          "best_ask": 0.001,
+          "best_bid": null,
+          "last_trade_price": 0.001,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0
+            },
+            {
+              "name": "No",
+              "probability": 1.0
+            }
+          ]
+        },
+        {
+          "question": "US x Iran permanent peace deal by May 31, 2026?",
+          "best_ask": 0.001,
+          "best_bid": null,
+          "last_trade_price": 0.001,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0
+            },
+            {
+              "name": "No",
+              "probability": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "US announces new Iran agreement/ceasefire extension by...?",
+      "slug": "us-announces-new-iran-agreementceasefire-extension-by",
+      "end_date": null,
+      "markets": [
+        {
+          "question": "US announces new Iran agreement/ceasefire extension by May 28?",
+          "best_ask": 0.002,
+          "best_bid": 0.001,
+          "last_trade_price": 0.001,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0
+            },
+            {
+              "name": "No",
+              "probability": 1.0
+            }
+          ]
+        },
+        {
+          "question": "US announces new Iran agreement/ceasefire extension by June 30?",
+          "best_ask": 0.73,
+          "best_bid": 0.72,
+          "last_trade_price": 0.73,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.725
+            },
+            {
+              "name": "No",
+              "probability": 0.275
+            }
+          ]
+        },
+        {
+          "question": "US announces new Iran agreement/ceasefire extension by May 27?",
+          "best_ask": 0.001,
+          "best_bid": null,
+          "last_trade_price": 0.002,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0
+            },
+            {
+              "name": "No",
+              "probability": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will the Iranian regime fall by June 30?",
+      "slug": "will-the-iranian-regime-fall-by-june-30",
+      "end_date": "2026-06-30T00:00:00Z",
+      "markets": [
+        {
+          "question": "Will the Iranian regime fall by June 30?",
+          "best_ask": 0.013,
+          "best_bid": 0.012,
+          "last_trade_price": 0.013,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0125
+            },
+            {
+              "name": "No",
+              "probability": 0.9875
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pm_ukraine": [
+    {
+      "title": "Russia x Ukraine ceasefire agreement by...?",
+      "slug": "russia-x-ukraine-ceasefire-agreement-by",
+      "end_date": "2026-12-31T00:00:00Z",
+      "markets": [
+        {
+          "question": "Russia x Ukraine ceasefire agreement by December 31, 2026?",
+          "best_ask": 0.45,
+          "best_bid": 0.44,
+          "last_trade_price": 0.44,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.445
+            },
+            {
+              "name": "No",
+              "probability": 0.555
+            }
+          ]
+        },
+        {
+          "question": "Russia x Ukraine ceasefire agreement by June 30, 2026?",
+          "best_ask": 0.05,
+          "best_bid": 0.04,
+          "last_trade_price": 0.04,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.045
+            },
+            {
+              "name": "No",
+              "probability": 0.955
+            }
+          ]
+        },
+        {
+          "question": "Russia x Ukraine ceasefire agreement by May 31, 2026?",
+          "best_ask": 0.001,
+          "best_bid": null,
+          "last_trade_price": 0.001,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0
+            },
+            {
+              "name": "No",
+              "probability": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Will Ukraine recapture Crimean territory by...?",
+      "slug": "will-ukraine-recapture-crimean-territory-by-june-30-2026",
+      "end_date": "2026-12-31T00:00:00Z",
+      "markets": [
+        {
+          "question": "Will Ukraine recapture Crimean territory by June 30, 2026?",
+          "best_ask": 0.009,
+          "best_bid": 0.007,
+          "last_trade_price": 0.007,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.008
+            },
+            {
+              "name": "No",
+              "probability": 0.992
+            }
+          ]
+        },
+        {
+          "question": "Will Ukraine recapture Crimean territory by December 31, 2026?",
+          "best_ask": 0.1,
+          "best_bid": 0.09,
+          "last_trade_price": 0.1,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.095
+            },
+            {
+              "name": "No",
+              "probability": 0.905
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pm_gold": [
+    {
+      "title": "What will Gold (GC) hit__ by end of June?",
+      "slug": "gc-hit-jun-2026",
+      "end_date": "2026-06-30T17:30:00Z",
+      "markets": [
+        {
+          "question": "Will Gold (GC) hit (HIGH) $8,000 by end of June?",
+          "best_ask": 0.002,
+          "best_bid": 0.001,
+          "last_trade_price": 0.001,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0015
+            },
+            {
+              "name": "No",
+              "probability": 0.9985
+            }
+          ]
+        },
+        {
+          "question": "Will Gold (GC) hit (HIGH) $7,000 by end of June?",
+          "best_ask": 0.002,
+          "best_bid": 0.001,
+          "last_trade_price": 0.002,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0015
+            },
+            {
+              "name": "No",
+              "probability": 0.9985
+            }
+          ]
+        },
+        {
+          "question": "Will Gold (GC) hit (HIGH) $6,500 by end of June?",
+          "best_ask": 0.003,
+          "best_bid": 0.001,
+          "last_trade_price": 0.001,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.002
+            },
+            {
+              "name": "No",
+              "probability": 0.998
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What will Gold (XAUUSD) hit in June 2026?",
+      "slug": "what-price-will-xauusd-hit-in-june-2026",
+      "end_date": "2026-07-01T03:59:59.999Z",
+      "markets": [
+        {
+          "question": "Will Gold (XAUUSD) hit (HIGH) $5,200 in June?",
+          "best_ask": 0.012,
+          "best_bid": 0.005,
+          "last_trade_price": 0.008,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.0085
+            },
+            {
+              "name": "No",
+              "probability": 0.9915
+            }
+          ]
+        },
+        {
+          "question": "Will Gold (XAUUSD) hit (HIGH) $5,100 in June?",
+          "best_ask": 0.013,
+          "best_bid": 0.005,
+          "last_trade_price": 0.011,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.009
+            },
+            {
+              "name": "No",
+              "probability": 0.991
+            }
+          ]
+        },
+        {
+          "question": "Will Gold (XAUUSD) hit (HIGH) $5,000 in June?",
+          "best_ask": 0.016,
+          "best_bid": 0.012,
+          "last_trade_price": 0.011,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.014
+            },
+            {
+              "name": "No",
+              "probability": 0.986
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What will Gold (GC) hit__ by end of December?",
+      "slug": "what-will-gold-gc-hit-by-end-of-december",
+      "end_date": "2026-12-31T00:00:00Z",
+      "markets": [
+        {
+          "question": "Will Gold (GC) hit (HIGH) $10,000 by end of December?",
+          "best_ask": 0.05,
+          "best_bid": 0.03,
+          "last_trade_price": 0.05,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.04
+            },
+            {
+              "name": "No",
+              "probability": 0.96
+            }
+          ]
+        },
+        {
+          "question": "Will Gold (GC) hit (HIGH) $12,000 by end of December?",
+          "best_ask": 0.045,
+          "best_bid": 0.043,
+          "last_trade_price": 0.047,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.044
+            },
+            {
+              "name": "No",
+              "probability": 0.956
+            }
+          ]
+        },
+        {
+          "question": "Will Gold (GC) hit (HIGH) $7,000 by end of December?",
+          "best_ask": 0.08,
+          "best_bid": 0.07,
+          "last_trade_price": 0.07,
+          "outcomes": [
+            {
+              "name": "Yes",
+              "probability": 0.075
+            },
+            {
+              "name": "No",
+              "probability": 0.925
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+触摸屏工程备份报告
+时间: 2026-05-20 12:41:58
+备份策略: 3-2-1规则
+
+第1份（本地SSD）: D:\AMD	ouchscreen\code第2份（本地SSD）: E:i产出文件\牛马\竞赛\竞赛\outputs第3份（异地/云）: C:/Users/13975/OneDrive/竞赛_memory/touchscreen_backup
+
+备份文件: i2c_master.v, touch_ctrl.v, seg7_drv.v, touchscreen_top.v, touchscreen.xdc, setup_ila.tcl
+状态: 完成

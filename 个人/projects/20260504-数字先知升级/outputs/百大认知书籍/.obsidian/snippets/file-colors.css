@@ -1,0 +1,90 @@
+/* ================================================================
+   百大认知书籍 · 文件浏览器着色 v3
+   每本书独有 HSL 色值·左边框着色 · 与 graph.json 颜色一致
+   62 本书 + 3 索引文件 = 65 个独有色
+   ================================================================ */
+
+/* === 神经科学 (H:258-305, 紫蓝系) === */
+.nav-file-title[data-path*="001-多巴胺国度"]          { border-left: 3px solid #4E19CC; padding-left: 4px; }
+.nav-file-title[data-path*="022-认知神经科学"]        { border-left: 3px solid #651DEB; padding-left: 4px; }
+.nav-file-title[data-path*="026-笛卡尔的错误"]        { border-left: 3px solid #8638F4; padding-left: 4px; }
+.nav-file-title[data-path*="031-活体连线"]            { border-left: 3px solid #6C19CC; padding-left: 4px; }
+.nav-file-title[data-path*="032-白板"]                { border-left: 3px solid #8B1DEB; padding-left: 4px; }
+.nav-file-title[data-path*="042-情绪大脑"]            { border-left: 3px solid #A638F4; padding-left: 4px; }
+.nav-file-title[data-path*="045-错把妻子当帽子"]      { border-left: 3px solid #8D19CC; padding-left: 4px; }
+.nav-file-title[data-path*="050-情绪"]                { border-left: 3px solid #B11DEB; padding-left: 4px; }
+
+/* === 认知科学 (H:353-18, 红橙系) === */
+.nav-file-title[data-path*="009-认知天性"]            { border-left: 3px solid #CC192E; padding-left: 4px; }
+.nav-file-title[data-path*="010-思考快与慢"]          { border-left: 3px solid #EB1D2E; padding-left: 4px; }
+.nav-file-title[data-path*="011-认知觉醒"]            { border-left: 3px solid #F43841; padding-left: 4px; }
+.nav-file-title[data-path*="017-刻意练习"]            { border-left: 3px solid #CC191C; padding-left: 4px; }
+.nav-file-title[data-path*="021-执行功能"]            { border-left: 3px solid #EB241D; padding-left: 4px; }
+.nav-file-title[data-path*="023-认知觉醒"]            { border-left: 3px solid #F44438; padding-left: 4px; }
+.nav-file-title[data-path*="025-认知负荷理论"]        { border-left: 3px solid #CC2B19; padding-left: 4px; }
+.nav-file-title[data-path*="028-我们如何学习"]        { border-left: 3px solid #EB391D; padding-left: 4px; }
+.nav-file-title[data-path*="043-看不见的猩猩"]        { border-left: 3px solid #F45A38; padding-left: 4px; }
+.nav-file-title[data-path*="044-聪明却散漫"]          { border-left: 3px solid #CC4019; padding-left: 4px; }
+.nav-file-title[data-path*="049-脑中阅读"]            { border-left: 3px solid #EB511D; padding-left: 4px; }
+.nav-file-title[data-path*="059-智力测验"]            { border-left: 3px solid #F47038; padding-left: 4px; }
+
+/* === 习惯行为 (H:113-138, 绿色系) === */
+.nav-file-title[data-path*="006-原子习惯"]            { border-left: 3px solid #2ECC19; padding-left: 4px; }
+.nav-file-title[data-path*="014-心态"]                { border-left: 3px solid #2BEB1D; padding-left: 4px; }
+.nav-file-title[data-path*="015-吃掉那只青蛙"]        { border-left: 3px solid #38F438; padding-left: 4px; }
+.nav-file-title[data-path*="016-习惯的力量"]          { border-left: 3px solid #19CC22; padding-left: 4px; }
+.nav-file-title[data-path*="020-专注力管理"]          { border-left: 3px solid #1DEB35; padding-left: 4px; }
+.nav-file-title[data-path*="034-现在做还是以后做"]    { border-left: 3px solid #38F457; padding-left: 4px; }
+.nav-file-title[data-path*="053-家庭作业的迷思"]      { border-left: 3px solid #19CC43; padding-left: 4px; }
+.nav-file-title[data-path*="056-无条件养育"]          { border-left: 3px solid #1DEB5B; padding-left: 4px; }
+
+/* === 生产力效能 (H:203-228, 蓝色系) === */
+.nav-file-title[data-path*="005-深度工作"]            { border-left: 3px solid #1987CC; padding-left: 4px; }
+.nav-file-title[data-path*="007-搞定"]                { border-left: 3px solid #1D92EB; padding-left: 4px; }
+.nav-file-title[data-path*="013-精要主义"]            { border-left: 3px solid #3896F4; padding-left: 4px; }
+.nav-file-title[data-path*="018-算法之美"]            { border-left: 3px solid #1969CC; padding-left: 4px; }
+.nav-file-title[data-path*="019-敏捷革命"]            { border-left: 3px solid #1D6CEB; padding-left: 4px; }
+.nav-file-title[data-path*="037-结构洞"]              { border-left: 3px solid #3877F4; padding-left: 4px; }
+.nav-file-title[data-path*="041-垃圾桶模型"]          { border-left: 3px solid #1948CC; padding-left: 4px; }
+.nav-file-title[data-path*="062-冲浪不确定性"]        { border-left: 3px solid #1D46EB; padding-left: 4px; }
+
+/* === 哲学思维 (H:43-68, 黄绿系) === */
+.nav-file-title[data-path*="003-框架的胜利"]          { border-left: 3px solid #CC9919; padding-left: 4px; }
+.nav-file-title[data-path*="012-心流"]                { border-left: 3px solid #EBBB1D; padding-left: 4px; }
+.nav-file-title[data-path*="024-心智探奇"]            { border-left: 3px solid #F4D538; padding-left: 4px; }
+.nav-file-title[data-path*="038-演化理论"]            { border-left: 3px solid #CCB719; padding-left: 4px; }
+.nav-file-title[data-path*="039-社会动物"]            { border-left: 3px solid #EBE11D; padding-left: 4px; }
+.nav-file-title[data-path*="040-延伸的表型"]          { border-left: 3px solid #F4F438; padding-left: 4px; }
+.nav-file-title[data-path*="046-反脆弱"]              { border-left: 3px solid #C0CC19; padding-left: 4px; }
+.nav-file-title[data-path*="055-哲学研究"]            { border-left: 3px solid #CFEB1D; padding-left: 4px; }
+
+/* === 社会关系 (H:158-183, 青绿系) === */
+.nav-file-title[data-path*="002-自私的基因"]          { border-left: 3px solid #19CC8A; padding-left: 4px; }
+.nav-file-title[data-path*="004-金榜题名之后"]        { border-left: 3px solid #1DEBA6; padding-left: 4px; }
+.nav-file-title[data-path*="008-协同智能"]            { border-left: 3px solid #38F4BF; padding-left: 4px; }
+.nav-file-title[data-path*="029-沧浪之水"]            { border-left: 3px solid #19CCA2; padding-left: 4px; }
+.nav-file-title[data-path*="030-不平等的童年"]        { border-left: 3px solid #1DEBC5; padding-left: 4px; }
+.nav-file-title[data-path*="033-中国社会的个体化"]    { border-left: 3px solid #38F4D8; padding-left: 4px; }
+.nav-file-title[data-path*="035-权力"]                { border-left: 3px solid #19CCBA; padding-left: 4px; }
+.nav-file-title[data-path*="036-私人生活的变革"]      { border-left: 3px solid #1DEBE1; padding-left: 4px; }
+.nav-file-title[data-path*="052-积极心理学"]          { border-left: 3px solid #38F4F4; padding-left: 4px; }
+.nav-file-title[data-path*="054-奖励的惩罚"]          { border-left: 3px solid #19C3CC; padding-left: 4px; }
+
+/* === 经济决策 (H:318-343, 粉紫系) === */
+.nav-file-title[data-path*="027-以日为鉴"]            { border-left: 3px solid #CC1996; padding-left: 4px; }
+.nav-file-title[data-path*="047-体验机"]              { border-left: 3px solid #EB1DA3; padding-left: 4px; }
+.nav-file-title[data-path*="048-数字觉醒"]            { border-left: 3px solid #F438A6; padding-left: 4px; }
+.nav-file-title[data-path*="051-WOOP"]                { border-left: 3px solid #CC1978; padding-left: 4px; }
+.nav-file-title[data-path*="057-我们如何学习"]        { border-left: 3px solid #EB1D7D; padding-left: 4px; }
+.nav-file-title[data-path*="058-内在动机"]            { border-left: 3px solid #F43886; padding-left: 4px; }
+.nav-file-title[data-path*="060-稀缺"]                { border-left: 3px solid #CC1957; padding-left: 4px; }
+.nav-file-title[data-path*="061-助推"]                { border-left: 3px solid #EB1D58; padding-left: 4px; }
+
+/* === 索引/元数据 (H:50-56, 金色系) === */
+.nav-file-title[data-path*="000-总索引"]              { border-left: 3px solid #F3D124; padding-left: 4px; }
+.nav-file-title[data-path*="问题拆解"]                { border-left: 3px solid #F3DB24; padding-left: 4px; }
+.nav-file-title[data-path*="cross-reference"]         { border-left: 3px solid #F3E524; padding-left: 4px; }
+
+/* === 全局微调 === */
+.nav-file-title { padding-top: 3px; padding-bottom: 3px; transition: border-left-color 0.2s ease; }
+.nav-file-title:hover { filter: brightness(0.85); }

@@ -1,0 +1,177 @@
+{
+  "project_name": "impeccable",
+  "project_url": "https://github.com/pbakaus/impeccable",
+  "description": "A comprehensive frontend design and polish system by Paul Bakaus, consisting of 23 reference guides covering the complete journey from visual concept to production-ready interface. Each guide follows a consistent Register -> Assess -> Plan/Execute -> Verify pipeline with strict quality criteria and anti-patterns.",
+  "total_commands": 23,
+  "commands": [
+    {
+      "name": "refine",
+      "description": "Expert frontend design critique that provides actionable refinement directives without making changes. Outputs tiered critique organized as Quick Wins (15 min), Meaningful Improvements (1-2 hours), and Deep Refinements (half-day+).",
+      "input": "An existing web page or component in browser",
+      "output": "Tiered critique with specific, implementable directives prioritized by impact-to-effort ratio",
+      "quality_criteria": "Refinement must be net positive (improvement outweighs cost); no regression in accessibility or performance; specificity over generality; directive not dictation"
+    },
+    {
+      "name": "audit",
+      "description": "Accessibility and compliance audit following WCAG 2.2 AA as the mandatory baseline. Tests against 7 categories: visual, motor, cognitive, auditory, seizure/vestibular, assistive technology, and error prevention. Uses a legal-first lens (ADA Title III, EAA) rather than checklist-first.",
+      "input": "A web page, component, or application in a browser",
+      "output": "WCAG-mapped report with severity ratings (Critical/High/Medium), impacted user groups, and minimal fix directions. Never numeric scores.",
+      "quality_criteria": "WCAG 2.2 AA all criteria pass; keyboard trap-free navigation; 4.5:1 minimum contrast for body text; 24x24px minimum icon hit area; screen reader verification on at least 2 of (VoiceOver, NVDA, JAWS); must never break existing functionality"
+    },
+    {
+      "name": "test",
+      "description": "Browser-based functional verification that tests against requirements and user intent, not just behavior. Combines 5-layer testing: smoke tests (can it load?), functional tests (does it work?), visual tests (does it look right?), edge cases (does it break gracefully?), and accessibility verification.",
+      "input": "A web page or application plus the original requirements or user intent",
+      "output": "A test report structured as checklist: PASS (confirmed working), FAIL (broken, with steps to reproduce and severity), and NOT_TESTED (could not verify and why).",
+      "quality_criteria": "Must test in the actual browser, not from code alone; never mark as PASS based on implementation review; re-test related areas after fixes; distinguish requirement failures from nice-to-haves; final report must be Markdown with a summary"
+    },
+    {
+      "name": "preview",
+      "description": "Renders the current page or component in a browser for visual review. Takes a full-page screenshot, displays it, and lists key observations about visual state, layout issues, or missing elements.",
+      "input": "A local URL or file to render in the browser",
+      "output": "Full-page screenshot plus key observations about the rendered state",
+      "quality_criteria": "Must actually render (not just read code); screenshot must be full-page; observations must be concrete and actionable"
+    },
+    {
+      "name": "screen",
+      "description": "Renders the page at a specified viewport size and captures a screenshot. Takes a viewport width in pixels (e.g. 375 for mobile, 768 for tablet, 1440 for desktop) plus optional URL override.",
+      "input": "Viewport width in pixels plus optional URL override",
+      "output": "Screenshot at specified viewport size",
+      "quality_criteria": "Must test on real viewport sizes (320, 375, 768, 1024, 1440, 1920); must test both portrait and landscape orientation on mobile/tablet; responsive design must adapt without horizontal scrolling; touch targets must be at least 44x44px on touch devices"
+    },
+    {
+      "name": "improve",
+      "description": "Makes small, targeted improvements to the existing page or component using surgical edits. Changes only what the user asks for, matches existing code style, and preserves all behavior unless explicitly asked to change it.",
+      "input": "A page or component plus specific improvement request",
+      "output": "Surgical edits to the codebase with changes explained",
+      "quality_criteria": "Only modify what was asked for; must not change behavior unless requested; must not leave orphaned code; must verify changes in the browser after making them; fix only code the change caused to become unused"
+    },
+    {
+      "name": "undo",
+      "description": "Reverts recent changes to the page or component using Git history. Provides a summary of reverted changes and the resulting state of the code.",
+      "input": "Reference to the changes to revert (commit hash, number of commits, or description)",
+      "output": "Reverted code with summary of what was undone",
+      "quality_criteria": "Must verify the reverted state works in the browser; must not lose untracked changes; must explain what was reverted and why"
+    },
+    {
+      "name": "commit",
+      "description": "Captures the current state of the page or component as a Git checkpoint. Uses conventional commits format with description of what changed and why.",
+      "input": "Description of what changed and why",
+      "output": "Git commit with conventional commits format",
+      "quality_criteria": "Must use conventional commits format; must describe what changed and why; must include co-authored-by trailer; must not commit unrelated changes"
+    },
+    {
+      "name": "ship",
+      "description": "Prepares the current page or component for deployment by running final checks, creating a production build if needed, and providing deployment instructions.",
+      "input": "The page or component to prepare for deployment",
+      "output": "Deployment-ready build with instructions and checklist",
+      "quality_criteria": "Must run all checks before shipping; must verify in production-like environment; must provide rollback instructions; must not ship untested code"
+    },
+    {
+      "name": "iterate",
+      "description": "Runs multiple improvement cycles on the page or component, testing and refining until quality goals are met. Each cycle includes assessment, targeted improvement, and verification.",
+      "input": "A page or component plus quality goals to achieve",
+      "output": "Iteratively improved code with documentation of each cycle",
+      "quality_criteria": "Must define clear stopping criteria before starting; must verify each iteration in the browser; must not regress previous improvements; must document what changed in each cycle"
+    },
+    {
+      "name": "componentize",
+      "description": "Extracts reusable components from existing code. Identifies repeated patterns, creates component abstractions, and refactors the codebase to use the new components.",
+      "input": "A codebase with repeated patterns to extract",
+      "output": "Reusable components with refactored codebase",
+      "quality_criteria": "Must preserve all existing behavior; must not create unnecessary abstractions; must use existing code style; must verify refactored code in the browser"
+    },
+    {
+      "name": "simplify",
+      "description": "Strips a design down to its core essence by removing redundant elements, repeated information, decorative noise, and cosmetic complexity. Follows the principle: 'Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.'",
+      "input": "An existing design that feels complex or cluttered",
+      "output": "A simplified design with documented rationale for removed elements",
+      "quality_criteria": "Every element must justify its existence; simplicity means removing obstacles, not features; must not remove necessary functionality; must not sacrifice accessibility; must maintain clearer hierarchy after simplification"
+    },
+    {
+      "name": "harden",
+      "description": "Hardens interfaces against real-world conditions: extreme inputs, errors, internationalization, edge cases. Core premise: 'Designs that only work with perfect data aren't production-ready.'",
+      "input": "Any design system, UI component, or interface heading toward production",
+      "output": "Hardened interface validated against extreme data, i18n, errors, accessibility, and performance",
+      "quality_criteria": "Must not assume perfect input; must handle text overflow, i18n (30-40% text expansion budget), error states, empty states, large datasets, offline scenarios; must not use fixed widths for text; must not block entire interface when one component errors"
+    },
+    {
+      "name": "colorize",
+      "description": "Strategically introduces color into interfaces. Core philosophy: 'Strategic color beats rainbow vomit every time.' Operates in brand mode (palette IS the voice) or product mode (restrained accent color for primary actions only).",
+      "input": "An existing design plus brand colors and desired color strategy (Restrained/Committed/Full/Drenched)",
+      "output": "Defined color palette with OKLCH-based tokens, applied across semantic, accent, background, data viz, border, typography, and decorative dimensions",
+      "quality_criteria": "OKLCH mandatory (stop using HSL); 2-4 colors max beyond neutrals; 60/30/10 dominance split; WCAG 4.5:1 for text, 3:1 for components; never use color alone to convey information; never default to purple-blue gradients"
+    },
+    {
+      "name": "typeset",
+      "description": "Replaces generic, default type choices with intentional, brand-aligned typography. Core philosophy: 'Good typography is invisible; bad typography is distracting.'",
+      "input": "An existing web page or design system with typography that may be generic or inconsistent",
+      "output": "Typography system with selected families, defined type scale, weight assignments, semantic CSS tokens, readability-optimized settings",
+      "quality_criteria": "Hierarchy identifiable at a glance; body text 16px+ minimum; line length 45-75 characters; max 2-3 font families; must use rem/em units; must not disable browser zoom; modular scale with committed ratio"
+    },
+    {
+      "name": "layout",
+      "description": "Treats space as the primary design material for improving layouts. Targets structural spatial problems — monotone spacing, weak hierarchy, repetitive card grids — as root causes of interfaces feeling 'off.'",
+      "input": "An existing layout with identified spatial weaknesses",
+      "output": "Improved layout using consistent spacing tokens, clear visual hierarchy, appropriate layout primitives, and varied rhythm",
+      "quality_criteria": "Spacing values from defined 4pt-based scale, never arbitrary; squint test confirms hierarchy; sections have varied spacing; touch targets 44x44px minimum; no nested cards; adapts gracefully across breakpoints"
+    },
+    {
+      "name": "animate",
+      "description": "Adds purposeful animation to digital interfaces. Core philosophy: 'Cut motion that exists only for decoration.' Organized into hero moment, feedback layer, transition layer, and delight layer.",
+      "input": "An existing codebase/UI with static or poorly animated interfaces, plus context requirements",
+      "output": "Purposefully animated interfaces using CSS transitions/keyframes, Web Animations API, or Framer Motion with custom easing curves",
+      "quality_criteria": "60fps on target devices; every animation must serve a purpose; prefers-reduced-motion support is mandatory; no bounce or elastic easing; no durations over 500ms for feedback; 100/300/500ms timing rule; never block user interaction during animations"
+    },
+    {
+      "name": "overdrive",
+      "description": "Pushes web interfaces beyond conventional boundaries using advanced browser capabilities. Makes existing features feel extraordinary rather than adding new product functionality. Must propose 2-3 directions before building.",
+      "input": "An existing web interface plus user context about personality, audience, and goals",
+      "output": "Enhanced interface with extraordinary feel using View Transitions API, scroll-driven animation, WebGL/WebGPU, Canvas, SVG filters, Web Audio, etc.",
+      "quality_criteria": "Five tests: wow test, removal test, device test, accessibility test, context test; progressive enhancement with graceful degradation; 60fps target; lazy initialization of heavy resources; no sound without opt-in; prefers-reduced-motion respected"
+    },
+    {
+      "name": "clarify",
+      "description": "Finds unclear, confusing, or poorly written interface text and rewrites it for clarity. Core premise: 'Vague copy creates support tickets and abandonment; specific copy gets users through the task.'",
+      "input": "Existing interface text that is unclear or ineffective, plus context about audience and constraints",
+      "output": "Rewritten copy organized by interface element type (errors, forms, CTAs, help text, empty states, loading states, confirmations)",
+      "quality_criteria": "Must be specific, concise, active voice, human, actionable, consistent; never use humor for errors; never blame users; never assume technical knowledge; for destructive actions name the destruction and show counts"
+    },
+    {
+      "name": "delight",
+      "description": "Adds personality, surprise, and polish to user interfaces at specific moments: completions, first-time actions, error recovery, milestones. Core rule: 'Delight should enhance usability, never obscure it.'",
+      "input": "Brand personality profile, target audience, existing interface, domain context",
+      "output": "Delight moments mapped to specific UI states with implementation code (CSS, animations, copy suggestions)",
+      "quality_criteria": "Must be under 1 second; must be skippable; must never delay core functionality; must still be pleasant after 100th time; must work with reduced motion and screen readers; must not be a substitute for poor UX"
+    },
+    {
+      "name": "adapt",
+      "description": "Transforms an existing design for a new context — different screen size, device, platform, or usage scenario. Core philosophy: 'Adaptation is rethinking the experience for the new context, not scaling pixels.'",
+      "input": "An existing design plus target context (device type, input method, screen size, connection, usage scenario)",
+      "output": "Rethought experience appropriate to the new context with responsive breakpoints, interaction pattern changes, and content strategy adjustments",
+      "quality_criteria": "Must feel native to each target context; core functionality never hidden on any platform; touch targets 44x44px; hover-dependent interactions have touch alternatives; mobile-first CSS; input method detected via pointer/hover media queries; real-device testing"
+    },
+    {
+      "name": "optimize",
+      "description": "Diagnoses and resolves front-end performance issues. Measurement-first philosophy: 'Don't optimize what isn't slow.' Targets Core Web Vitals (LCP <2.5s, FID <100ms, INP <200ms, CLS <0.1).",
+      "input": "A web application with measured performance problems (via Lighthouse, Chrome DevTools, WebPageTest)",
+      "output": "Faster, more responsive interface with verified before-and-after metrics",
+      "quality_criteria": "Must measure before optimizing; LCP <2.5s, FID <100ms, INP <200ms, CLS <0.1; 16ms per frame (60fps); test on low-end devices; throttle to 3G to validate; must not sacrifice accessibility for speed; must not break functionality"
+    },
+    {
+      "name": "polish",
+      "description": "Systematic workflow for refining from 'shipped' to 'polished' — catching fine-grained details across 12 dimensions: visual alignment, information architecture, typography, color/contrast, interaction states, micro-interactions, content/copy, icons/images, forms/inputs, edge cases, responsiveness, performance.",
+      "input": "A functionally complete feature (code, UI, or deployed page) plus design system documentation",
+      "output": "Polished feature aligned to design system with classified and resolved drift, clean codebase, and completed 22-item checklist",
+      "quality_criteria": "Design system alignment is non-negotiable; every interactive element must implement all states; spacing must use design token scale; contrast WCAG AA minimum; animations 60fps; no console logs or unused imports; quality consistent across all areas"
+    },
+    {
+      "name": "onboard",
+      "description": "Creates user onboarding experiences. Core philosophy: 'Onboarding's job is not to teach the product. Its job is to get people to the moment that proves the product is worth their time.' Four categories: initial onboarding, feature discovery, guided tours, interactive tutorials.",
+      "input": "Target 'aha moment', user experience level and motivation, core value proposition, key action users should take first",
+      "output": "Welcome screens, minimal setup flows, core concept introductions (1-3 max), first-success pathways, empty state designs, contextual tooltip systems, progressive feature discovery patterns",
+      "quality_criteria": "Show don't tell; make it optional; teach 20% that delivers 80% of value; context over ceremony; respect user intelligence; never force long onboarding before product access; never repeat for returning users; never block all UI during tour; track completion and skip rates"
+    }
+  ],
+  "integration_notes": "适合集成到 html-to-notes Skill 的方面：\n\n1. **内容提取与简化** (simplify, clarify, distill): html-to-notes 的核心是从网页提取笔记，这些命令可以直接指导如何精简内容、提炼关键信息\n\n2. **结构与排版** (typeset, layout): 笔记的排版和结构直接影响可读性，这些命令提供了系统化的排版和布局指导\n\n3. **质量验证** (audit, test, polish): 确保提取的笔记质量达标，符合无障碍和可读性标准\n\n4. **适配与优化** (adapt, optimize, harden): 笔记需要在不同平台和场景下使用，这些命令提供了适配和优化策略\n\n5. **视觉增强** (colorize, animate, delight): 为笔记添加适当的视觉层次和交互元素\n\n6. **用户体验** (onboard, refine): 确保笔记的使用体验流畅，引导用户高效获取信息\n\n所有 23 条命令共享统一的管道: Register -> Assess -> Plan/Execute -> Verify，便于统一集成。"
+}

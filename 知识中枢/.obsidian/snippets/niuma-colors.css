@@ -1,0 +1,400 @@
+/* ============================================================
+   牛马AI 知识中枢 — 颜色系统
+   双维度：工作区（链接主色）× 内容类型（callout 框色）
+
+   工作区颜色：
+     求职  = 橙色  #e67e22
+     竞赛  = 翠绿  #27ae60
+     创作  = 天蓝  #3498db
+     生态  = 紫色  #8e44ad
+     个人  = 珊瑚红 #e74c3c
+     跨区  = 琥珀  #f39c12
+   ============================================================ */
+
+/* ===== 1. 侧边栏文件夹颜色 ===== */
+
+/* 00-主页：白色（默认） */
+.nav-folder-title[data-path^="00-主页"] > .nav-folder-title-content {
+    color: #ecf0f1 !important;
+}
+
+/* 01-注册表：灰色 */
+.nav-folder-title[data-path^="01-注册表"] > .nav-folder-title-content {
+    color: #95a5a6 !important;
+}
+.nav-folder-title[data-path^="01-注册表"] > .nav-folder-title-content .nav-folder-icon {
+    color: #95a5a6 !important;
+}
+
+/* 02-共享规则：灰蓝 */
+.nav-folder-title[data-path^="02-共享规则"] > .nav-folder-title-content {
+    color: #7f8c8d !important;
+}
+.nav-folder-title[data-path^="02-共享规则"] > .nav-folder-title-content .nav-folder-icon {
+    color: #7f8c8d !important;
+}
+
+/* 03-个人档案：珊瑚红 */
+.nav-folder-title[data-path^="03-个人档案"] > .nav-folder-title-content {
+    color: #e74c3c !important;
+}
+.nav-folder-title[data-path^="03-个人档案"] > .nav-folder-title-content .nav-folder-icon {
+    color: #e74c3c !important;
+}
+
+/* 04-SOP：灰蓝 */
+.nav-folder-title[data-path^="04-SOP"] > .nav-folder-title-content {
+    color: #7f8c8d !important;
+}
+.nav-folder-title[data-path^="04-SOP"] > .nav-folder-title-content .nav-folder-icon {
+    color: #7f8c8d !important;
+}
+
+/* 05-每日记忆：白色 */
+.nav-folder-title[data-path^="05-每日记忆"] > .nav-folder-title-content {
+    color: #bdc3c7 !important;
+}
+
+/* 06-求职：橙色 */
+.nav-folder-title[data-path^="06-求职"] > .nav-folder-title-content {
+    color: #e67e22 !important;
+}
+.nav-folder-title[data-path^="06-求职"] > .nav-folder-title-content .nav-folder-icon {
+    color: #e67e22 !important;
+}
+
+/* 07-竞赛：翠绿 */
+.nav-folder-title[data-path^="07-竞赛"] > .nav-folder-title-content {
+    color: #27ae60 !important;
+}
+.nav-folder-title[data-path^="07-竞赛"] > .nav-folder-title-content .nav-folder-icon {
+    color: #27ae60 !important;
+}
+
+/* 08-创作：天蓝 */
+.nav-folder-title[data-path^="08-创作"] > .nav-folder-title-content {
+    color: #3498db !important;
+}
+.nav-folder-title[data-path^="08-创作"] > .nav-folder-title-content .nav-folder-icon {
+    color: #3498db !important;
+}
+
+/* 09-生态：紫色 */
+.nav-folder-title[data-path^="09-生态"] > .nav-folder-title-content {
+    color: #8e44ad !important;
+}
+.nav-folder-title[data-path^="09-生态"] > .nav-folder-title-content .nav-folder-icon {
+    color: #8e44ad !important;
+}
+
+/* 10-跨工作区：琥珀 */
+.nav-folder-title[data-path^="10-跨工作区"] > .nav-folder-title-content {
+    color: #f39c12 !important;
+}
+.nav-folder-title[data-path^="10-跨工作区"] > .nav-folder-title-content .nav-folder-icon {
+    color: #f39c12 !important;
+}
+
+
+/* ===== 2. 内部链接按目标文件夹着色（Reading View）===== */
+
+/* 求职区链接：橙色 */
+a.internal-link[href*="06-求职"] {
+    color: #e67e22 !important;
+    text-decoration-color: rgba(230, 126, 34, 0.4) !important;
+}
+a.internal-link.is-unresolved[href*="06-求职"] {
+    color: #f39c12 !important;
+}
+
+/* 竞赛区链接：翠绿 */
+a.internal-link[href*="07-竞赛"] {
+    color: #27ae60 !important;
+    text-decoration-color: rgba(39, 174, 96, 0.4) !important;
+}
+a.internal-link.is-unresolved[href*="07-竞赛"] {
+    color: #2ecc71 !important;
+}
+
+/* 创作区链接：天蓝 */
+a.internal-link[href*="08-创作"] {
+    color: #3498db !important;
+    text-decoration-color: rgba(52, 152, 219, 0.4) !important;
+}
+a.internal-link.is-unresolved[href*="08-创作"] {
+    color: #5dade2 !important;
+}
+
+/* 生态区链接：紫色 */
+a.internal-link[href*="09-生态"] {
+    color: #8e44ad !important;
+    text-decoration-color: rgba(142, 68, 173, 0.4) !important;
+}
+a.internal-link.is-unresolved[href*="09-生态"] {
+    color: #a569bd !important;
+}
+
+/* 个人档案链接：珊瑚红 */
+a.internal-link[href*="03-个人档案"] {
+    color: #e74c3c !important;
+    text-decoration-color: rgba(231, 76, 60, 0.4) !important;
+}
+a.internal-link.is-unresolved[href*="03-个人档案"] {
+    color: #ec7063 !important;
+}
+
+/* 跨工作区链接：琥珀 */
+a.internal-link[href*="10-跨工作区"] {
+    color: #f39c12 !important;
+    text-decoration-color: rgba(243, 156, 18, 0.4) !important;
+}
+a.internal-link.is-unresolved[href*="10-跨工作区"] {
+    color: #f5b041 !important;
+}
+
+/* 共享规则链接：灰蓝 */
+a.internal-link[href*="02-共享规则"] {
+    color: #7f8c8d !important;
+    text-decoration-color: rgba(127, 140, 141, 0.4) !important;
+}
+
+/* SOP 链接（共享）：灰蓝 */
+a.internal-link[href*="04-SOP"] {
+    color: #7f8c8d !important;
+    text-decoration-color: rgba(127, 140, 141, 0.4) !important;
+}
+
+/* 仪表盘链接：白色高亮 */
+a.internal-link[href*="00-主页"] {
+    color: #ecf0f1 !important;
+    font-weight: 600 !important;
+}
+
+
+/* ===== 3. Live Preview 模式链接着色 ===== */
+/* 注意：Live Preview 使用 .cm-link 等 class，不带 href 信息 */
+/* 这里只能做全局样式，无法按目标着色。建议用 Reading View 查看颜色效果。 */
+
+/* Live Preview 链接默认橙色（与主题一致） */
+.markdown-source-view .cm-link {
+    color: #e67e22;
+}
+.markdown-source-view .cm-hmd-internal-link {
+    color: #3498db;
+}
+
+
+/* ===== 4. 标签着色 ===== */
+
+/* workspace/ 命名空间 */
+a.tag[href*="workspace/求职"] {
+    color: #e67e22 !important;
+    background-color: rgba(230, 126, 34, 0.12) !important;
+    border: 1px solid rgba(230, 126, 34, 0.25) !important;
+    border-radius: 4px !important;
+}
+a.tag[href*="workspace/竞赛"] {
+    color: #27ae60 !important;
+    background-color: rgba(39, 174, 96, 0.12) !important;
+    border: 1px solid rgba(39, 174, 96, 0.25) !important;
+    border-radius: 4px !important;
+}
+a.tag[href*="workspace/创作"] {
+    color: #3498db !important;
+    background-color: rgba(52, 152, 219, 0.12) !important;
+    border: 1px solid rgba(52, 152, 219, 0.25) !important;
+    border-radius: 4px !important;
+}
+a.tag[href*="workspace/生态"] {
+    color: #8e44ad !important;
+    background-color: rgba(142, 68, 173, 0.12) !important;
+    border: 1px solid rgba(142, 68, 173, 0.25) !important;
+    border-radius: 4px !important;
+}
+
+/* type/ 命名空间 */
+a.tag[href*="type/memory"] {
+    color: #2c3e50 !important;
+    background-color: rgba(44, 62, 80, 0.1) !important;
+}
+a.tag[href*="type/sop"] {
+    color: #16a085 !important;
+    background-color: rgba(22, 160, 133, 0.1) !important;
+}
+a.tag[href*="type/decision"] {
+    color: #c0392b !important;
+    background-color: rgba(192, 57, 43, 0.1) !important;
+}
+a.tag[href*="type/output"] {
+    color: #2980b9 !important;
+    background-color: rgba(41, 128, 185, 0.1) !important;
+}
+a.tag[href*="type/index"] {
+    color: #d35400 !important;
+    background-color: rgba(211, 84, 0, 0.1) !important;
+}
+
+/* 领域标签 */
+a.tag[href*="FPGA"] {
+    color: #27ae60 !important;
+    background-color: rgba(39, 174, 96, 0.1) !important;
+}
+a.tag[href*="认知科学"] {
+    color: #8e44ad !important;
+    background-color: rgba(142, 68, 173, 0.1) !important;
+}
+a.tag[href*="STAR"] {
+    color: #e67e22 !important;
+    background-color: rgba(230, 126, 34, 0.1) !important;
+}
+
+
+/* ===== 5. 自定义 Callout 框样式 ===== */
+
+/* 记忆型 callout：深蓝 */
+.callout[data-callout="memory"] {
+    --callout-color: 44, 62, 80;
+    --callout-icon: brain;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="memory"] .callout-title {
+    background-color: rgba(44, 62, 80, 0.08);
+}
+
+/* SOP 型 callout：绿松石 */
+.callout[data-callout="sop"] {
+    --callout-color: 22, 160, 133;
+    --callout-icon: list-checks;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="sop"] .callout-title {
+    background-color: rgba(22, 160, 133, 0.08);
+}
+
+/* 决策型 callout：珊瑚 */
+.callout[data-callout="decision"] {
+    --callout-color: 231, 76, 60;
+    --callout-icon: git-branch;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="decision"] .callout-title {
+    background-color: rgba(231, 76, 60, 0.08);
+}
+
+/* 产出型 callout：靛蓝 */
+.callout[data-callout="output"] {
+    --callout-color: 52, 73, 94;
+    --callout-icon: file-text;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="output"] .callout-title {
+    background-color: rgba(52, 73, 94, 0.08);
+}
+
+/* 规则型 callout：灰 */
+.callout[data-callout="rule"] {
+    --callout-color: 127, 140, 141;
+    --callout-icon: shield;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="rule"] .callout-title {
+    background-color: rgba(127, 140, 141, 0.08);
+}
+
+/* 索引型 callout：琥珀 */
+.callout[data-callout="index"] {
+    --callout-color: 243, 156, 18;
+    --callout-icon: map;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="index"] .callout-title {
+    background-color: rgba(243, 156, 18, 0.08);
+}
+
+/* 求职 callout：橙色 */
+.callout[data-callout="求职"] {
+    --callout-color: 230, 126, 34;
+    --callout-icon: briefcase;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="求职"] .callout-title {
+    background-color: rgba(230, 126, 34, 0.1);
+}
+
+/* 竞赛 callout：翠绿 */
+.callout[data-callout="竞赛"] {
+    --callout-color: 39, 174, 96;
+    --callout-icon: trophy;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="竞赛"] .callout-title {
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+/* 创作 callout：天蓝 */
+.callout[data-callout="创作"] {
+    --callout-color: 52, 152, 219;
+    --callout-icon: pencil;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="创作"] .callout-title {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+/* 生态 callout：紫色 */
+.callout[data-callout="生态"] {
+    --callout-color: 142, 68, 173;
+    --callout-icon: network;
+    --callout-border-width: 3px;
+}
+.callout[data-callout="生态"] .callout-title {
+    background-color: rgba(142, 68, 173, 0.1);
+}
+
+/* 通用 callout 增强 */
+.callout {
+    border-radius: 8px !important;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.callout-title {
+    font-weight: 600;
+}
+
+
+/* ===== 6. MOC 文件特殊样式 ===== */
+
+/* MOC 文件中的链接列表项 */
+.workspace-leaf-content[data-path*="MOC"] ul li a.internal-link {
+    font-weight: 500;
+    font-size: 1.02em;
+}
+.workspace-leaf-content[data-path*="MOC"] ul li {
+    margin-bottom: 4px;
+    line-height: 1.6;
+}
+
+/* 仪表盘特殊样式 */
+.workspace-leaf-content[data-path*="00-仪表盘"] h2 {
+    border-bottom: 2px solid rgba(243, 156, 18, 0.3);
+    padding-bottom: 6px;
+    margin-top: 24px;
+}
+
+
+/* ===== 7. Graph View 辅助 ===== */
+/* Graph view 的颜色分组通过 app.json graph.colorGroups 配置 */
+/* 这里只是辅助样式 */
+
+/* 嵌入的图片圆角 */
+.markdown-preview-view img {
+    border-radius: 6px;
+}
+
+/* 表格样式增强 */
+.markdown-preview-view table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 6px;
+    overflow: hidden;
+}

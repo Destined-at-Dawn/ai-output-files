@@ -1,0 +1,16 @@
+{
+  "name": "li-skills-mgmt",
+  "version": "1.0",
+  "li_series": true,
+  "tier": 2,
+  "description": "Skill creation, vetting, and lifecycle management",
+  "wrapped_skills": [
+    "skill-creator",
+    "skill-vetter",
+    "redesign-skill",
+    "stitch-skill",
+    "skill-activator"
+  ],
+  "author": "小黎",
+  "last_updated": "2026-06-10"
+}

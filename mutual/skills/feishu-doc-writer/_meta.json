@@ -1,0 +1,14 @@
+{
+  "name": "feishu-doc-writer",
+  "version": "1.0.0",
+  "description": "将 Markdown 内容直接发布为飞书文档，支持创建新文档、追加内容到已有文档、创建到知识库",
+  "emoji": "✏️",
+  "requires": {
+    "bins": ["python3"],
+    "skills": ["feishu-doc-reader"],
+    "config": "feishu_config.json (共享 reader 的配置)"
+  },
+  "tags": ["feishu", "lark", "document", "writer", "publish", "markdown"],
+  "author": "niuma-ai",
+  "created": "2026-06-01"
+}

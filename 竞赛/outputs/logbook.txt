@@ -1,0 +1,95 @@
+LCD显示驱动设计日志
+
+芯片: XC7A35T-2FGG484I
+屏幕: 3.5寸TFT-LCD, ST7796S, 320x480, SPI模式
+目标: 中心显示173x171 PISAAI Logo, 其余白屏
+工具: Vivado 2020.1 HL WebPACK
+
+
+Day 1 - 2026-05-11
+
+搭核心模块。
+
+屏幕参数确认: ST7796S SPI模式, Mode 0(CPOL=0 CPHA=0), 9-bit帧(bit8是D/C), 像素RGB565, 总共153600个像素。
+
+Logo: 173x171, 源图RGB888, 存BRAM里用RGB888(24bit), 输出时转RGB565。居中位置X=(480-173)/2=153, Y=(320-171)/2=74。
+
+写了三个核心模块:
+- spi_master.v: 50MHz 4分频到12.5MHz, 9-bit帧, Mode 0
+- lcd_ctrl.v: 状态机, 上电三段复位(高10ms-低20ms-等120ms), 20条初始化命令, 然后窗口设置+逐像素发送
+- lcd_top.v: 顶层, 例化lcd_ctrl+spi_master, 延时参数化(仿真可覆盖)
+
+顺便写了logo_to_rom.py把PNG图转hex数据。
+
+
+Day 2 - 2026-05-12
+
+写logo_rom.v, 用$readmemh加载hex到reg数组, 加(* rom_style = "block" *)引导推断BRAM。这个方案在Cyclone10上验证过没问题。
+
+当时觉得优化一下综合属性能让推断更稳定，实际上走偏了——Vivado对$readmemh的处理和Quartus完全不一样，大深度ROM会OOM。但当天没意识到，要到明天跑综合才知道。
+
+
+Day 3 - 2026-05-13
+
+综合崩了一天，从凌晨到早上7点多，前后失败7次。
+
+第1次: 跑综合直接被系统kill了，内存涨到32GB+。一开始以为是Vivado版本问题。
+第2次: 限制线程数，还是OOM。开始怀疑ROM推断。
+第3次: 把ROM拆成4路并行小ROM，以为能降低单次优化负载。结果4路$readmemh优化算法组合爆炸，更惨。
+第4次: 改用BMG IP核方案，TCL里create_ip报错——create_ip -dir之前忘了mkdir。
+第5次: IP创建成功了，综合找不到wrapper——generate_target之后没add_files。
+第6次: 试了不同综合策略(Area/Optimized)，跟ROM推断没关系，还是同样的错。
+第7次: 确认是Vivado综合器的固有限制，ROM深度>16K时$readmemh方案不可行。
+
+总结教训:
+1. Vivado里ROM深度>16K，不要用$readmemh推断，直接用BMG IP核
+2. rom_style属性只是建议不是强制，综合器可以忽略
+3. TCL铁律: create_ip之前先mkdir, generate_target之后add_files wrapper
+4. 不要写死IP版本号，用版本列表fallback
+
+最终方案: BMG IP核，24bit宽x29583深度，.coe格式初始化。综合器直接映射到BRAM硬核，不走内存优化算法。硬件上跟推断型BRAM完全一样，都是50块36Kb的Block RAM。
+
+额外发现: Windows中文用户名会污染Vivado的.Xil临时目录路径，导致OOC子进程崩溃。TCL里加 set ::env(USERNAME) "vivado_user" 修复。
+
+
+Day 4 - 2026-05-14
+
+上午装Vivado 2020.1。朱工给的安装包(Xilinx_Unified_2020.1_0602_1208.tar.gz, 35.5GB)，说"最新版一堆BUG，7系列就用2020.1"。选了HL WebPACK(免费)，只勾7 Series器件。
+
+下午审查代码:
+- spi_master/lcd_ctrl/logo_rom逐模块过了一遍，逻辑没问题
+- TCL脚本补了USERNAME环境变量覆写，禁用OOC综合
+
+旧TB基本是摆设——计数器声明了但从没递增，repeat(1000)只等1000帧就结束，无自动检查。重写了新TB:
+- 自动统计cmd/data/pixel帧数
+- 非Logo区域白屏验证(非白色=ERROR)
+- PASS/FAIL报告
+- 300ms超时防卡死
+
+
+Day 5 - 2026-05-15
+
+TCL建工程跑通了，修了3个兼容性问题:
+1. generate_synth_checkpoint属性要在generate_target之后设，用catch包裹
+2. logo_rom.v改成静态文件不靠TCL动态生成
+3. IP文件被.xci自动管理，不用手动add_files
+
+综合结果(0 error):
+  BRAM:  20.5/50  (41%) — 173x171x24bit ROM
+  DSP48E1: 2/90  (2.2%) — Logo地址计算 y*173+x
+  LUT:   329/20800 (1.6%)
+  FF:    135/41600 (0.3%)
+
+综合过了，继续跑仿真。TB编译修了3个问题:
+- fork/join_any是SV语法，.v文件里XSIM不支持，改成fork:block...disable block...join
+- 顶层模块名lcd_top_tb vs tb_lcd_top不匹配
+- launch_simulation -behavioral参数2020.1不支持
+
+仿真跑完，153600个像素全部发完，16条命令正确，但有7个验证错误。
+分析后定位到两个问题:
+- TB的check_x/check_y坐标比实际像素滞后1拍(NBA调度问题)
+- lcd_ctrl的logo_addr_next对非logo像素算出越界地址0x7FFF
+
+TB已经修了，把坐标推进和颜色捕获合并到同一个always块消除滞后。DUT的地址越界问题不影响功能(非logo像素强制白色，越界读的数据被MUX丢弃)，只是仿真会有warning，优先级低。
+
+XDC引脚还没核实，需要拿开发板原理图确认PACKAGE_PIN。

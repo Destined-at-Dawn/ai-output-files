@@ -1,0 +1,1 @@
+{"workspace":"竞赛","name_cn":"竞赛工作区","role":"集创赛+ICAN+皮影戏竞赛管理","version":"3.8","reading_order":{"step1_forced":"CLAUDE.md顶部强制读取序列","step2_auto":".claude/rules/","step3_forced":"memory/long-term.md + today","step4_forced":"self-evolution/evolution-calendar.md","step5_on_demand":"SOPs/"},"sibling_workspaces":["mutual","个人","创作","求职"]}

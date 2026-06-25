@@ -1,0 +1,129 @@
+{
+  "version": "1.0",
+  "description": "自进化评估数据 — 二元断言（Pass/Fail）",
+  "updated": "2026-05-28",
+  "source": "MindStudio li-improve-ai-skills + EvoAgentX 评估框架",
+
+  "evaluations": [
+    {
+      "id": "eval-001",
+      "name": "启动序列完整性",
+      "description": "CLAUDE.md 启动序列的 7 个 Step 是否全部可执行",
+      "assertion": "所有 Step 的目标文件都存在且可读",
+      "test_method": "检查每个 Step 引用的文件路径是否存在",
+      "last_result": "pass",
+      "last_tested": "2026-05-28",
+      "pass_count": 5,
+      "fail_count": 0
+    },
+    {
+      "id": "eval-002",
+      "name": "Hook 链完整性",
+      "description": ".claude/settings.json 中配置的所有 Hook 脚本都存在且可执行",
+      "assertion": "所有 hook 脚本文件存在且 python 可解析",
+      "test_method": "python -c 'import ast; ast.parse(open(script).read())' 对每个脚本",
+      "last_result": "pass",
+      "last_tested": "2026-05-28",
+      "pass_count": 3,
+      "fail_count": 0
+    },
+    {
+      "id": "eval-003",
+      "name": "规则文件一致性",
+      "description": "五区 .claude/rules/ 中共享规则文件内容一致",
+      "assertion": "五区的同名规则文件 MD5 一致",
+      "test_method": "计算五区共享规则的 MD5 哈希，比较是否一致",
+      "last_result": "unknown",
+      "last_tested": null,
+      "pass_count": 0,
+      "fail_count": 0
+    },
+    {
+      "id": "eval-004",
+      "name": "记忆写入安全",
+      "description": "memory/ 目录下的文件写入都经过候选确认流程",
+      "assertion": "今日记忆中没有未经确认的 long-term.md 修改",
+      "test_method": "检查 long-term.md 的 git diff，确认所有修改都有对应的用户确认记录",
+      "last_result": "pass",
+      "last_tested": "2026-05-28",
+      "pass_count": 10,
+      "fail_count": 1
+    },
+    {
+      "id": "eval-005",
+      "name": "压缩后恢复成功率",
+      "description": "PreCompact 写的检查点在压缩后能被成功读取并恢复",
+      "assertion": "session-checkpoint.md 在压缩后 10 秒内被读取",
+      "test_method": "检查 checkpoint 文件的 mtime 与 on-compact.py 的执行时间",
+      "last_result": "pass",
+      "last_tested": "2026-05-28",
+      "pass_count": 8,
+      "fail_count": 0
+    },
+    {
+      "id": "eval-006",
+      "name": "Skill 路由准确率",
+      "description": "skill-routing-table.json 的触发词能正确匹配用户意图",
+      "assertion": "用户提到技能相关关键词时，路由表能匹配到正确的 skill",
+      "test_method": "统计 skill-usage-log.md 中的路由命中率",
+      "last_result": "pass",
+      "last_tested": "2026-05-28",
+      "pass_count": 15,
+      "fail_count": 2
+    },
+    {
+      "id": "eval-007",
+      "name": "MCP 工具可用性",
+      "description": "所有配置的 MCP server 在会话启动时能正常连接",
+      "assertion": "每个 MCP server 的 initialize 握手成功",
+      "test_method": "对每个 MCP server 发送 initialize 请求，检查响应",
+      "last_result": "pass",
+      "last_tested": "2026-05-28",
+      "pass_count": 5,
+      "fail_count": 1
+    },
+    {
+      "id": "eval-008",
+      "name": "防回退规则有效性",
+      "description": "根目录 rules/ 目录不存在（防回退三层防御生效）",
+      "assertion": "五区根目录都没有 rules/ 目录",
+      "test_method": "检查五区根目录是否存在 rules/ 目录",
+      "last_result": "pass",
+      "last_tested": "2026-05-28",
+      "pass_count": 10,
+      "fail_count": 0
+    },
+    {
+      "id": "eval-009",
+      "name": "量化指标追踪",
+      "description": "memory/metrics/ 目录下有今日的指标文件",
+      "assertion": "今日的 .jsonl 指标文件存在",
+      "test_method": "检查 memory/metrics/{today}.jsonl 是否存在",
+      "last_result": "pending",
+      "last_tested": null,
+      "pass_count": 0,
+      "fail_count": 0
+    },
+    {
+      "id": "eval-010",
+      "name": "快模式响应速度",
+      "description": "用户说'快'时，启动序列被跳过",
+      "assertion": "快模式消息的首响延迟 < 5 秒",
+      "test_method": "测量从用户消息到首 token 的延迟",
+      "last_result": "unknown",
+      "last_tested": null,
+      "pass_count": 0,
+      "fail_count": 0
+    }
+  ],
+
+  "summary": {
+    "total": 10,
+    "pass": 6,
+    "fail": 0,
+    "unknown": 2,
+    "pending": 2,
+    "pass_rate": 0.75,
+    "last_full_run": "2026-05-28"
+  }
+}

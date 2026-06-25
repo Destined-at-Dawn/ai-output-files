@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "updatedAt": 1780764624686,
+  "scopes": {
+    "400::15px|19.5px|\"??\", \"??\", \"??\", ui-sans-serif, -apple-system, BlinkMacSystemFont, system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", Inter, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif|na|1rem|calc(1rem * 2.5)": {
+      "widthBucket": 400,
+      "styleSignature": "15px|19.5px|\"??\", \"??\", \"??\", ui-sans-serif, -apple-system, BlinkMacSystemFont, system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", Inter, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif|na|1rem|calc(1rem * 2.5)",
+      "updatedAt": 1780764624679,
+      "heights": {
+        "bottom-anchor": 10,
+        "8a692ea3-b75a-42db-b41f-0a383f49ee64": 84,
+        "query-progress": 40,
+        "387a47a5-c532-4748-9f08-ed09683de499-slice-0": 131,
+        "e4842736-f6d4-4f9c-b0b1-9d5e985c4369-slice-0": 131,
+        "e1ff0437-7367-420e-aefd-d0b798562c15-slice-0": 64,
+        "c5b68342-3bd0-41fb-b0e5-bec90785a44a": 53,
+        "1621d425-2367-4a08-b1fb-218e7a731055-slice-0": 2203,
+        "continue-response": 38,
+        "5ac9364d-d37c-44b7-aa6d-036703bbc9de": 33,
+        "e076ba83-0ac3-43c4-9102-b376a39a9483-slice-0": 16615,
+        "80701e28-21ec-41fd-8948-b0e68919abed": 53,
+        "e9be7b61-fed4-4feb-b36b-ede5d3eaa67e-slice-0": 64,
+        "009a987c-1cf9-4132-9eae-9b6ab73982bf": 53,
+        "11d21849-7e40-4acd-8a36-5846bacaaa65-slice-0": 3745,
+        "021fdac8-0720-40c2-9e3d-9f6bf9394934": 33,
+        "1724a372-5684-46de-a107-fa9c216e00e4-slice-0": 3678
+      }
+    },
+    "0::default": {
+      "widthBucket": 0,
+      "styleSignature": "default",
+      "updatedAt": 1780727295435,
+      "heights": {
+        "bottom-anchor": 10,
+        "8a692ea3-b75a-42db-b41f-0a383f49ee64": 84,
+        "e4842736-f6d4-4f9c-b0b1-9d5e985c4369-slice-0": 131
+      }
+    }
+  }
+}

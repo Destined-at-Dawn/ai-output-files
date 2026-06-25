@@ -1,0 +1,81 @@
+{
+  "skill": "li-skillfusion",
+  "version": "1.0",
+  "checks": [
+    {
+      "id": "C01",
+      "name": "skill_md_exists",
+      "assert": "SKILL.md exists and is non-empty",
+      "result": "pass"
+    },
+    {
+      "id": "C02",
+      "name": "line_limit",
+      "assert": "SKILL.md <= 300 lines",
+      "result": "fail",
+      "actual": 316
+    },
+    {
+      "id": "C03",
+      "name": "meta_json",
+      "assert": "_meta.json exists with name/version/description",
+      "result": "pass"
+    },
+    {
+      "id": "C04",
+      "name": "golden_rules",
+      "assert": "golden_rules.md exists with >= 5 rules",
+      "result": "pass",
+      "actual_bytes": 1076
+    },
+    {
+      "id": "C05",
+      "name": "theory_anchors",
+      "assert": "Theory anchors table (T1-T12) present",
+      "result": "pass"
+    },
+    {
+      "id": "C06",
+      "name": "case_studies",
+      "assert": "Case studies section with >= 3 examples",
+      "result": "pass"
+    },
+    {
+      "id": "C07",
+      "name": "anti_patterns",
+      "assert": "Anti-patterns section with >= 5 rules",
+      "result": "pass"
+    },
+    {
+      "id": "C08",
+      "name": "linked_skills",
+      "assert": "Cross-skill linkage (>= 3 related skills)",
+      "result": "pass"
+    },
+    {
+      "id": "C09",
+      "name": "phases",
+      "assert": "Phase-based structure (Phase 0+)",
+      "result": "pass"
+    },
+    {
+      "id": "C10",
+      "name": "references",
+      "assert": "references/ directory with >= 2 .md files",
+      "result": "pass",
+      "actual": 6
+    },
+    {
+      "id": "C11",
+      "name": "eval_json",
+      "assert": "eval.json exists with >= 10 checks",
+      "result": "pass"
+    },
+    {
+      "id": "C12",
+      "name": "route_registered",
+      "assert": "Registered in skill-routing-table.json",
+      "result": "pass"
+    }
+  ]
+}

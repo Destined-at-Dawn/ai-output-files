@@ -1,0 +1,10 @@
+个人\个人\SOPs\SOP总索引.md	4751
+创作\创作\SOPs\SOP总索引.md	13817
+创作\创作\outputs\OPC分享AI迁移包_20260601-191638\02-SOP\SOPs\SOP总索引.md	10824
+创作\创作\projects\20260425-内容创作系统\SOPs\SOP总索引.md	26512
+学习\学习\SOPs\SOP总索引.md	3347
+求职\求职\SOPs\SOP总索引.md	5411
+求职\求职\projects\20260430-求职管理系统\SOPs\SOP总索引.md	2124
+竞赛\竞赛\SOPs\SOP总索引.md	8822
+竞赛\竞赛\projects\LCD驱动开发-verilog修改\SOPs\SOP总索引.md	8699
+竞赛\竞赛\projects\proj-1777087251931-pj4ul9\SOPs\SOP总索引.md	6080

@@ -1,0 +1,71 @@
+{
+  "name": "li-skillcreate",
+  "version": "10.0",
+  "created": "2026-06-01",
+  "updated": "2026-06-09",
+  "author": "小黎 & AI",
+  "description": "小黎的技能锻造器——从真实需求到生态感知的完整 skill 创建/迭代系统",
+  "reference_skills": {
+    "downloaded": [
+      "skill-creator", "skill-vetter", "output-skill", "dbs-diagnosis",
+      "jc-clarifier", "li-devil", "conversation-to-knowledge", "deep-review"
+    ],
+    "ecosystem_builtin": [
+      "deep-research", "auto-evolution", "li-sync", "longmemory", "prompt-optimizer"
+    ],
+    "external_research": [
+      "mattpocock/skills", "facebookresearch/HyperAgents", "letta-ai/letta",
+      "ASI-Arch/Hue", "peterskoett/self-improving-agent", "agent-starter-pack",
+      "AGENTS.md", "metauto-ai/GPTSwarm"
+    ],
+    "total": 21
+  },
+  "core_mechanisms": [
+    "问题消解优先 + 消解案例库（dbs-diagnosis）",
+    "行动锁 + 镜像复述（jc-clarifier）",
+    "四阶段全平台搜索（skills.sh + GitHub + 中文生态 + 社区）",
+    "15 项质量门禁（Phase 3.5）",
+    "一鱼多吃（≥5 生态副作用）",
+    "落盘验证（Write → Read → ls → 大小检查）",
+    "1.25 倍递增迭代 + 黄金法则提炼标准",
+    "Recurrence-Count 自动追踪（peterskoett 641★）",
+    "Meta-AutoEvolve 元认知审查（HyperAgents 2.6K★）",
+    "触发词从对话中长出来（li-devil）",
+    "12 项理论锚点（百大认知书籍）",
+    "7 个联动技能实质触发"
+  ],
+  "ecosystem_connections": {
+    "routes": ["r034"],
+    "memory_files": [
+      "memory/long-term.md", "memory/{today}.md",
+      "memory/research-profile.md", "memory/skill-usage-log.md"
+    ],
+    "output_files": ["skill-routing-table.json", "artifact-registry.md"],
+    "related_skills": [
+      "li-research", "li-bestskill", "li-devil", "li-sync",
+      "li-improve", "li-manage", "li-memory"
+    ]
+  },
+  "quality_score": {
+    "theory_anchors": 12,
+    "case_studies": 5,
+    "anti_patterns": 12,
+    "golden_rules": 10,
+    "external_research": 8,
+    "linked_skills": 7,
+    "references_files": 11,
+    "main_file_lines": 300
+  },
+  "changelog": [
+    {"version": "1.0", "date": "2026-06-01", "changes": "初始创建：融合 13 个参考 skill"},
+    {"version": "2.0", "date": "2026-06-09", "changes": "补 golden_rules + eval.json 强化"},
+    {"version": "3.0", "date": "2026-06-09", "changes": "认知框架武器库 13→120 行"},
+    {"version": "4.0", "date": "2026-06-09", "changes": "参考技能深度分析扩充"},
+    {"version": "5.0", "date": "2026-06-09", "changes": "自动进化协议扩充 + 评分实战案例"},
+    {"version": "6.0", "date": "2026-06-09", "changes": "SKILL.md 补理论锚点 12 项 + Phase 0 消解案例"},
+    {"version": "7.0", "date": "2026-06-09", "changes": "Phase 1 四阶段全平台搜索策略"},
+    {"version": "8.0", "date": "2026-06-09", "changes": "Phase 3.5 质量门禁 15 项 + 评审报告"},
+    {"version": "9.0", "date": "2026-06-09", "changes": "外部研究库 8 个顶级项目"},
+    {"version": "10.0", "date": "2026-06-09", "changes": "联动技能 7 个 + 外部研究表 + Meta-AutoEvolve + Recurrence-Count + 最终验证"}
+  ]
+}

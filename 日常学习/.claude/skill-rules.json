@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "workspace": "学习",
+  "description": "学习工作区 skill 路由规则",
+  "rules": [
+    {
+      "id": "learn-new-chapter",
+      "trigger": ["学习", "搞懂", "入门", "新课", "学一下"],
+      "skill": "learning-boost",
+      "priority": 1,
+      "note": "新章节学习"
+    },
+    {
+      "id": "exam-review",
+      "trigger": ["复习", "考试", "期末", "期中", "考前", "冲刺"],
+      "skill": "internal-SOP-02",
+      "priority": 1,
+      "note": "考前复习，走本区 SOP-02"
+    },
+    {
+      "id": "homework",
+      "trigger": ["作业", "题目", "解题", "怎么做", "这个题"],
+      "skill": "internal-SOP-03",
+      "priority": 1,
+      "note": "作业解题，走本区 SOP-03"
+    },
+    {
+      "id": "feynman-test",
+      "trigger": ["费曼", "测试我", "考考我", "AI拷问"],
+      "skill": "thinking-coach",
+      "priority": 2,
+      "note": "费曼检验"
+    },
+    {
+      "id": "search-materials",
+      "trigger": ["搜索", "查一下", "找资料", "最新"],
+      "skill": "step-search",
+      "priority": 2,
+      "note": "搜索学习资料"
+    },
+    {
+      "id": "deconstruct-concept",
+      "trigger": ["拆解", "分析概念", "道法术器", "这个概念什么意思"],
+      "skill": "dao-fa-shu-qi",
+      "priority": 2,
+      "note": "概念深度拆解"
+    },
+    {
+      "id": "pdf-handling",
+      "trigger": [".pdf", "PDF", "课件"],
+      "skill": "pdf",
+      "priority": 1,
+      "note": "处理PDF课件/教材"
+    },
+    {
+      "id": "review-session",
+      "trigger": ["复盘", "总结", "回顾", "学得怎么样"],
+      "skill": "internal-SOP-04",
+      "priority": 2,
+      "note": "学习复盘"
+    },
+    {
+      "id": "clarify-question",
+      "trigger": ["不清楚", "说不清楚", "帮我理清", "不知道怎么问"],
+      "skill": "jc-clarifier",
+      "priority": 3,
+      "note": "问题澄清"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "PreCompact": [
+    {
+      "matcher": "auto",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "python",
+          "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/pre-compact.py"],
+          "timeout": 30
+        }
+      ]
+    },
+    {
+      "matcher": "manual",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "python",
+          "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/pre-compact.py"],
+          "timeout": 30
+        }
+      ]
+    }
+  ],
+  "PostCompact": [
+    {
+      "matcher": "auto",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "echo",
+          "args": ["Compaction complete. Check .claude/session-checkpoint.md"]
+        }
+      ]
+    }
+  ],
+  "SessionStart": [
+    {
+      "matcher": "compact",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "python",
+          "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/on-compact.py"],
+          "timeout": 15
+        }
+      ]
+    }
+  ]
+}

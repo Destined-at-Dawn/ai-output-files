@@ -1,0 +1,156 @@
+{
+  "checks": [
+    {
+      "id": "C01",
+      "name": "skill_md_exists",
+      "assert": "SKILL.md exists and non-empty",
+      "result": "pass"
+    },
+    {
+      "id": "C02",
+      "name": "line_limit",
+      "assert": "SKILL.md <= 300 lines",
+      "result": "pass",
+      "actual": 140
+    },
+    {
+      "id": "C03",
+      "name": "meta_json",
+      "assert": "_meta.json exists",
+      "result": "pass"
+    },
+    {
+      "id": "C04",
+      "name": "golden_rules",
+      "assert": "golden_rules.md >= 500B",
+      "result": "pass",
+      "actual_bytes": 617
+    },
+    {
+      "id": "C05",
+      "name": "theory_anchors",
+      "assert": "Theory anchors present",
+      "result": "pass"
+    },
+    {
+      "id": "C06",
+      "name": "case_studies",
+      "assert": "Case studies present",
+      "result": "pass"
+    },
+    {
+      "id": "C07",
+      "name": "anti_patterns",
+      "assert": "Anti-patterns present",
+      "result": "pass"
+    },
+    {
+      "id": "C08",
+      "name": "linked_skills",
+      "assert": "Linked skills present",
+      "result": "pass"
+    },
+    {
+      "id": "C09",
+      "name": "phases",
+      "assert": "Phase structure present",
+      "result": "pass"
+    },
+    {
+      "id": "C10",
+      "name": "references",
+      "assert": "references/ >= 1 .md",
+      "result": "pass",
+      "actual": 1
+    },
+    {
+      "id": "C11",
+      "name": "eval_json",
+      "assert": "eval.json >= 10 checks",
+      "result": "pass"
+    },
+    {
+      "id": "C12",
+      "name": "route_registered",
+      "assert": "Registered in route table",
+      "result": "pass"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "C01",
+      "name": "skill_md_exists",
+      "assert": "SKILL.md exists and non-empty",
+      "result": "pass"
+    },
+    {
+      "id": "C02",
+      "name": "line_limit",
+      "assert": "SKILL.md <= 300 lines",
+      "result": "pass",
+      "actual": 140
+    },
+    {
+      "id": "C03",
+      "name": "meta_json",
+      "assert": "_meta.json exists",
+      "result": "pass"
+    },
+    {
+      "id": "C04",
+      "name": "golden_rules",
+      "assert": "golden_rules.md >= 500B",
+      "result": "pass",
+      "actual_bytes": 617
+    },
+    {
+      "id": "C05",
+      "name": "theory_anchors",
+      "assert": "Theory anchors present",
+      "result": "pass"
+    },
+    {
+      "id": "C06",
+      "name": "case_studies",
+      "assert": "Case studies present",
+      "result": "pass"
+    },
+    {
+      "id": "C07",
+      "name": "anti_patterns",
+      "assert": "Anti-patterns present",
+      "result": "pass"
+    },
+    {
+      "id": "C08",
+      "name": "linked_skills",
+      "assert": "Linked skills present",
+      "result": "pass"
+    },
+    {
+      "id": "C09",
+      "name": "phases",
+      "assert": "Phase structure present",
+      "result": "pass"
+    },
+    {
+      "id": "C10",
+      "name": "references",
+      "assert": "references/ >= 1 .md",
+      "result": "pass",
+      "actual": 1
+    },
+    {
+      "id": "C11",
+      "name": "eval_json",
+      "assert": "eval.json >= 10 checks",
+      "result": "pass"
+    },
+    {
+      "id": "C12",
+      "name": "route_registered",
+      "assert": "Registered in route table",
+      "result": "pass"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "version": "2.0",
+  "description": "量化指标配置 — 重量化、全自动化适配",
+  "updated": "2026-05-28",
+
+  "core_metrics": {
+    "token_efficiency": {
+      "description": "Token 使用效率",
+      "targets": {
+        "compaction_savings_percent": 50,
+        "max_tokens_per_task": 100000,
+        "max_tokens_per_turn": 8000
+      },
+      "measurement": "每次压缩前后 token 差值 / 压缩前 token 数"
+    },
+    "task_completion": {
+      "description": "任务完成质量",
+      "targets": {
+        "first_attempt_success_rate": 0.8,
+        "user_correction_rate_below": 0.2,
+        "max_iterations_per_task": 5
+      },
+      "measurement": "任务完成且用户未纠正 / 总任务数"
+    },
+    "automation_coverage": {
+      "description": "自动化覆盖率",
+      "targets": {
+        "hook_coverage_percent": 80,
+        "skill_auto_activation_rate": 0.9,
+        "mcp_utilization_rate": 0.7
+      },
+      "measurement": "自动处理的请求 / 总请求数"
+    },
+    "context_health": {
+      "description": "上下文健康度",
+      "targets": {
+        "compaction_frequency_max": 3,
+        "context_rot_score_below": 0.3,
+        "recovery_success_rate": 0.95
+      },
+      "measurement": "压缩后成功恢复上下文的次数 / 总压缩次数"
+    },
+    "evolution_velocity": {
+      "description": "进化速度",
+      "targets": {
+        "rules_per_week": 2,
+        "lessons_per_week": 3,
+        "skill_improvements_per_week": 1
+      },
+      "measurement": "本周新增/改进的规则、教训、技能数"
+    }
+  },
+
+  "measurement_points": {
+    "PreCompact": ["token_count_before", "files_in_checkpoint", "key_decisions_count"],
+    "PostCompact": ["token_count_after", "recovery_success", "recovery_time_ms"],
+    "Stop": ["total_turns", "total_tokens", "tool_calls_count", "session_duration_ms"],
+    "PreToolUse": ["dangerous_operations_blocked", "critical_files_warned"],
+    "PostToolUse": ["verify_success_count", "verify_fail_count"]
+  },
+
+  "dashboards": {
+    "daily": "memory/metrics/{date}-summary.md",
+    "weekly": "memory/metrics/weekly-{date}.md",
+    "compression_log": "memory/compression-log.md"
+  },
+
+  "alert_thresholds": {
+    "token_usage_high": 100000,
+    "compaction_frequency_high": 3,
+    "correction_rate_high": 0.3,
+    "verify_fail_rate_high": 0.1
+  }
+}

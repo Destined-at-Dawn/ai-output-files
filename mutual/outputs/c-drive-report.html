@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C盘文件组成 - 可视化报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f1117;--card:#1a1d27;--border:#2a2d3a;--text:#e4e4e7;--muted:#9ca3af;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--blue:#3b82f6;--purple:#a855f7;--cyan:#06b6d4;--orange:#f97316;--pink:#ec4899}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.header{padding:24px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.header h1{font-size:22px;font-weight:700;background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header .meta{font-size:13px;color:var(--muted)}
+.disk-bar{display:flex;height:32px;border-radius:8px;overflow:hidden;background:#1e2030;margin:0 32px;margin-top:16px;position:relative}
+.disk-bar .seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;transition:all .3s;cursor:pointer;position:relative;min-width:2px}
+.disk-bar .seg:hover{filter:brightness(1.3);z-index:2}
+.disk-bar .seg .tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#2a2d3a;color:#fff;padding:8px 12px;border-radius:6px;font-size:12px;white-space:nowrap;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.disk-bar .seg:hover .tooltip{display:block}
+.legend{display:flex;gap:24px;padding:12px 32px;flex-wrap:wrap;align-items:center}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.legend-dot{width:10px;height:10px;border-radius:3px}
+.controls{padding:0 32px;margin:12px 0;display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:6px 14px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:12px;cursor:pointer;transition:all .2s}
+.btn:hover,.btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.treemap-container{padding:0 32px 24px}
+.treemap{display:grid;gap:2px;border-radius:8px;overflow:hidden;background:var(--bg)}
+.level-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:16px 32px 8px}
+.cell{position:relative;min-height:48px;padding:8px 10px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;cursor:pointer;transition:all .2s;border-radius:4px}
+.cell:hover{filter:brightness(1.2);transform:scale(1.005);z-index:2}
+.cell .name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell .size{font-size:11px;opacity:.8;margin-top:2px}
+.cell .path{font-size:10px;opacity:0;margin-top:2px;transition:opacity .2s}
+.cell:hover .path{opacity:.6}
+.detail-panel{position:fixed;top:0;right:-480px;width:480px;height:100vh;background:var(--card);border-left:1px solid var(--border);z-index:100;transition:right .3s ease;overflow-y:auto;box-shadow:-4px 0 24px rgba(0,0,0,.3)}
+.detail-panel.open{right:0}
+.detail-header{padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.detail-header h2{font-size:16px;font-weight:700}
+.detail-close{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px}
+.detail-close:hover{background:var(--red);border-color:var(--red)}
+.detail-body{padding:20px}
+.detail-stat{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.detail-stat .label{color:var(--muted);font-size:13px}
+.detail-stat .value{font-weight:600;font-size:14px}
+.detail-list{margin-top:16px}
+.detail-list-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:6px;margin-bottom:4px;background:rgba(255,255,255,.03);transition:background .2s}
+.detail-list-item:hover{background:rgba(255,255,255,.07)}
+.detail-list-item .left{display:flex;align-items:center;gap:10px;min-width:0}
+.detail-list-item .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.detail-list-item .item-name{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.detail-list-item .item-size{font-size:13px;font-weight:600;flex-shrink:0;margin-left:12px}
+.detail-list-item .item-pct{font-size:11px;color:var(--muted);flex-shrink:0;width:48px;text-align:right}
+.bar-bg{height:4px;border-radius:2px;background:rgba(255,255,255,.08);width:100%;margin-top:4px}
+.bar-fill{height:100%;border-radius:2px;transition:width .6s ease}
+.section-title{font-size:14px;font-weight:700;color:var(--text);padding:16px 0 8px;display:flex;align-items:center;gap:8px}
+.section-title .icon{font-size:16px}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;padding:0 32px;margin-bottom:24px}
+.summary-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.summary-card .label{font-size:12px;color:var(--muted);margin-bottom:4px}
+.summary-card .value{font-size:24px;font-weight:700}
+.summary-card .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.rank-table{width:100%;border-collapse:collapse}
+.rank-table th{text-align:left;padding:8px 12px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+.rank-table td{padding:8px 12px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.03)}
+.rank-table tr:hover td{background:rgba(255,255,255,.03)}
+.rank-num{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-right:8px}
+.rank-1{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#000}
+.rank-2{background:linear-gradient(135deg,#94a3b8,#64748b);color:#fff}
+.rank-3{background:linear-gradient(135deg,#cd7c2f,#a85c1e);color:#fff}
+.rank-n{background:var(--border);color:var(--text)}
+.pct-bar{display:inline-block;height:6px;border-radius:3px;vertical-align:middle;margin-left:8px}
+.overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);z-index:99}
+.overlay.show{display:block}
+@media(max-width:768px){
+  .header{padding:16px}.disk-bar,.treemap-container,.summary-grid,.legend,.controls{padding-left:16px;padding-right:16px}
+  .detail-panel{width:100%}.summary-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>C:\\ 盘文件组成报告</h1>
+    <div class="meta">扫描时间：2026-06-07 18:29 | 耗时 42.3 秒 | Windows 10 NTFS</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-size:28px;font-weight:800;color:var(--red)">24.8 GB</div>
+    <div class="meta">剩余可用 / 289.8 GB 总容量</div>
+  </div>
+</div>
+
+<!-- 全盘概览 -->
+<div class="legend">
+  <span style="font-size:13px;font-weight:600;margin-right:8px">全盘：</span>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>C: 265.0 / 289.8 GB</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--cyan)"></div>D: 255.0 / 341.8 GB</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>E: 171.1 / 195.3 GB</div>
+</div>
+
+<div class="disk-bar" id="diskBar"></div>
+
+<!-- C盘分区占比 -->
+<div class="summary-grid" style="margin-top:24px" id="summaryCards"></div>
+
+<!-- 视图切换 -->
+<div class="controls">
+  <span style="font-size:12px;color:var(--muted);display:flex;align-items:center;margin-right:4px">视图：</span>
+  <button class="btn active" onclick="setView('treemap')">矩形树图</button>
+  <button class="btn" onclick="setView('rank')">排行榜</button>
+  <button class="btn" onclick="setView('table')">完整表格</button>
+</div>
+
+<!-- 矩形树图视图 -->
+<div id="treemapView">
+  <div class="level-label">C:\\ 用户目录 (User Profile)</div>
+  <div class="treemap-container"><div class="treemap" id="treemapUser" style="grid-template-columns:repeat(auto-fill,minmax(120px,1fr))"></div></div>
+  <div class="level-label">C:\\ AppData\\Local（应用本地数据）</div>
+  <div class="treemap-container"><div class="treemap" id="treemapLocal" style="grid-template-columns:repeat(auto-fill,minmax(100px,1fr))"></div></div>
+  <div class="level-label">C:\\ AppData\\Roaming（应用漫游数据）</div>
+  <div class="treemap-container"><div class="treemap" id="treemapRoaming" style="grid-template-columns:repeat(auto-fill,minmax(100px,1fr))"></div></div>
+  <div class="level-label">C:\\ Program Files</div>
+  <div class="treemap-container"><div class="treemap" id="treemapPF" style="grid-template-columns:repeat(auto-fill,minmax(100px,1fr))"></div></div>
+  <div class="level-label">C:\\ Program Files (x86)</div>
+  <div class="treemap-container"><div class="treemap" id="treemapPF86" style="grid-template-columns:repeat(auto-fill,minmax(100px,1fr))"></div></div>
+</div>
+
+<!-- 排行榜视图 -->
+<div id="rankView" style="display:none;padding:0 32px 32px"></div>
+
+<!-- 完整表格视图 -->
+<div id="tableView" style="display:none;padding:0 32px 32px"></div>
+
+<!-- 侧边详情面板 -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<div class="detail-panel" id="detailPanel">
+  <div class="detail-header">
+    <h2 id="detailTitle">-</h2>
+    <button class="detail-close" onclick="closePanel()">&times;</button>
+  </div>
+  <div class="detail-body" id="detailBody"></div>
+</div>
+
+<script>
+const SCAN = {"generated_at": "2026-06-07 18:29:17", "system": {"os": "Windows 10", "build": "10.0.26100", "arch": "AMD64", "user": "liming", "home": "C:\\Users\\13975", "disk_total": "289.8 GB", "disk_used": "265.0 GB", "disk_free": "24.8 GB", "filesystem": "NTFS", "purgeable": "", "disk_name": "C:\\", "disks": [{"name": "C:\\", "total": "289.8 GB", "used": "265.0 GB", "free": "24.8 GB"}, {"name": "D:\\", "total": "341.8 GB", "used": "255.0 GB", "free": "86.8 GB"}, {"name": "E:\\", "total": "195.3 GB", "used": "171.1 GB", "free": "24.2 GB"}]}, "groups": {"user_profile": [{"name": "AppData", "path": "C:\\Users\\13975\\AppData", "size_kb": 75254261, "size_h": "71.8 GB"}, {"name": ".newmax", "path": "C:\\Users\\13975\\.newmax", "size_kb": 22846800, "size_h": "21.8 GB"}, {"name": ".workbuddy", "path": "C:\\Users\\13975\\.workbuddy", "size_kb": 8472443, "size_h": "8.1 GB"}, {"name": ".mempalace", "path": "C:\\Users\\13975\\.mempalace", "size_kb": 6318814, "size_h": "6.0 GB"}, {"name": ".cache", "path": "C:\\Users\\13975\\.cache", "size_kb": 1324866, "size_h": "1.3 GB"}, {"name": ".vscode", "path": "C:\\Users\\13975\\.vscode", "size_kb": 1171396, "size_h": "1.1 GB"}, {"name": ".stepfun", "path": "C:\\Users\\13975\\.stepfun", "size_kb": 1107698, "size_h": "1.1 GB"}, {"name": ".codex", "path": "C:\\Users\\13975\\.codex", "size_kb": 1061019, "size_h": "1.0 GB"}, {"name": ".trae-cn", "path": "C:\\Users\\13975\\.trae-cn", "size_kb": 734135, "size_h": "716.9 MB"}, {"name": "Downloads", "path": "C:\\Users\\13975\\Downloads", "size_kb": 602990, "size_h": "588.9 MB"}, {"name": ".qoder", "path": "C:\\Users\\13975\\.qoder", "size_kb": 581689, "size_h": "568.1 MB"}, {"name": ".stepclaw", "path": "C:\\Users\\13975\\.stepclaw", "size_kb": 560324, "size_h": "547.2 MB"}, {"name": ".cursor", "path": "C:\\Users\\13975\\.cursor", "size_kb": 372898, "size_h": "364.2 MB"}, {"name": "Obsidian", "path": "C:\\Users\\13975\\Obsidian", "size_kb": 358085, "size_h": "349.7 MB"}, {"name": ".nuget", "path": "C:\\Users\\13975\\.nuget", "size_kb": 314316, "size_h": "306.9 MB"}, {"name": "Documents", "path": "C:\\Users\\13975\\Documents", "size_kb": 279019, "size_h": "272.5 MB"}, {"name": ".niumaai", "path": "C:\\Users\\13975\\.niumaai", "size_kb": 233935, "size_h": "228.5 MB"}, {"name": ".windsurf", "path": "C:\\Users\\13975\\.windsurf", "size_kb": 232702, "size_h": "227.2 MB"}, {"name": "WorkBuddy", "path": "C:\\Users\\13975\\WorkBuddy", "size_kb": 195811, "size_h": "191.2 MB"}, {"name": ".config", "path": "C:\\Users\\13975\\.config", "size_kb": 146904, "size_h": "143.5 MB"}, {"name": ".EasyOCR", "path": "C:\\Users\\13975\\.EasyOCR", "size_kb": 102640, "size_h": "100.2 MB"}], "appdata_local": [{"name": "Programs", "path": "C:\\Users\\13975\\AppData\\Local\\Programs", "size_kb": 11627702, "size_h": "11.1 GB"}, {"name": "Microsoft", "path": "C:\\Users\\13975\\AppData\\Local\\Microsoft", "size_kb": 9731169, "size_h": "9.3 GB"}, {"name": "JianyingPro", "path": "C:\\Users\\13975\\AppData\\Local\\JianyingPro", "size_kb": 5917303, "size_h": "5.6 GB"}, {"name": "Packages", "path": "C:\\Users\\13975\\AppData\\Local\\Packages", "size_kb": 3469047, "size_h": "3.3 GB"}, {"name": "QuarkCloudDrive", "path": "C:\\Users\\13975\\AppData\\Local\\QuarkCloudDrive", "size_kb": 3420400, "size_h": "3.3 GB"}, {"name": "hermes", "path": "C:\\Users\\13975\\AppData\\Local\\hermes", "size_kb": 3182279, "size_h": "3.0 GB"}, {"name": "Google", "path": "C:\\Users\\13975\\AppData\\Local\\Google", "size_kb": 965378, "size_h": "942.8 MB"}, {"name": "Tabbit", "path": "C:\\Users\\13975\\AppData\\Local\\Tabbit", "size_kb": 928135, "size_h": "906.4 MB"}, {"name": "Arm", "path": "C:\\Users\\13975\\AppData\\Local\\Arm", "size_kb": 907388, "size_h": "886.1 MB"}, {"name": "mingw64", "path": "C:\\Users\\13975\\AppData\\Local\\mingw64", "size_kb": 701229, "size_h": "684.8 MB"}, {"name": "WorkBuddyExtension", "path": "C:\\Users\\13975\\AppData\\Local\\WorkBuddyExtension", "size_kb": 678527, "size_h": "662.6 MB"}, {"name": "GitHubDesktop", "path": "C:\\Users\\13975\\AppData\\Local\\GitHubDesktop", "size_kb": 656171, "size_h": "640.8 MB"}, {"name": "bohrium-desktop-updater", "path": "C:\\Users\\13975\\AppData\\Local\\bohrium-desktop-updater", "size_kb": 502330, "size_h": "490.6 MB"}, {"name": "@genieworkbuddy-desktop-updater", "path": "C:\\Users\\13975\\AppData\\Local\\@genieworkbuddy-desktop-updater", "size_kb": 468904, "size_h": "457.9 MB"}, {"name": "Temp", "path": "C:\\Users\\13975\\AppData\\Local\\Temp", "size_kb": 447187, "size_h": "436.7 MB"}, {"name": "Steam", "path": "C:\\Users\\13975\\AppData\\Local\\Steam", "size_kb": 443301, "size_h": "432.9 MB"}, {"name": "NetEase", "path": "C:\\Users\\13975\\AppData\\Local\\NetEase", "size_kb": 420994, "size_h": "411.1 MB"}, {"name": "DingTalk_133", "path": "C:\\Users\\13975\\AppData\\Local\\DingTalk_133", "size_kb": 361569, "size_h": "353.1 MB"}, {"name": "com.tencent.yuanbao", "path": "C:\\Users\\13975\\AppData\\Local\\com.tencent.yuanbao", "size_kb": 334499, "size_h": "326.7 MB"}, {"name": "stepfun-desktop-updater", "path": "C:\\Users\\13975\\AppData\\Local\\stepfun-desktop-updater", "size_kb": 334203, "size_h": "326.4 MB"}, {"name": "quark-cloud-drive-updater", "path": "C:\\Users\\13975\\AppData\\Local\\quark-cloud-drive-updater", "size_kb": 298755, "size_h": "291.8 MB"}, {"name": "agy", "path": "C:\\Users\\13975\\AppData\\Local\\agy", "size_kb": 293313, "size_h": "286.4 MB"}, {"name": "antigravity-updater", "path": "C:\\Users\\13975\\AppData\\Local\\antigravity-updater", "size_kb": 281120, "size_h": "274.5 MB"}, {"name": "OfficePLUS", "path": "C:\\Users\\13975\\AppData\\Local\\OfficePLUS", "size_kb": 271896, "size_h": "265.5 MB"}, {"name": "GitKrakenCLI", "path": "C:\\Users\\13975\\AppData\\Local\\GitKrakenCLI", "size_kb": 197180, "size_h": "192.6 MB"}, {"name": "NVIDIA Corporation", "path": "C:\\Users\\13975\\AppData\\Local\\NVIDIA Corporation", "size_kb": 196780, "size_h": "192.2 MB"}, {"name": "tdappdesktop", "path": "C:\\Users\\13975\\AppData\\Local\\tdappdesktop", "size_kb": 161994, "size_h": "158.2 MB"}, {"name": "EpicGamesLauncher", "path": "C:\\Users\\13975\\AppData\\Local\\EpicGamesLauncher", "size_kb": 142020, "size_h": "138.7 MB"}, {"name": "electron", "path": "C:\\Users\\13975\\AppData\\Local\\electron", "size_kb": 134892, "size_h": "131.7 MB"}, {"name": "GeoGebra_Calculator", "path": "C:\\Users\\13975\\AppData\\Local\\GeoGebra_Calculator", "size_kb": 129875, "size_h": "126.8 MB"}, {"name": "sakuracat-updater", "path": "C:\\Users\\13975\\AppData\\Local\\sakuracat-updater", "size_kb": 128107, "size_h": "125.1 MB"}, {"name": "ToDesk", "path": "C:\\Users\\13975\\AppData\\Local\\ToDesk", "size_kb": 119415, "size_h": "116.6 MB"}, {"name": "mubu", "path": "C:\\Users\\13975\\AppData\\Local\\mubu", "size_kb": 115167, "size_h": "112.5 MB"}, {"name": "ms-playwright-go", "path": "C:\\Users\\13975\\AppData\\Local\\ms-playwright-go", "size_kb": 98901, "size_h": "96.6 MB"}, {"name": "notion-updater", "path": "C:\\Users\\13975\\AppData\\Local\\notion-updater", "size_kb": 95098, "size_h": "92.9 MB"}, {"name": "NuGet", "path": "C:\\Users\\13975\\AppData\\Local\\NuGet", "size_kb": 90818, "size_h": "88.7 MB"}, {"name": "Electronic Arts", "path": "C:\\Users\\13975\\AppData\\Local\\Electronic Arts", "size_kb": 81168, "size_h": "79.3 MB"}, {"name": "node-gyp", "path": "C:\\Users\\13975\\AppData\\Local\\node-gyp", "size_kb": 60225, "size_h": "58.8 MB"}, {"name": "cn.shandianshuo.desktop", "path": "C:\\Users\\13975\\AppData\\Local\\cn.shandianshuo.desktop", "size_kb": 54980, "size_h": "53.7 MB"}], "appdata_roaming": [{"name": "Tencent", "path": "C:\\Users\\13975\\AppData\\Roaming\\Tencent", "size_kb": 4235021, "size_h": "4.0 GB"}, {"name": "pcsuite", "path": "C:\\Users\\13975\\AppData\\Roaming\\pcsuite", "size_kb": 2785231, "size_h": "2.7 GB"}, {"name": "LarkShell", "path": "C:\\Users\\13975\\AppData\\Roaming\\LarkShell", "size_kb": 2726430, "size_h": "2.6 GB"}, {"name": "Shandianshuo", "path": "C:\\Users\\13975\\AppData\\Roaming\\Shandianshuo", "size_kb": 1824565, "size_h": "1.7 GB"}, {"name": "WorkBuddy", "path": "C:\\Users\\13975\\AppData\\Roaming\\WorkBuddy", "size_kb": 1616695, "size_h": "1.5 GB"}, {"name": "kingsoft", "path": "C:\\Users\\13975\\AppData\\Roaming\\kingsoft", "size_kb": 1029071, "size_h": "1005.0 MB"}, {"name": "QQEX", "path": "C:\\Users\\13975\\AppData\\Roaming\\QQEX", "size_kb": 1016115, "size_h": "992.3 MB"}, {"name": "quark-cloud-drive", "path": "C:\\Users\\13975\\AppData\\Roaming\\quark-cloud-drive", "size_kb": 759754, "size_h": "741.9 MB"}, {"name": "bilibili", "path": "C:\\Users\\13975\\AppData\\Roaming\\bilibili", "size_kb": 591140, "size_h": "577.3 MB"}, {"name": "Notion", "path": "C:\\Users\\13975\\AppData\\Roaming\\Notion", "size_kb": 562878, "size_h": "549.7 MB"}, {"name": "Qoder", "path": "C:\\Users\\13975\\AppData\\Roaming\\Qoder", "size_kb": 531779, "size_h": "519.3 MB"}, {"name": "Wargaming.net", "path": "C:\\Users\\13975\\AppData\\Roaming\\Wargaming.net", "size_kb": 493823, "size_h": "482.2 MB"}, {"name": "Code", "path": "C:\\Users\\13975\\AppData\\Roaming\\Code", "size_kb": 492532, "size_h": "481.0 MB"}, {"name": "stepfun-desktop", "path": "C:\\Users\\13975\\AppData\\Roaming\\stepfun-desktop", "size_kb": 489293, "size_h": "477.8 MB"}, {"name": "Cursor", "path": "C:\\Users\\13975\\AppData\\Roaming\\Cursor", "size_kb": 478689, "size_h": "467.5 MB"}, {"name": "utForpc", "path": "C:\\Users\\13975\\AppData\\Roaming\\utForpc", "size_kb": 416084, "size_h": "406.3 MB"}, {"name": "DingTalk", "path": "C:\\Users\\13975\\AppData\\Roaming\\DingTalk", "size_kb": 409284, "size_h": "399.7 MB"}, {"name": "EA", "path": "C:\\Users\\13975\\AppData\\Roaming\\EA", "size_kb": 348345, "size_h": "340.2 MB"}, {"name": "Adobe", "path": "C:\\Users\\13975\\AppData\\Roaming\\Adobe", "size_kb": 342205, "size_h": "334.2 MB"}, {"name": "QQ", "path": "C:\\Users\\13975\\AppData\\Roaming\\QQ", "size_kb": 267896, "size_h": "261.6 MB"}, {"name": "Recordly", "path": "C:\\Users\\13975\\AppData\\Roaming\\Recordly", "size_kb": 253502, "size_h": "247.6 MB"}, {"name": "baidunetdisk", "path": "C:\\Users\\13975\\AppData\\Roaming\\baidunetdisk", "size_kb": 245246, "size_h": "239.5 MB"}, {"name": "玻尔", "path": "C:\\Users\\13975\\AppData\\Roaming\\玻尔", "size_kb": 214200, "size_h": "209.2 MB"}, {"name": "Trae CN", "path": "C:\\Users\\13975\\AppData\\Roaming\\Trae CN", "size_kb": 210074, "size_h": "205.2 MB"}, {"name": "obsidian", "path": "C:\\Users\\13975\\AppData\\Roaming\\obsidian", "size_kb": 162359, "size_h": "158.6 MB"}, {"name": "uv", "path": "C:\\Users\\13975\\AppData\\Roaming\\uv", "size_kb": 145924, "size_h": "142.5 MB"}, {"name": "NVIDIA", "path": "C:\\Users\\13975\\AppData\\Roaming\\NVIDIA", "size_kb": 144628, "size_h": "141.2 MB"}, {"name": "ichat", "path": "C:\\Users\\13975\\AppData\\Roaming\\ichat", "size_kb": 143900, "size_h": "140.5 MB"}, {"name": "bohrium-desktop", "path": "C:\\Users\\13975\\AppData\\Roaming\\bohrium-desktop", "size_kb": 135000, "size_h": "131.8 MB"}, {"name": "baoyu-skills", "path": "C:\\Users\\13975\\AppData\\Roaming\\baoyu-skills", "size_kb": 106055, "size_h": "103.6 MB"}, {"name": "Claude", "path": "C:\\Users\\13975\\AppData\\Roaming\\Claude", "size_kb": 101502, "size_h": "99.1 MB"}, {"name": "Antigravity IDE", "path": "C:\\Users\\13975\\AppData\\Roaming\\Antigravity IDE", "size_kb": 68839, "size_h": "67.2 MB"}, {"name": "Windsurf", "path": "C:\\Users\\13975\\AppData\\Roaming\\Windsurf", "size_kb": 66593, "size_h": "65.0 MB"}, {"name": "Sangfor", "path": "C:\\Users\\13975\\AppData\\Roaming\\Sangfor", "size_kb": 59042, "size_h": "57.7 MB"}, {"name": "aDrive", "path": "C:\\Users\\13975\\AppData\\Roaming\\aDrive", "size_kb": 54798, "size_h": "53.5 MB"}, {"name": "Microsoft", "path": "C:\\Users\\13975\\AppData\\Roaming\\Microsoft", "size_kb": 53261, "size_h": "52.0 MB"}], "temp": [{"name": "vscode-stable-system-x64-e6tgguwpygc", "path": "C:\\Users\\13975\\AppData\\Local\\Temp\\vscode-stable-system-x64-e6tgguwpygc", "size_kb": 182105, "size_h": "177.8 MB"}, {"name": "vscode-stable-system-x64-k5f2hfaq6mi", "path": "C:\\Users\\13975\\AppData\\Local\\Temp\\vscode-stable-system-x64-k5f2hfaq6mi", "size_kb": 182105, "size_h": "177.8 MB"}], "downloads": [{"name": "牛马AI-1.0.287-x64-windows.exe", "path": "C:\\Users\\13975\\Downloads\\牛马AI-1.0.287-x64-windows.exe", "size_kb": 395481, "size_h": "386.2 MB"}, {"name": "FormatFactory_setup.exe", "path": "C:\\Users\\13975\\Downloads\\FormatFactory_setup.exe", "size_kb": 158331, "size_h": "154.6 MB"}], "program_files": [{"name": "WindowsApps", "path": "C:\\Program Files\\WindowsApps", "size_kb": 12446713, "size_h": "11.9 GB"}, {"name": "Microsoft Visual Studio", "path": "C:\\Program Files\\Microsoft Visual Studio", "size_kb": 6173260, "size_h": "5.9 GB"}, {"name": "Microsoft Office", "path": "C:\\Program Files\\Microsoft Office", "size_kb": 4831171, "size_h": "4.6 GB"}, {"name": "dotnet", "path": "C:\\Program Files\\dotnet", "size_kb": 1200807, "size_h": "1.1 GB"}, {"name": "NVIDIA Corporation", "path": "C:\\Program Files\\NVIDIA Corporation", "size_kb": 938768, "size_h": "916.8 MB"}, {"name": "ASUS", "path": "C:\\Program Files\\ASUS", "size_kb": 930758, "size_h": "908.9 MB"}, {"name": "LibreOffice", "path": "C:\\Program Files\\LibreOffice", "size_kb": 678574, "size_h": "662.7 MB"}, {"name": "Microsoft OneDrive", "path": "C:\\Program Files\\Microsoft OneDrive", "size_kb": 565458, "size_h": "552.2 MB"}, {"name": "Electronic Arts", "path": "C:\\Program Files\\Electronic Arts", "size_kb": 564178, "size_h": "551.0 MB"}, {"name": "Google", "path": "C:\\Program Files\\Google", "size_kb": 479795, "size_h": "468.5 MB"}, {"name": "Tencent", "path": "C:\\Program Files\\Tencent", "size_kb": 427717, "size_h": "417.7 MB"}, {"name": "Git", "path": "C:\\Program Files\\Git", "size_kb": 390527, "size_h": "381.4 MB"}, {"name": "Microsoft OfficePLUS", "path": "C:\\Program Files\\Microsoft OfficePLUS", "size_kb": 250248, "size_h": "244.4 MB"}, {"name": "Tesseract-OCR", "path": "C:\\Program Files\\Tesseract-OCR", "size_kb": 243588, "size_h": "237.9 MB"}, {"name": "DAUM", "path": "C:\\Program Files\\DAUM", "size_kb": 177775, "size_h": "173.6 MB"}, {"name": "Common Files", "path": "C:\\Program Files\\Common Files", "size_kb": 162552, "size_h": "158.7 MB"}, {"name": "EVCapture", "path": "C:\\Program Files\\EVCapture", "size_kb": 148522, "size_h": "145.0 MB"}, {"name": "ToDesk", "path": "C:\\Program Files\\ToDesk", "size_kb": 126171, "size_h": "123.2 MB"}], "program_files_x86": [{"name": "Microsoft", "path": "C:\\Program Files (x86)\\Microsoft", "size_kb": 4025998, "size_h": "3.8 GB"}, {"name": "Windows Kits", "path": "C:\\Program Files (x86)\\Windows Kits", "size_kb": 2183534, "size_h": "2.1 GB"}, {"name": "VMware", "path": "C:\\Program Files (x86)\\VMware", "size_kb": 688544, "size_h": "672.4 MB"}, {"name": "dotnet", "path": "C:\\Program Files (x86)\\dotnet", "size_kb": 533824, "size_h": "521.3 MB"}, {"name": "Google", "path": "C:\\Program Files (x86)\\Google", "size_kb": 508802, "size_h": "496.9 MB"}, {"name": "ASUS", "path": "C:\\Program Files (x86)\\ASUS", "size_kb": 453817, "size_h": "443.2 MB"}, {"name": "Reference Assemblies", "path": "C:\\Program Files (x86)\\Reference Assemblies", "size_kb": 352323, "size_h": "344.1 MB"}, {"name": "Common Files", "path": "C:\\Program Files (x86)\\Common Files", "size_kb": 344070, "size_h": "336.0 MB"}, {"name": "Canon", "path": "C:\\Program Files (x86)\\Canon", "size_kb": 313218, "size_h": "305.9 MB"}, {"name": "Microsoft Visual Studio", "path": "C:\\Program Files (x86)\\Microsoft Visual Studio", "size_kb": 223948, "size_h": "218.7 MB"}, {"name": "R-Studio", "path": "C:\\Program Files (x86)\\R-Studio", "size_kb": 216312, "size_h": "211.2 MB"}, {"name": "NVIDIA Corporation", "path": "C:\\Program Files (x86)\\NVIDIA Corporation", "size_kb": 214736, "size_h": "209.7 MB"}, {"name": "InstallShield Installation Information", "path": "C:\\Program Files (x86)\\InstallShield Installation Information", "size_kb": 166290, "size_h": "162.4 MB"}, {"name": "Microsoft SDKs", "path": "C:\\Program Files (x86)\\Microsoft SDKs", "size_kb": 151957, "size_h": "148.4 MB"}, {"name": "Sangfor", "path": "C:\\Program Files (x86)\\Sangfor", "size_kb": 104455, "size_h": "102.0 MB"}], "dev_caches": [{"name": ".cache", "path": "C:\\Users\\13975\\.cache", "size_kb": 1324866, "size_h": "1.3 GB"}, {"name": "packages", "path": "C:\\Users\\13975\\.nuget\\packages", "size_kb": 314316, "size_h": "306.9 MB"}]}, "scan_seconds": 42.3};
+
+// Colors for categories
+const COLORS = {
+  user_profile: '#3b82f6',
+  appdata_local: '#f97316',
+  appdata_roaming: '#a855f7',
+  temp: '#ef4444',
+  downloads: '#ec4899',
+  program_files: '#22c55e',
+  program_files_x86: '#06b6d4',
+  dev_caches: '#eab308'
+};
+const COLOR_LIST = ['#3b82f6','#f97316','#a855f7','#22c55e','#06b6d4','#ec4899','#eab308','#ef4444','#6366f1','#14b8a6','#f43f5e','#84cc16'];
+const GROUP_NAMES = {
+  user_profile: '用户目录',
+  appdata_local: 'AppData/Local',
+  appdata_roaming: 'AppData/Roaming',
+  temp: '临时文件',
+  downloads: '下载',
+  program_files: 'Program Files',
+  program_files_x86: 'Program Files (x86)',
+  dev_caches: '开发缓存'
+};
+
+function parseSize(s) {
+  if (!s) return 0;
+  const m = s.match(/([\d.]+)\s*(GB|MB|KB|TB)/i);
+  if (!m) return 0;
+  const n = parseFloat(m[1]);
+  const u = m[2].toUpperCase();
+  if (u === 'TB') return n * 1024 * 1024;
+  if (u === 'GB') return n * 1024;
+  if (u === 'MB') return n;
+  return n / 1024;
+}
+
+function fmtMB(mb) {
+  if (mb >= 1024) return (mb / 1024).toFixed(1) + ' GB';
+  return mb.toFixed(0) + ' MB';
+}
+
+// Flatten all items with group info
+let allItems = [];
+Object.entries(SCAN.groups).forEach(([group, items]) => {
+  items.forEach(item => {
+    allItems.push({...item, group, mb: item.size_kb / 1024});
+  });
+});
+allItems.sort((a, b) => b.mb - a.mb);
+
+// Disk bar
+function renderDiskBar() {
+  const disks = SCAN.system.disks;
+  const bar = document.getElementById('diskBar');
+  const totalAll = disks.reduce((s, d) => s + parseSize(d.total), 0);
+  bar.innerHTML = disks.map((d, i) => {
+    const pct = (parseSize(d.total) / totalAll * 100).toFixed(1);
+    const usedPct = (parseSize(d.used) / parseSize(d.total) * 100).toFixed(0);
+    const colors = ['var(--blue)', 'var(--cyan)', 'var(--purple)'];
+    return `<div class="seg" style="width:${pct}%;background:${colors[i]}">
+      ${d.name.replace('\\','')}
+      <div class="tooltip">${d.name} ${d.used} / ${d.total} (${usedPct}% 已用)</div>
+    </div>`;
+  }).join('');
+}
+
+// Summary cards
+function renderSummary() {
+  const sys = SCAN.system;
+  const cards = [
+    {label: 'C盘总容量', value: sys.disk_total, sub: `文件系统: ${sys.filesystem}`, color: 'var(--blue)'},
+    {label: '已使用', value: sys.disk_used, sub: `${(parseSize(sys.disk_used)/parseSize(sys.disk_total)*100).toFixed(1)}% 使用率`, color: 'var(--orange)'},
+    {label: '剩余可用', value: sys.disk_free, sub: '⚠ 低于 15% 建议清理', color: 'var(--red)'},
+    {label: '扫描项目数', value: allItems.length + '', sub: `8 个分组`, color: 'var(--cyan)'},
+    {label: '最大单项', value: allItems[0].size_h, sub: allItems[0].name, color: 'var(--purple)'},
+    {label: '扫描耗时', value: SCAN.scan_seconds + 's', sub: SCAN.generated_at, color: 'var(--green)'}
+  ];
+  document.getElementById('summaryCards').innerHTML = cards.map(c => `
+    <div class="summary-card" style="border-left:3px solid ${c.color}">
+      <div class="label">${c.label}</div>
+      <div class="value" style="color:${c.color}">${c.value}</div>
+      <div class="sub">${c.sub}</div>
+    </div>
+  `).join('');
+}
+
+// Treemap cells
+function renderTreemap(groupId, containerId, limit) {
+  const items = SCAN.groups[groupId] || [];
+  const container = document.getElementById(containerId);
+  const color = COLORS[groupId] || '#666';
+  const maxMB = items.length ? items[0].mb : 1;
+  container.innerHTML = items.slice(0, limit || 20).map((item, i) => {
+    const ratio = Math.max(0.3, item.mb / maxMB);
+    const opacity = 0.15 + ratio * 0.6;
+    return `<div class="cell" style="background:${color};opacity:${opacity}"
+      onclick="showDetail('${groupId}',${i})">
+      <div class="name" title="${item.name}">${item.name}</div>
+      <div class="size">${item.size_h}</div>
+      <div class="path">${item.path}</div>
+    </div>`;
+  }).join('');
+}
+
+// Rank view
+function renderRank() {
+  const top30 = allItems.slice(0, 30);
+  const maxMB = top30[0].mb;
+  document.getElementById('rankView').innerHTML = `
+    <div class="section-title"><span class="icon">🏆</span> C盘占用 Top 30</div>
+    <table class="rank-table">
+      <thead><tr><th>#</th><th>名称</th><th>位置</th><th>大小</th><th>占比</th></tr></thead>
+      <tbody>
+      ${top30.map((item, i) => {
+        const rank = i < 3 ? `rank-${i+1}` : 'rank-n';
+        const pct = (item.mb / 265 / 1024 * 100).toFixed(1);
+        const color = COLORS[item.group] || '#666';
+        return `<tr onclick="showDetail('${item.group}',${SCAN.groups[item.group].indexOf(item)})" style="cursor:pointer">
+          <td><span class="rank-num ${rank}">${i+1}</span></td>
+          <td style="font-weight:600">${item.name}</td>
+          <td style="color:var(--muted);font-size:12px">${GROUP_NAMES[item.group] || item.group}</td>
+          <td style="font-weight:700">${item.size_h}</td>
+          <td><span class="pct-bar" style="width:${Math.max(2, pct * 3)}px;background:${color}"></span> ${pct}%</td>
+        </tr>`;
+      }).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+// Table view
+function renderTable() {
+  let html = '';
+  Object.entries(SCAN.groups).forEach(([group, items]) => {
+    const totalMB = items.reduce((s, i) => s + i.mb, 0);
+    const color = COLORS[group];
+    html += `<div class="section-title"><span class="icon" style="color:${color}">●</span> ${GROUP_NAMES[group] || group} <span style="color:var(--muted);font-weight:400;font-size:12px">(${fmtMB(totalMB)}, ${items.length} 项)</span></div>`;
+    html += `<table class="rank-table"><thead><tr><th>名称</th><th>大小</th><th>路径</th></tr></thead><tbody>`;
+    items.forEach(item => {
+      html += `<tr onclick="showItem('${group}',${items.indexOf(item)})" style="cursor:pointer">
+        <td style="font-weight:500">${item.name}</td>
+        <td style="font-weight:600">${item.size_h}</td>
+        <td style="color:var(--muted);font-size:11px;max-width:400px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${item.path}">${item.path}</td>
+      </tr>`;
+    });
+    html += '</tbody></table>';
+  });
+  document.getElementById('tableView').innerHTML = html;
+}
+
+// Detail panel
+function showDetail(group, idx) {
+  const item = SCAN.groups[group][idx];
+  if (!item) return;
+  const panel = document.getElementById('detailPanel');
+  const color = COLORS[group];
+  document.getElementById('detailTitle').textContent = item.name;
+
+  // Find children by scanning deeper (we only have top-level, so show info)
+  const siblings = SCAN.groups[group];
+  const totalGroupMB = siblings.reduce((s, i) => s + i.mb, 0);
+  const pctOfGroup = (item.mb / totalGroupMB * 100).toFixed(1);
+  const pctOfDisk = (item.mb / 265 / 1024 * 100).toFixed(2);
+
+  document.getElementById('detailBody').innerHTML = `
+    <div class="detail-stat"><span class="label">大小</span><span class="value" style="color:${color}">${item.size_h}</span></div>
+    <div class="detail-stat"><span class="label">路径</span><span class="value" style="font-size:12px;word-break:break-all;max-width:300px">${item.path}</span></div>
+    <div class="detail-stat"><span class="label">分组</span><span class="value">${GROUP_NAMES[group] || group}</span></div>
+    <div class="detail-stat"><span class="label">占分组比例</span><span class="value">${pctOfGroup}%</span></div>
+    <div class="detail-stat"><span class="label">占C盘比例</span><span class="value">${pctOfDisk}%</span></div>
+    <div class="bar-bg" style="margin-top:12px"><div class="bar-fill" style="width:${pctOfGroup}%;background:${color}"></div></div>
+
+    <div class="section-title" style="margin-top:24px"><span class="icon">📊</span> 同组对比</div>
+    <div class="detail-list">
+    ${siblings.slice(0, 10).map((s, i) => `
+      <div class="detail-list-item" style="cursor:pointer" onclick="showDetail('${group}',${i})">
+        <div class="left">
+          <div class="dot" style="background:${i === idx ? color : 'var(--border)'}"></div>
+          <span class="item-name" style="${i === idx ? 'font-weight:700' : ''}">${s.name}</span>
+        </div>
+        <span class="item-size">${s.size_h}</span>
+        <span class="item-pct">${(s.mb / totalGroupMB * 100).toFixed(1)}%</span>
+      </div>
+    `).join('')}
+    </div>
+  `;
+
+  panel.classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+}
+
+function showItem(group, idx) { showDetail(group, idx); }
+
+function closePanel() {
+  document.getElementById('detailPanel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+// View switching
+function setView(view) {
+  document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('treemapView').style.display = view === 'treemap' ? '' : 'none';
+  document.getElementById('rankView').style.display = view === 'rank' ? '' : 'none';
+  document.getElementById('tableView').style.display = view === 'table' ? '' : 'none';
+}
+
+// Init
+renderDiskBar();
+renderSummary();
+renderTreemap('user_profile', 'treemapUser', 20);
+renderTreemap('appdata_local', 'treemapLocal', 25);
+renderTreemap('appdata_roaming', 'treemapRoaming', 25);
+renderTreemap('program_files', 'treemapPF', 15);
+renderTreemap('program_files_x86', 'treemapPF86', 15);
+renderRank();
+renderTable();
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+</script>
+</body>
+</html>

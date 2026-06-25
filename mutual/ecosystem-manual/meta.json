@@ -1,0 +1,22 @@
+{
+  "version": 8,
+  "created": "2026-06-01",
+  "last_refresh": "2026-06-22 23:50",
+  "refresh_frequency": "weekly (Sunday 22:00)",
+  "task_id": "task-1781234631562-kx0vsq",
+  "summary": {
+    "skill_count": 160,
+    "skill_active": 146,
+    "skill_deprecated": 14,
+    "sop_count": 96,
+    "route_count": 105,
+    "mcp_count": 3,
+    "trigger_count": 1639,
+    "trigger_count_raw": 1651
+  },
+  "recent_changes": [
+    "3 个退役 skill (jc-plan/three-tier-memory/行业研究) 已物理归档删除",
+    "skill_retired 维度移除（已无退役占位目录）",
+    "trigger_count 口径修正: 1639(unique) / 1651(raw)"
+  ]
+}

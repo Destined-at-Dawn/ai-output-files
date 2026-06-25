@@ -1,0 +1,497 @@
+% ============================================================
+%  科研写作训练文档 —— 基于 VS Code + TeXLive 环境
+%  读源码学写作，编译看效果。
+%  复旦/上交/东南电气考研 & 论文写作适用
+%  创建：2026-06-10
+% ============================================================
+
+\documentclass[12pt,a4paper]{ctexart}
+
+% ---------- 宏包 ----------
+\usepackage{amsmath,amssymb,amsfonts}   % 数学公式
+\usepackage{graphicx}                   % 插图
+\usepackage{booktabs}                   % 三线表
+\usepackage{hyperref}                   % 超链接
+\usepackage[backend=bibtex,style=ieee]{biblatex}  % IEEE 引用格式
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% 参考文献文件（编译时需要 references.bib）
+% 初学阶段可先注释掉引用和参考文献，用 Overleaf 在线编译验证
+% \addbibresource{references.bib}
+
+% ---------- 写作提示框 ----------
+\newtcolorbox[auto counter]{writingtip}[1][]{
+  colback=blue!5!white, colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=写作原则~\thetcbcounter: #1,
+  breakable
+}
+
+% ---------- 练习框 ----------
+\newtcolorbox{exercise}[1][]{
+  colback=green!5!white, colframe=green!75!black,
+  fonttitle=\bfseries,
+  title=练习: #1,
+  breakable
+}
+
+% ---------- 元信息 ----------
+\title{\textbf{科研写作训练：从 LaTeX 到学术表达}}
+\author{训练者：小黎 \\ 上海电力大学 · 电气工程}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+% ============================================================
+%  0. 前言：为什么用这套环境
+% ============================================================
+\section{环境与哲学：为什么 VS Code + TeXLive？}
+
+视频里四月学长推荐这套组合不是没道理的。学术写作有三个层次，LaTeX 解决了其中两个：
+
+\begin{enumerate}[label=\textbf{层级 \arabic*:},leftmargin=*]
+    \item \textbf{排版层} — 字体、页边距、标题格式、参考文献样式。LaTeX 自动处理，你不需要像 Word 那样手动调。
+    \item \textbf{结构层} — 章节编号、交叉引用、公式编号、图表编号。LaTeX 语法强迫你把结构写清楚。
+    \item \textbf{内容层} — 论点、逻辑、证据、措辞。这层任何工具都帮不了你，只能靠练习。
+\end{enumerate}
+
+\begin{writingtip}{分离内容与格式}
+    很多人用 Word 的直觉来学 LaTeX，一上来就问「这个字体怎么调」「行距怎么改」。这是错的。
+
+    LaTeX 的核心哲学是：\textbf{你负责告诉它「这是什么」（章节、公式、引用），它负责「怎么排版」}。
+
+    就像你在 VS Code 里写代码——你写的是逻辑，编译器负责优化。LaTeX 是你的「论文编译器」。
+\end{writingtip}
+
+\subsection*{这套环境的三个核心能力}
+
+\begin{enumerate}
+    \item \textbf{正向/反向定位}：Ctrl+Alt+J → 从代码跳到 PDF 对应位置。Ctrl+Click PDF → 从 PDF 跳回代码。这在修改论文时极其高效——再也不用滚屏找位置。
+    \item \textbf{AI 辅助}：VS Code 自带 Copilot / 接入 Codex——报错自动修复、公式自动补全、模板一键切换。视频里演示的「帮我把作者改成四位学长」就是通过 AI 直接修改 .tex 源码。
+    \item \textbf{模板即切换}：投稿被拒要换期刊？一条命令换模板，内容不动，格式全变。
+\end{enumerate}
+
+
+% ============================================================
+%  1. 论文结构：IMRaD 标准
+% ============================================================
+\section{论文骨架：IMRaD 结构}
+
+理工科论文的「标准答案」是 IMRaD 结构。这不是某个期刊的规定——它是科学共同体\emph{用了几十年进化出来的最有效信息传递模式}。
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{部分}   & \textbf{英文}           & \textbf{回答的问题}           \\
+\midrule
+I    & Introduction         & 为什么做这个研究？           \\
+M    & Methods              & 怎么做出来的？               \\
+R    & Results              & 发现了什么？（纯数据，不解读） \\
+D    & Discussion           & 这些发现意味着什么？         \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent 再加上前面的 Abstract（摘要、浓缩版全文）和后面的 Conclusion（结论、收束），一共六个部分。
+
+\begin{writingtip}{IMRaD 不是八股文}
+    IMRaD 不是束缚你的「模板」，而是帮读者快速找到信息的「地图」。审稿人可能先看摘要→跳结论→扫图表→再决定要不要读全文。你的结构要让他在任何入口都能理解你在做什么。
+\end{writingtip}
+
+
+% ============================================================
+%  2. 摘要写作
+% ============================================================
+\section{摘要（Abstract）：论文的「电梯演讲」}
+
+摘要是论文被读得最多的部分——很多人只读摘要。它必须在 150-300 字内完成五件事：
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+    \item \textbf{背景}（1 句）：这个领域在关心什么？
+    \item \textbf{问题}（1 句）：现有方法/认知有什么缺口？
+    \item \textbf{方法}（1-2 句）：你做了什么？
+    \item \textbf{结果}（1-2 句）：核心发现是什么？带数字。
+    \item \textbf{意义}（1 句）：这对领域意味着什么？
+\end{enumerate}
+
+\begin{writingtip}{摘要不要做的事}
+    \begin{itemize}
+        \item 不要引用参考文献（摘要是独立的）
+        \item 不要出现「本文」「我们」以外的模糊主语
+        \item 不要放图表、公式编号
+        \item 不要写背景介绍超过 2 句
+        \item 不要在摘要里用缩写（除非全称先出现一次）
+    \end{itemize}
+\end{writingtip}
+
+\subsection*{示例：一个电气领域的摘要}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black, title=摘要示例]
+随着新能源并网规模扩大，电力系统惯量下降导致的频率稳定问题日益突出。
+现有虚拟同步机（VSG）控制策略在频率响应速度与稳态精度之间存在固有矛盾。
+本文提出一种基于模型预测控制（MPC）的自适应 VSG 控制策略，通过滚动优化实时调整虚拟惯量和阻尼系数。
+在 MATLAB/Simulink 中搭建的四机两区系统仿真结果表明：所提策略使频率最低点提升 0.18 Hz，稳态恢复时间缩短 42\%，同时保持功率分配精度不变。
+该策略为高比例新能源电力系统的频率稳定控制提供了新思路。
+\end{tcolorbox}
+
+\begin{exercise}{摘要写作}
+    打开你最近读过的一篇中文论文，找出它的摘要。用五种颜色分别标出「背景→问题→方法→结果→意义」五要素。如果某要素缺失，思考：作者是漏写了，还是不需要？
+\end{exercise}
+
+
+% ============================================================
+%  3. 引言写作
+% ============================================================
+\section{引言（Introduction）：漏斗式叙事}
+
+引言的经典结构是一个\textbf{倒三角漏斗}：
+
+\begin{center}
+\fbox{\begin{minipage}{0.85\textwidth}
+\textbf{宽} → 领域背景与重要性（让外行也能看懂）\\
+\hspace{2em} → 已有研究做了什么（文献综述）\\
+\hspace{4em} → 已有研究的不足（Gap）\\
+\hspace{6em} → 本文要做什么（你的 contribution）\\
+\textbf{窄} → 本文结构（可选）
+\end{minipage}}
+\end{center}
+
+\begin{writingtip}{引言的三个致命错误}
+    \begin{enumerate}
+        \item \textbf{Gap 不存在}：你说「现有研究没有考虑 X」，但审稿人随便一搜就找到 3 篇考虑 X 的论文 → 直接拒稿。
+        \item \textbf{Gap 不痛不痒}：「现有方法的精度是 98.5\%，还不够好」——审稿人会问：98.5\% 真的不够用吗？你的方法到 98.7\% 有意义吗？
+        \item \textbf{文献综述像购物清单}：「张三[1] 做了 A，李四[2] 做了 B，王五[3] 做了 C」——这是罗列，不是综述。综述要分类、对比、指出共性和分歧。
+    \end{enumerate}
+\end{writingtip}
+
+\subsection*{文献综述的正确写法}
+
+不是：「A 提出方法 X。B 提出方法 Y。C 改进方法 X。」
+而是：「针对频率稳定问题，现有方法可分为三类：\textbf{基于 PI 控制}的调频策略响应快但超调大；\textbf{基于 VSG}的策略稳态精度好但响应慢；\textbf{基于 MPC}的策略性能最优但计算负担重。本文融合 MPC 与 VSG，在计算可接受的范围内实现快速且精确的频率响应。」
+
+\begin{exercise}{引言改写}
+    找一篇你专业的论文引言。统计它用了多少篇幅写背景、多少篇幅写文献综述、多少篇幅写 gap。如果文献综述部分占比 < 20\% 或 > 60\%，都说明结构失衡。
+\end{exercise}
+
+
+% ============================================================
+%  4. 方法部分
+% ============================================================
+\section{方法（Methods）：可复现性是黄金标准}
+
+方法部分只有一个核心目标：\textbf{让另一个合格的研究者能复现你的结果}。
+
+\begin{writingtip}{方法部分自检清单}
+    写完方法后，问自己：
+    \begin{itemize}
+        \item 换一个人能否重复你的实验？（数据来源、参数设置、工具版本）
+        \item 读者能否理解你「为什么」选这个方法而不是别的？
+        \item 有没有遗漏关键假设？（比如「假设系统为线性时不变」这种前提）
+    \end{itemize}
+\end{writingtip}
+
+\subsection*{公式写作}
+
+LaTeX 的公式能力是它最核心的竞争力。电气领域最常见的是矩阵、分段函数和微分方程。
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black, title=公式示例]
+\textbf{状态空间方程（电气系统常用）}：
+\begin{equation}
+    \dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}\mathbf{u}
+    \label{eq:state_space}
+\end{equation}
+
+\textbf{功率计算（三相系统）}：
+\begin{equation}
+    P = \sqrt{3} \, U_L I_L \cos\varphi
+    \label{eq:power_3phase}
+\end{equation}
+
+\textbf{频率响应传递函数}：
+\begin{equation}
+    G(s) = \frac{\Delta f(s)}{\Delta P(s)} = \frac{1}{2Hs + D}
+    \label{eq:freq_response}
+\end{equation}
+\end{tcolorbox}
+
+\begin{writingtip}{公式写作的 5 条规则}
+    \begin{enumerate}
+        \item \textbf{每个符号在首次出现时必须定义}。不要假设读者知道 $H$ 是惯量常数。
+        \item \textbf{编号只在需要引用时加}。如果你后文不引用公式 \eqref{eq:state_space}，就不需要 `\textbackslash label`。
+        \item \textbf{公式是句子的一部分}。公式前后的逗号、句号不要漏。
+        \item \textbf{变量用斜体，单位和常量用正体}。$P=100\,\text{W}$（P 斜体，W 正体）。
+        \item \textbf{不要用 * 表示乘号}。用 `\textbackslash times`（$\times$）或 `\textbackslash cdot`（$\cdot$），或直接省略。
+    \end{enumerate}
+\end{writingtip}
+
+\begin{exercise}{公式练习}
+    把你专业课（电路/电机/自控）中的 3 个核心公式用 LaTeX 写出来。注意符号定义、单位标注、编号引用。
+\end{exercise}
+
+
+% ============================================================
+%  5. 结果部分
+% ============================================================
+\section{结果（Results）：数据说话，不解读}
+
+结果部分的铁律：\textbf{只呈现发现了什么，不解释这意味着什么}。解释留到讨论部分。
+
+\subsection*{表格：三线表规范}
+
+学术论文用\textbf{三线表}（只有顶线、表头线、底线），不用 Word 默认的花哨表格。
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black, title=三线表示例]
+\begin{table}[h]
+\centering
+\caption{不同控制策略的频率响应性能对比}
+\label{tab:comparison}
+\begin{tabular}{lccc}
+\toprule
+\textbf{控制策略} & \textbf{频率最低点 (Hz)} & \textbf{恢复时间 (s)} & \textbf{稳态误差 (Hz)} \\
+\midrule
+传统 PI 控制    & 49.72 & 12.3 & 0.05 \\
+VSG 控制        & 49.78 & 8.7  & 0.02 \\
+MPC-VSG（本文）  & 49.90 & 5.1  & 0.01 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{tcolorbox}
+
+\begin{writingtip}{图表自明性}
+    图表的标题和注释应该让读者\emph{不看正文}就能理解这个图在说什么。测试方法：把图表单独拿出来给一个同专业的同学看，他能否理解？
+\end{writingtip}
+
+\subsection*{图片插入}
+
+% 示例：用占位符替代实际图片
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figures/your-figure.pdf}
+%     \caption{系统频率响应曲线（对比三种控制策略）}
+%     \label{fig:frequency_response}
+% \end{figure}
+
+
+% ============================================================
+%  6. 讨论部分
+% ============================================================
+\section{讨论（Discussion）：回答「所以呢？」}
+
+如果说结果是「发生了什么」，讨论就是「这意味着什么」。讨论部分回答了读者最关心的问题。
+
+一个好的讨论通常覆盖以下四点：
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+    \item \textbf{结果总结}（1 段）：最核心的发现是什么？不要复制结果部分的数据——用一句话说清楚。
+    \item \textbf{与已有研究对比}（2-3 段）：你的结果和文献一致吗？如果一致，为什么（验证了什么已知结论）？如果不一致，为什么（方法差异？条件不同？）？
+    \item \textbf{局限性}（1 段）：你的方法/实验有什么限制？这是学术诚信，不是示弱。审稿人欣赏你主动指出局限。
+    \item \textbf{意义和展望}（1 段）：这个发现对领域有什么影响？下一步该做什么？
+\end{enumerate}
+
+\begin{writingtip}{讨论的黄金比例}
+    很多新手把讨论写成「结果的散文版」——把结果部分的数据用文字重新描述一遍。这是浪费。
+
+    讨论中，\textbf{结果复述 : 解释与对比 : 局限与展望} 的理想比例大约是 1:4:2。
+
+    也就是说，每 1 句复述结果，你要写 4 句解释/对比，2 句局限/展望。
+\end{writingtip}
+
+\begin{exercise}{讨论分析}
+    找一篇顶刊论文（如 IEEE Trans. on Power Systems），只读它的讨论部分。统计它用了多少段写对比、多少段写局限、多少段写展望。如果某部分缺失，思考：是论文不需要，还是作者没写？
+\end{exercise}
+
+
+% ============================================================
+%  7. 结论
+% ============================================================
+\section{结论（Conclusion）：不给新信息}
+
+结论不等于摘要。摘要是「预告片」（让人想看全文），结论是「散场总结」（让人记住要点）。
+
+\begin{itemize}
+    \item 结论中\emph{绝对不能}出现正文没提过的新数据、新观点、新引用
+    \item 不需要再复述方法细节（摘要里已经说过）
+    \item 用 3-5 句话：你做了什么→关键发现→有什么意义
+\end{itemize}
+
+
+% ============================================================
+%  8. 引用管理
+% ============================================================
+\section{引用管理：BibTeX 与文献规范}
+
+\subsection*{BibTeX 是什么？}
+
+视频里没细讲，但这是 LaTeX 科研写作的核心功能。BibTeX 让你把所有参考文献存在一个 .bib 文件里，LaTeX 自动按期刊要求的格式排版。
+
+\subsection*{.bib 文件示例}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black, title=references.bib 示例]
+\begin{verbatim}
+@article{zhang2024vsg,
+  author  = {张三 and 李四 and 王五},
+  title   = {基于自适应虚拟同步机的
+             微电网频率控制策略},
+  journal = {中国电机工程学报},
+  volume  = {44},
+  number  = {3},
+  pages   = {1123--1132},
+  year    = {2024}
+}
+
+@inproceedings{smith2023ml,
+  author    = {John Smith and Alice Brown},
+  title     = {Machine Learning for Power
+               System Stability},
+  booktitle = {IEEE PES General Meeting},
+  year      = {2023},
+  pages     = {1--5}
+}
+\end{verbatim}
+\end{tcolorbox}
+
+\subsection*{正文中引用}
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black, title=引用命令]
+\begin{verbatim}
+张三等人提出了一种自适应 VSG 控制策略
+\cite{zhang2024vsg}。
+
+Smith 和 Brown 将机器学习引入电力系统
+稳定性分析 \cite{smith2023ml}。
+\end{verbatim}
+\end{tcolorbox}
+
+\begin{writingtip}{引用不是堆砌}
+    新手常见错误：在一句话后面挂 5-8 个引用 \cite{smith2023ml}。审稿人会问：你到底在引用哪一个？每个引用对应一个具体论点。
+
+    正确的引用：
+    \begin{itemize}
+        \item 「频率最低点问题最早由 A 等[1] 发现」→ 引用原始发现
+        \item 「后续 B 等[2] 将其拓展到多机系统」→ 引用拓展工作
+        \item 「C 等[3] 的综述总结了 2015-2023 年的进展」→ 引用综述
+    \end{itemize}
+\end{writingtip}
+
+\begin{exercise}{文献收集}
+    在 IEEE Xplore / 知网搜索你感兴趣的研究方向，找到 5 篇相关论文。为每篇写一个 .bib 条目。思考：这 5 篇之间有什么关系？（A 引用了 B？A 和 B 用了不同的方法解决同一个问题？）
+\end{exercise}
+
+
+% ============================================================
+%  9. 电气领域 LaTeX 进阶
+% ============================================================
+\section{电气领域写作进阶}
+
+\subsection*{常见符号表}
+
+\begin{table}[h]
+\centering
+\caption{电气工程常用符号与 LaTeX 命令}
+\begin{tabular}{lll}
+\toprule
+\textbf{符号} & \textbf{含义} & \textbf{LaTeX 命令} \\
+\midrule
+$\omega$   & 角频率    & `\textbackslash omega` \\
+$\varphi$  & 相位角    & `\textbackslash varphi` \\
+$\eta$     & 效率      & `\textbackslash eta` \\
+$\delta$   & 功角      & `\textbackslash delta` \\
+$\dot{x}$  & 时间导数  & `\textbackslash dot\{x\}` \\
+$\ddot{x}$ & 二阶导数  & `\textbackslash ddot\{x\}` \\
+$\mathbf{A}$ & 矩阵    & `\textbackslash mathbf\{A\}` \\
+$\jmath$   & 虚数单位（电工） & `\textbackslash jmath` \\
+$\angle$   & 角度      & `\textbackslash angle` \\
+$\Re$ / $\Im$ & 实部/虚部 & `\textbackslash Re` / `\textbackslash Im` \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{IEEE 期刊模板切换}
+
+视频里提到的「一条命令换模板」是这个意思：
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!50!black, title=模板切换原理]
+LaTeX 中，\textbf{内容}（你的文字、公式、图表）和\textbf{格式}（字体、间距、标题样式）是分离的。
+
+你的 .tex 文件里写的是内容。\texttt{\textbackslash documentclass\{...\}} 这行决定了格式。
+
+\begin{itemize}
+    \item 投 IEEE Trans. → \texttt{\textbackslash documentclass\{IEEEtran\}}
+    \item 投 Elsevier → \texttt{\textbackslash documentclass\{elsarticle\}}
+    \item 投中文期刊 → \texttt{\textbackslash documentclass\{ctexart\}}
+\end{itemize}
+
+模板切换 = 改一行代码 + 换参考文献样式文件，内容完全不动。
+\end{tcolorbox}
+
+
+% ============================================================
+%  10. 实战练习
+% ============================================================
+\section{综合练习：写一篇微型论文}
+
+按照以下提纲，用 LaTeX 写一篇 2-3 页的微型学术论文。主题自选（课设报告 / 仿真实验 / 文献综述都可以），但必须包含以下全部要素：
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*]
+    \item \textbf{标题}：准确、具体（不超过 20 字）
+    \item \textbf{摘要}：150-200 字，五要素齐全
+    \item \textbf{引言}：200-400 字，漏斗结构，含至少 3 篇引用
+    \item \textbf{方法}：含至少 2 个有编号的公式
+    \item \textbf{结果}：含 1 个三线表 + 对表格数据的文字描述（不解读）
+    \item \textbf{讨论}：与至少 1 篇文献对比 + 指出 1 个局限
+    \item \textbf{结论}：3-5 句，不给新信息
+    \item \textbf{参考文献}：至少 5 条，BibTeX 管理
+\end{enumerate}
+
+\begin{writingtip}{评判标准（自检用）}
+    写完后用以下标准自检：
+    \begin{itemize}
+        \item [ ] 读完摘要就知道这篇论文做了什么、发现了什么
+        \item [ ] 引言最后一段明确说明了本文的贡献
+        \item [ ] 公式中每个符号都在正文中有定义
+        \item [ ] 表格有三线（顶线、表头线、底线）
+        \item [ ] 讨论中有至少一处说「我们的结果与 XX 一致/不一致，因为…」
+        \item [ ] 结论中没有新信息
+        \item [ ] 每个引用都对应一个具体论点
+    \end{itemize}
+\end{writingtip}
+
+
+% ============================================================
+%  附录：VS Code 快捷键速查
+% ============================================================
+\section*{附录：VS Code LaTeX 快捷键速查}
+\addcontentsline{toc}{section}{附录：VS Code LaTeX 快捷键速查}
+
+\begin{table}[h]
+\centering
+\caption{LaTeX Workshop 常用快捷键}
+\begin{tabular}{ll}
+\toprule
+\textbf{快捷键}          & \textbf{功能} \\
+\midrule
+Ctrl+Alt+B               & 编译 LaTeX 文档 \\
+Ctrl+Alt+J               & 从代码定位到 PDF \\
+Ctrl+Click (在 PDF 上)   & 从 PDF 定位到代码 \\
+Ctrl+Alt+V               & 查看 PDF（不编译） \\
+Ctrl+Shift+P → ``latex'' & 全部 LaTeX 命令 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{1cm}
+
+\begin{center}
+\rule{0.5\textwidth}{0.4pt}\\[1em]
+{\small 训练文档 v1.0 · 2026-06-10 · 小黎}\\[0.3em]
+{\small 编译环境：XeLaTeX · 中文支持：ctex · 参考文献：BibLaTeX (IEEE style)}
+\end{center}
+
+\end{document}

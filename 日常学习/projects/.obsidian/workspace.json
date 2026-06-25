@@ -1,0 +1,245 @@
+{
+  "main": {
+    "id": "d5b79f0694e7950d",
+    "type": "split",
+    "children": [
+      {
+        "id": "5a316773f91cd56d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7becd0a3059137f1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "20260603-大学物理/第07章-电流与磁场/AI学习/summary.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "summary"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d796050731729c53",
+    "type": "split",
+    "children": [
+      {
+        "id": "cb153ae9f2222f2c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fdc1bc79c958218c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "f873ea83309da2a6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "33304eb93629c986",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 280.5
+  },
+  "right": {
+    "id": "c5b46b0603b2f23b",
+    "type": "split",
+    "children": [
+      {
+        "id": "5fb017ecb646e8e1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "36ac52841894b11f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Clippings/Bilibili/2026-06-16-【终于更完了】大学物理速成（非物理系）-P35-第12章 电磁感应 核心.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "2026-06-16-【终于更完了】大学物理速成（非物理系）-P35-第12章 电磁感应 核心 的反向链接列表"
+            }
+          },
+          {
+            "id": "36f3664f6ac2325c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "0470359c48d30d81",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "64739ad4cf525f6b",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "a689c6fe99b2e91b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          },
+          {
+            "id": "27c2ea1c748da663",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 466.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "realclaudian:Open Claudian": false
+    }
+  },
+  "active": "7becd0a3059137f1",
+  "lastOpenFiles": [
+    "20260603-电路分析/outputs/imagegen_final/第16章_二端口网络/final_pdf/第16章_二端口网络.pdf",
+    "20260603-电路分析/outputs/imagegen_final/第16章_二端口网络/pages/ch16_p02_imagegen_problem.png",
+    "20260603-电路分析/outputs/imagegen_final/第13章_非正弦周期电流电路/final_pdf/第13章_非正弦周期电流电路.pdf",
+    "20260603-电路分析/outputs/imagegen_final/第13章_非正弦周期电流电路/pages/ch13_p02_imagegen_problem.png",
+    "20260603-电路分析/outputs/imagegen_final/第11章_电路的频率响应/final_pdf/第11章_电路的频率响应.pdf",
+    "20260603-电路分析/outputs/imagegen_final/第11章_电路的频率响应/pages/ch11_p02_imagegen_problem.png",
+    "20260603-电路分析/outputs/imagegen_final/第10章_含有耦合电感的电路/final_pdf/第10章_含有耦合电感的电路.pdf",
+    "20260603-电路分析/outputs/imagegen_final/第10章_含有耦合电感的电路/pages/ch10_p02_imagegen_problem.png",
+    "20260603-电路分析/outputs/imagegen_final/第09章_正弦稳态电路分析/final_pdf/第09章_正弦稳态电路分析.pdf",
+    "20260603-电路分析/outputs/imagegen_final/第09章_正弦稳态电路分析/pages/ch09_p02_imagegen_problem.png",
+    "20260603-电路分析/outputs/imagegen_final/第08章_相量法/final_pdf/第08章_相量法.pdf",
+    "20260603-电路分析/outputs/imagegen_final/第08章_相量法/pages/ch08_p02_imagegen_problem.png",
+    "20260603-电路分析/outputs/imagegen_final/第07章_一阶电路/final_pdf/第07章_一阶电路.pdf",
+    "20260603-电路分析/outputs/imagegen_final/第07章_一阶电路/pages/ch07_p02_imagegen_problem.png",
+    "20260603-电路分析/scripts/bind_tail_chapters_2p.py",
+    "20260603-电路分析/plans/ch13-pdf-generation.md",
+    "20260603-电路分析/plans",
+    "20260603-电路分析/outputs/第13章-非正弦周期电流电路/source_snippets",
+    "20260603-电路分析/outputs/第13章-非正弦周期电流电路",
+    "proj-1781073070578-hzndmc/memory/long-term.md",
+    "20260603-电路分析/tmp/第13章PDF_v3抽检/page-8.png",
+    "20260603-电路分析/tmp/第13章PDF_v3抽检/page-7.png",
+    "20260603-电路分析/tmp/第13章PDF_v3抽检/page-6.png",
+    "20260603-电路分析/outputs/第13章_非正弦周期电流电路_复习PDF/latex_build_v3.md",
+    "AGENT.md",
+    "AGENTS.md",
+    "20260603-电路分析/shared/CODEX_电路期末资料整理说明.md",
+    "20260603-电路分析/shared/codex_circuit_exam_task.md",
+    "20260603-电路分析/shared/CODEX_电路期末复习资料整理任务说明.md",
+    "20260603-电路分析/shared/CODEX_电路期末资料整理指令.md",
+    "20260603-电路分析/outputs/00_资料索引_全量核验.md",
+    "20260603-电路分析/第13章-非正弦周期电流电路/习题/exercise_index_v2.md",
+    "20260603-电路分析/outputs/05_教材原题与习题原题索引_v2.md",
+    "20260603-电路分析/outputs/第13章_非正弦周期电流电路_复习PDF/source_pack_v2.md",
+    "20260603-大学物理/第06章-静电场/原来/课堂练习06.md",
+    "20260603-大学物理/第06章-静电场/知识点/静电场-核心知识点.md",
+    "20260603-大学物理/第06章-静电场/习题/PPT课堂练习-结构化.md",
+    "20260603-大学物理/🔴-高频考点/Ch03-刚体力学基础-高频考点.md",
+    "20260603-电路分析/outputs/1小时吃透版.md",
+    "20260603-电路分析/outputs/第13章_非正弦周期电流电路_复习PDF/source_pack.md",
+    "20260603-大学物理/outputs/Day1_Mechanics_Mastery.md",
+    "20260603-大学物理/🔴-高频考点/Ch08-电磁感应-高频考点.md",
+    "20260603-大学物理/🔴-高频考点/Ch06-静电场-高频考点.md",
+    "20260603-大学物理/第01章-质点运动学/习题/exercise_library.md",
+    "20260603-大学物理/第01章-质点运动学/AI学习/knowledge_base.md",
+    "20260603-大学物理/第03章-刚体力学基础/习题/PPT课堂练习-结构化.md"
+  ]
+}

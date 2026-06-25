@@ -1,0 +1,600 @@
+=== Page 34 ===
+上海皮赛电子有限公司 
+第 19 页 共 150 页 
+ 
+ 
+图 3-6 Vivado 安装——Accept License Agreements 
+选中图中三个☑，点击“Next”。 
+ 
+图 3-7 Vivado 安装——Select Product to Install 
+选中图中的Vivado 选项，点击“Next”。  
+
+=== Page 35 ===
+上海皮赛电子有限公司 
+第 20 页 共 150 页 
+ 
+ 
+图 3-8 Vivado 安装——Select Product to Install 
+选中图中“Vivado HL System Edition”，然后“Next”。  
+ 
+图 3-9 Vivado 安装——Vivado HL System Edition 
+不用更改任何选项，直接点击“Next”，出现如下界面： 
+
+=== Page 36 ===
+上海皮赛电子有限公司 
+第 21 页 共 150 页 
+ 
+ 
+图 3-10 Vivado 安装——Select Destination Directory 
+选择安装路径，这里路径默认在C 盘，尽量可以选择放在其它空
+间比较大的盘里。其它选项不变，注意安装文件不要有中文路径、空
+格和非法字符等。然后点击“Next”,出现Installation Summary 窗
+口： 
+
+=== Page 37 ===
+上海皮赛电子有限公司 
+第 22 页 共 150 页 
+ 
+ 
+图 3-11 Vivado 安装——Installation Summary 
+点击“Install”,Vivado 开始安装，出现以下界面，表明安装正
+常进行中： 
+ 
+图 3-12 Vivado 安装——Installation Progress 
+ 
+
+=== Page 38 ===
+上海皮赛电子有限公司 
+第 23 页 共 150 页 
+ 
+期间会弹出安全提示： 
+ 
+图 3-13 Vivado 安装——Windows 安全中心 
+确认勾选信任选项，然后直接点击“安装”。 
+安装时间比较长，过程中最好不要打开其他应用以免电脑卡死。
+请耐心等待，大概需要半小时。 
+ 
+Vivado 2020.1 软件的注册与激活。 
+安装完成后，用户需要从XILINX 官方渠道购买License 文件，
+Vivado 软件才能正常使用。该文件跟用户计算机的MAC 地址绑定，
+只能在用户申请的计算机上使用。购买后用户会收到XILINX 发出的
+*.lic 的文件，下面以实验板的配套资料的lic 文件夹下的文件为例，
+来讲述如何注册和激活Vivado 软件。 
+初次打开Vivado 软件后，会弹出Vivado License Manager，然
+后点击左边目录的“Load License”： 
+
+=== Page 39 ===
+上海皮赛电子有限公司 
+第 24 页 共 150 页 
+ 
+ 
+图 3-14 Vivado 安装——VIVADO License Manager 
+点击右边的“Copy License”，然后选择Lic 目录下的License
+文件： 
+ 
+图 3-15 Vivado 安装——Lic 目录 
+最后点击确定，关闭Vivado License Manager，在桌面双击
+Vivado 就可以开始正常运行了。 
+ 
+ 
+图 3-16 Vivado 2020.1 
+ 
+ 
+
+=== Page 40 ===
+上海皮赛电子有限公司 
+第 25 页 共 150 页 
+ 
+3.2 SSCOM 应用软件的安装 
+为了观察计算机与实验板之间的串口通信，我们使用常用的串口
+调试助手软件SSCOM V5.13.1，用以观察串口上数据的发送与接收。 
+我们在实验板配套资料中已经提供了该软件，如下图所示： 
+ 
+图 3-17 SSCOM 应用软件
+该软件为可执行文件，无需安装。打开文件夹，选择串口调试助
+手
+，双击，即可打开串口调试助手，用于观察实验数据
+的收发。注意，如果计算机没有正常工作的COM口，软件上看不到串
+口，可以在设备管理器
+里面看看有没有COM口。 
+串口助手初始界面如下： 
+
+=== Page 41 ===
+上海皮赛电子有限公司 
+第 26 页 共 150 页 
+ 
+ 
+图 3-18 串口调试助手
+
+=== Page 42 ===
+上海皮赛电子有限公司 
+第 27 页 共 150 页 
+ 
+3.3 USB-JTAG 驱动软件的安装 
+实验板的底板上集成了一个高速USB总线转接口，它通过USB总线
+提供异步串口、I2C同步串行接口、SPI同步串行接口和JTAG接口等。
+该USB口使用的是南京沁恒科技生产的CH347T芯片，而我们使用的功
+能是JATG下载调试以及串口功能。在该芯片工作之前，需要安装驱动
+程序。 
+我们在学习实验板光盘中已经提供了该软件，如下图所示： 
+ 
+图 3-19 CH347 驱动软件 
+将该文件解压后，得到如下的文件夹，找到其中的SETUP.EXE应
+用程序，如下图所示： 
+ 
+图 3-20 SETUP.EXE 应用程序  
+
+=== Page 43 ===
+上海皮赛电子有限公司 
+第 28 页 共 150 页 
+ 
+ 
+双击SETUP.EXE，出现以下界面： 
+ 
+图 3-21 安装驱动程序 
+点击安装，安装完成弹出安装完成窗口。紧接着CH347 针对Xil
+inx 程序下载有一个专门的下载软件ch347_xvcd_gui，我们也提供了
+该软件，文件位置在"xvcd-ch347-main\xvcd-ch347-main\Release_
+GUI\Windows\X86\ch347_xvcd_gui.exe"如下图所示： 
+
+=== Page 44 ===
+上海皮赛电子有限公司 
+第 29 页 共 150 页 
+ 
+ 
+图 3-22 ch347_xvcd_gui.EXE 应用程序 
+打开软件后，出现以下界面： 
+
+=== Page 45 ===
+上海皮赛电子有限公司 
+第 30 页 共 150 页 
+ 
+ 
+图 3-23 ch347_xvcd_gui.EXE 应用程序界面 
+后续在实验板上下载程序时，点击Start 连接后，即可在
+Vivado 中连接硬件设备并下载程序。其中下载速率可以根据自己需
+求去修改，速率范围如下图所示： 
+
+=== Page 46 ===
+上海皮赛电子有限公司 
+第 31 页 共 150 页 
+ 
+ 
+图 3-24 下载速率挡位 
+ 
+ 
+
+=== Page 47 ===
+上海皮赛电子有限公司 
+第 32 页 共 150 页 
+ 
+3.4 USB-UART 驱动软件的安装 
+ETL4-7A35T XILINX ARTIX-7 FPGA 入门级实验板的底板上集成
+了一个USB 虚拟出来的串口，可以与计算机等外部设备进行串口通
+信。该虚拟串口使用的是南京沁恒科技生产的CH340G 芯片，在该芯
+片工作之前，需要安装驱动程序。 
+我们在实验板配套资料中已经提供了该软件，如下图所示： 
+ 
+图 3-25 CH340G 驱动软件 
+将该文件解压后，得到如下的文件夹，找到其中的SETUP.EXE 应
+用程序，如下图所示： 
+ 
+图 3-26 SETUP.EXE 应用程序 
+双击SETUP.EXE，出现以下界面： 
+
+=== Page 48 ===
+上海皮赛电子有限公司 
+第 33 页 共 150 页 
+ 
+ 
+图 3-27 安装驱动程序 
+点击安装，安装完成弹出如下窗口： 
+ 
+图 3-28 安装完成 
+安装成功。 
+ 
+
+=== Page 49 ===
+上海皮赛电子有限公司 
+第 34 页 共 150 页 
+ 
+第4章 基于VIVADO 的LED 流水灯实
+验 
+本章节将会通过LED 流水灯演示实验来教大家如何在VIVADO 环
+境下建立工程与编译。 
+4.1 原理与硬件 
+  ETL4-7A35T XILINX ARTIX-7 FPGA 入门级实验板提供了8 个红
+色贴片LED 灯，高电平的时候亮，低电平的时候灭。LED 灯分布在实
+验板的底部， 其原理图如下图所示： 
+ 
+图 4-1 LED 电路原理图 
+
+=== Page 50 ===
+上海皮赛电子有限公司 
+第 35 页 共 150 页 
+ 
+4.2 实验要求 
+ETL4-7A35T XILINX ARTIX-7 FPGA 入门级实验板下方的D7-D0
+这8 个LED 从右到左(DIP=0)或者从左到右(DIP=1)依次每隔一秒点
+亮一个。 
+4.3 实验步骤 
+4.3.1 工程的建立与编译实现 
+在桌面双击
+图标，运行Vivado,出现如下初始界面： 
+ 
+图 4-2 初始界面 
+Quick Start 里选择新建工程“Create Project”，或点击工具
+栏中的“File”=>“ Project” =>“ New”，得到如下界面：(如果
+工程已经建好了，也可以选择“Open Project” 直接打开该工程)。 
+
+=== Page 51 ===
+上海皮赛电子有限公司 
+第 36 页 共 150 页 
+ 
+ 
+ 
+图 4-3 Create a New Vivado Project 
+直接点击“Next”。 
+ 
+图 4-4 Project Name 
+在弹出的对话框中输入工程名和工程存放的目录。在“Project 
+name”一栏输入工程名led_seq，在“Project location ”一栏选择
+
+=== Page 52 ===
+上海皮赛电子有限公司 
+第 37 页 共 150 页 
+ 
+工程存放的路径，可以自定义选择，我们放的路径是C:/project，
+（注意:路径中不能有中文路径、空格和非法字符等，否则后面编译
+会报错。） 然后点击“Next” 。 
+ 
+图 4-5 Project Type 
+此处选择工程类型，选中默认的“RTL Project”，点击“Next”。 
+ 
+图 4-6 Add Sources 
+
+=== Page 53 ===
+上海皮赛电子有限公司 
+第 38 页 共 150 页 
+ 
+界面中“Add Files”是添加已经有的文件，比如.v、.vhdl 等
+文件类型。也可以点击左侧的
+图标来添加文件。“Create File”
+是通过向导创建新文件。这里我们先跳过，因为后面要通过手动增加
+代码并保存成文件，直接点“Next”。  
+ 
+图 4-7 Add Constraints(optional) 
+添加 Constraints（约束文件），这里我们也跳过，因为后面我
+们将通过IOPORT 来手动锁定管脚位置。直接点击“Next”。 
+ 
+图 4-8 Default Part 
+
+=== Page 54 ===
+上海皮赛电子有限公司 
+第 39 页 共 150 页 
+ 
+选择芯片。可以根据芯片类别、系列、封装、速度等条件一一过
+滤。ETL4-7A35T XILINX ARTIX-7 FPGA 入门级实验板上使用的是
+Artix-7 系列的FPGA，该芯片的订购代码是XC7A35T-2FGG484。所以
+我们要按照如下信息来选择： 
+Category 
+这个是FPGA 的可靠性选项，选General Purpose 
+Package 
+这个是FPGA 的封装，选fgg484 
+Temperature 
+这个是FPGA 的工作温度范围，默认ALL Remaining 
+Family 
+这个是FPGA 的系列，选Artix-7 
+Speed 
+这个是FPGA 的速度等级，选-2 
+Static Power 这个不用选，默认ALL Remaining 
+表 4-1 FPGA 型号选择过滤器 
+大家也可以直接在“Search”中输入芯片型号前几个关键字，比
+如“XC7A35TFGG484”。选中过滤出来的“XC7A35TFGG484-2”，点击
+“Next”。 
+
+=== Page 55 ===
+上海皮赛电子有限公司 
+第 40 页 共 150 页 
+ 
+ 
+图 4-9 New Project Summary 
+直接点击“Finish”。 
+等待几秒就可以看到以下界面，新建一个Verilog 文件。点击左
+侧“Project Manager” 界面下的“Add Sources”。 
+ 
+图 4-10 Project Manager 
+出现“Add Sources”界面，如下图所示： 
+
+=== Page 56 ===
+上海皮赛电子有限公司 
+第 41 页 共 150 页 
+ 
+ 
+图 4-11 Add Sources 
+选中的“Add or create design sources”，即添加或者创造新
+的源文件。点击“Next”。 
+ 
+图 4-12 Add or Create Design Sources 
+界面中按下“+”号，出现“Add Files”是添加已经有的文件，
+“Create File”是创建新文件。 点击“Create File”。 
+
+=== Page 57 ===
+上海皮赛电子有限公司 
+第 42 页 共 150 页 
+ 
+ 
+图 4-13 Create Source File 
+在跳出的界面默认选择文件类型“Verilog”，输入文件名
+“led_seq”， 默认保存路径。最后点击“OK”。文件添加到工程中了，
+点击“Finish”。 
+跳出“Define Module”界面，可以在这里设置输入输出端口。 
+ 
+图 4-14 Module Definition 
+避免麻烦，我们直接在程序中编辑，可以跳过，直接点击“OK”。 
+弹出警告界面，如下图所示： 
+
+=== Page 58 ===
+上海皮赛电子有限公司 
+第 43 页 共 150 页 
+ 
+ 
+图 4-15 Define Module 
+因为我们没有定义任何值，可以忽略，直接点击“YES”。 
+出现“Add or Create Design Sources”界面，可以直接跳过。 
+ 
+图 4-16 Add or Create Design Sources 
+此时“Project Manager”出现了一个 led_seq.v 的文件，被设
+置为顶层文件 。双击打开，里面只是定义了一个模块。  
+
+=== Page 59 ===
+上海皮赛电子有限公司 
+第 44 页 共 150 页 
+ 
+ 
+图 4-17 Project Manager 
+在“led_seq.v”文件中添加程序。具体程序如下： 
+ 
+`timescale 1ns / 1ps 
+//流水灯 
+//LED 灯从右往左（DIP=0）或者从左到右（DIP=1），每秒移动一个灯 
+module led_seq(clk,reset,dir_r_l,led); 
+input clk; 
+input reset; 
+input dir_r_l; 
+output reg [7:0] led; 
+ 
+reg [25:0] cnt;  
+reg enable;  
+ 
+//计时 
+always @(posedge clk or negedge reset) 
+begin 
+
+=== Page 60 ===
+上海皮赛电子有限公司 
+第 45 页 共 150 页 
+ 
+ 
+if(~reset) 
+ 
+ 
+begin 
+ 
+ 
+ 
+cnt <= 0; 
+ 
+ 
+end 
+ 
+else 
+ 
+ 
+begin 
+ 
+ 
+ 
+if(cnt == 26'd49999999) begin 
+ 
+ 
+ 
+ 
+cnt <= 26'd0; 
+ 
+ 
+ 
+ 
+enable <= 1; 
+ 
+ 
+   end 
+ 
+ 
+ 
+else begin 
+            cnt <= cnt + 1'b1; 
+ 
+ 
+ 
+ 
+enable <= 0; 
+ 
+ 
+   end 
+ 
+ 
+end 
+end 
+ 
+//亮灯 
+always @(posedge clk or negedge reset) 
+begin 
+ 
+if(~reset) 
+ 
+ 
+led <= 8'b00000001; 
+ 
+else 
+ 
+ 
+if(enable) 
+ 
+ 
+begin 
+ 
+ 
+ 
+ 
+if(dir_r_l == 1) //通过DIP[0]来调整方向 
+ 
+ 
+ 
+ 
+led <= {led[0],led[7:1]}; 
+ 
+ 
+ 
+else 
+
+=== Page 61 ===
+上海皮赛电子有限公司 
+第 46 页 共 150 页 
+ 
+ 
+ 
+ 
+ 
+led <= {led[6:0],led[7]}; 
+ 
+ 
+end 
+end 
+endmodule  
+保存之后，点击左边目录Flow Navigator 下的“Run Synthesis”
+进行综合： 
+ 
+图 4-18 Run Synthesis 
+跳出Launch Runs 界面。点击“OK”： 
+
+=== Page 62 ===
+上海皮赛电子有限公司 
+第 47 页 共 150 页 
+ 
+ 
+图 4-19 Launch Runs 
+点击“OK”。 
+系统开始编译，等待一段时间，软件右上侧显示进度，如下图所
+示： 
+ 
+图 4-20 Run Synthesis 进度 
+编译完成，选中“Open Synthesized Design”，然后再在界面上
+方找到“Windows”，在下拉列表点击I/O Ports，进行管脚约束。  
+
+=== Page 63 ===
+上海皮赛电子有限公司 
+第 48 页 共 150 页 
+ 
+ 
+图 4-21 Windows 
+此时出现“I/O Ports”界面。可以在下方手动输入引脚编号和
+I/O std,引脚编号可以参考本指导手册的附录一，I/O std 选择
+“LVCMOS33”。 
+ 
+ 
+图 4-22 I/O  Ports 
+保存后，会弹出一个窗口，输入文件名称“led_seq”，默认文件
+类型.XDC，这样就生成引脚约束文件，默认文件保存路径。 
+
+=== Page 64 ===
+上海皮赛电子有限公司 
+第 49 页 共 150 页 
+ 
+ 
+图 4-23 Save Constraints 
+最后点击“OK” 。 
+点击“Sources”，可以看到在“Constraints”文件列表中多了
+一个“led_seq.xdc”文件。双击打开，可以看到引脚端口信息。 
+ 
+图 4-24 Constraints 
+
+=== Page 65 ===
+上海皮赛电子有限公司 
+第 50 页 共 150 页 
+ 
+或者你也可以自己编写引脚约束文件。首先鼠标点击图中加号
+，选择
+并点击next 选择create file
+建立管脚约束文件（.xdc 文件），File name 中命名led_seq： 
+ 
+图 4-25 创建引脚约束文件 
+约束文件建立好了，往文件中添加引脚约束语句，相关的引脚约
+束语句我们在附录中都有提供。语句如下图所示： 
+ 
+图 4-26 引脚约束语句 
+
+=== Page 66 ===
+上海皮赛电子有限公司 
+第 51 页 共 150 页 
+ 
+引脚信息分配完了，工程基本完整了。按照顺序，重新进行综合
+“Run Synthesis”=>布局布线“Run Implementation”=>生成比特
+流“Generate Bitstream”。  
+时间较长，请耐心等待，进度条在整个界面右上方。 
+ 
+ 
+ 
+
+=== Page 67 ===
+上海皮赛电子有限公司 
+第 52 页 共 150 页 
+ 
+4.3.2 比特流文件的下载与板上验证 
+将Type C 线连接到实验板的Type C 口，把另一头连接到计算
+机，给实验板上电，并且打开CH347 XVCD 软件,如下图所示： 
+ 
+图 4-27 连接ch347_xvcd 软件 
+比特流生成后，表示程序完成，可以下载。会跳出“Bitstream 
+Generation Completed”界面: 
+
+=== Page 68 ===
+上海皮赛电子有限公司 
+第 53 页 共 150 页 
+ 
+ 
+图 4-28 Bitstream Generation Completed 
+选择“Open Hardware Manager”，即打开硬件管理器，查找下载
+器以及下载器连接的实验板。从以下图片可以看到，上方有一个
+“Open target”，点击后选择“Open New Target”进行连接硬件。 
+ 
+图 4-29 Open New Target 
+打开后一直选择Next，直到出现如下图的Select Hardware 
+Target 界面： 
+
+=== Page 69 ===
+上海皮赛电子有限公司 
+第 54 页 共 150 页 
+ 
+ 
+图 4-30 添加设备 
+接着单击 ，将CH347 下载器中的HOST ADDRESS：127.0.0.1 和
+PORT：2542 填入到输入框内，然后点击OK 就会识别出实验板和下载
+器，如下图所示： 
+ 
+图 4-31 识别设备成功 
+
+=== Page 70 ===
+上海皮赛电子有限公司 
+第 55 页 共 150 页 
+ 
+ 
+若第一次未识别到Hardware Devices 时，您可以单击Back，然
+后再次单击Next 回到该界面，就能识别成功了。最后我们一直单击
+下一步完成下载器的连接。如下图所示，就代表我们连接成功。 
+ 
+图 4-32 识别设备成功 
+点击
+后，跳出“Program Device”界面，
+可以下载程序了。Xilinx 器件运行靠的是.bit 文件。我们默认选择
+在默认路径下的led_seq.bit 文件。 

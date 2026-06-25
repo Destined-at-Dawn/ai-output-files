@@ -1,0 +1,110 @@
+{
+  "_meta": {
+    "version": "v1.0",
+    "description": "Skill自动路由规则 — 根据用户消息意图自动匹配最合适的Skill",
+    "last_updated": "{{当前日期}}",
+    "note": "此模板需根据实际安装的Skill进行定制"
+  },
+  "settings": {
+    "auto_activate": true,
+    "max_skills_per_session": 5,
+    "scan_depth": 3
+  },
+  "rules": [
+    {
+      "id": "rule-001",
+      "name": "写作相关",
+      "glob_patterns": [
+        "**/公众号/**",
+        "**/小红书/**",
+        "**/朋友圈/**"
+      ],
+      "trigger_keywords": ["写文章", "公众号", "小红书", "朋友圈", "内容创作"],
+      "matched_skills": [],
+      "action": "auto_activate",
+      "reason": "内容创作场景自动激活写作类Skill"
+    },
+    {
+      "id": "rule-002",
+      "name": "图片生成",
+      "glob_patterns": [
+        "**/图片提示词/**",
+        "**/视觉风格/**"
+      ],
+      "trigger_keywords": ["配图", "生成图片", "提示词", "Midjourney", "DALL-E"],
+      "matched_skills": ["visual-style-prompt"],
+      "action": "auto_activate",
+      "reason": "图片生成场景激活视觉风格Skill"
+    },
+    {
+      "id": "rule-003",
+      "name": "提示词优化",
+      "glob_patterns": [],
+      "trigger_keywords": ["优化提示词", "写prompt", "BROK", "提示词优化"],
+      "matched_skills": ["brok-prompt-optimizer"],
+      "action": "auto_activate",
+      "reason": "提示词优化场景激活BROK优化器"
+    },
+    {
+      "id": "rule-004",
+      "name": "学习提炼",
+      "glob_patterns": [
+        "**/学习资料/**"
+      ],
+      "trigger_keywords": ["学习", "方法论", "提炼", "播客", "逐字稿"],
+      "matched_skills": ["ai-method-learner"],
+      "action": "auto_activate",
+      "reason": "学习场景激活AI方法论学习器"
+    },
+    {
+      "id": "rule-005",
+      "name": "PDF处理（强制检测）",
+      "glob_patterns": ["**/*.pdf"],
+      "trigger_keywords": ["PDF", "pdf", "读取PDF", "提取PDF", "转换PDF", "合并PDF", "拆分PDF", "扫描件", "OCR识别PDF", "阅读PDF", "打开PDF", "查看PDF", "解析PDF"],
+      "matched_skills": ["pdf"],
+      "action": "auto_activate",
+      "priority": 4,
+      "reason": "PDF是最高频文件格式——AI常见遗漏，必须强制触发"
+    },
+    {
+      "id": "rule-006",
+      "name": "Word处理",
+      "glob_patterns": ["**/*.docx"],
+      "trigger_keywords": ["Word", "word", "docx", "写Word", "Word文档"],
+      "matched_skills": ["docx"],
+      "action": "auto_activate",
+      "priority": 3,
+      "reason": "Word文件处理"
+    },
+    {
+      "id": "rule-007",
+      "name": "Excel数据处理",
+      "glob_patterns": ["**/*.xlsx"],
+      "trigger_keywords": ["Excel", "xlsx", "表格数据", "数据分析"],
+      "matched_skills": ["xlsx", "data-analysis"],
+      "action": "auto_activate",
+      "priority": 3,
+      "reason": "Excel/数据分析"
+    },
+    {
+      "id": "rule-008",
+      "name": "PPT处理",
+      "glob_patterns": ["**/*.pptx"],
+      "trigger_keywords": ["PPT", "演示", "幻灯片", "slides"],
+      "matched_skills": ["pptx", "ppt-generator-pro"],
+      "action": "auto_activate",
+      "priority": 3,
+      "reason": "PPT生成/修改"
+    },
+    {
+      "id": "rule-009",
+      "name": "代码文件",
+      "glob_patterns": ["**/*.py", "**/*.v", "**/*.sv"],
+      "trigger_keywords": ["代码", "编程", "Python", "Verilog"],
+      "matched_skills": ["code", "hardware-design"],
+      "action": "auto_activate",
+      "priority": 3,
+      "reason": "代码文件自动匹配语言工具"
+    }
+  ]
+}

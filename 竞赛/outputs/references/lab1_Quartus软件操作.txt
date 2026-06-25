@@ -1,0 +1,413 @@
+--- Page 1 ---
+实验一Quartus Prime 软件操作
+一、实验目的
+(1) 掌握Quartus Prime文本输入法设计电路的步骤。
+(2) 掌握Quartus Prime混合输入法进行电路层次化设计的方法。
+(3) 掌握在Quartus Prime 中调用ModelSim 进行仿真的方法。
+二、实验内容及步骤
+1. Quartus Prime 文体输入法设计电路实例
+首先要建立设计项目。
+第1 步：单击桌面Quartus Prime 蓝色图标
+，打开Quartus Prime 主界面。
+第2 步：新建一个空项目。
+执行File->New Project Wizard 命令，进入新建项目向导。如图5-1 所示，输入工程路径、
+工程文件名以及顶层实体名。注意：这里输入的顶层实体名必须与之后设计文件的顶层模块
+名相同，默认的顶层实体名与工程文件名相同。默认项目保存路径在Quartus 安装下，也可
+修改为其他地址，视具体情况而定。
+图5-1 新建项目向导
+第3步：执行Next，进入向导的下一页进行项目内文件的添加操作，如果没有文件需要
+添加，则直接按Next即可。
+第4步：指定CPLD/FPGA器件，如图5-2所示，选择芯片系列为“Cyclone IV E”，型号
+为“EP4CE115F29C7”。选择型号时，可直接在列表框中查找，也可通过指定封装方式
+（Package）为“FBGA”、引脚数（Pin count）为“780”以及速度等级（Speed grade）为
+“7”这3个参数值来进行筛选。
+
+
+--- Page 2 ---
+图5-2 器件选择
+第5步：设置EDA 工具。设计中可能会用到的EDA 工具有综合工具、仿真工具以及
+时序分析工具，参考图5-3。
+图5-3 设置EDA 工具
+第6步：向导的后面几步不做更改，直接按Next即可，最后按Finish结束向导。到此即完
+成了一个项目的新建工作。
+第7步：新建一个Verilog HDL文件。由于之前建立的项目还是一个空项目，所以接着
+需要为项目新建文件。执行File->New命令，在“ Design Files”选项页中选择“Verilog HDL
+File”，然后点击OK按钮。这时自动新建一个名为Verilog1.v的文档，执行File->Save As命
+令，将文档另存为and2gate.v文件，结果如图5-4所示。
+
+
+--- Page 3 ---
+图5-4
+新建Verilog HDL文件
+第8 步：代码输入。在and2gate.v 代码编辑窗口内输入以下代码：
+module and2gate (y, a, b);
+input
+a,b;
+output
+y;
+reg
+y;
+always @ ( a or b)
+y<=a & b;
+endmodule
+第9步：保存设计，点击菜单项Processing->start compilation，或者单击菜单栏中的快捷
+键“
+”进行全编译，检查是否有错。
+第10步：功能仿真，工程编译通过后，必须对其功能和时序性质进行仿真测试，以了解
+设计结果是否满足原设计要求。执行File->New命令，选择Verification/Debugging Files选项
+中University Program VWF，如图5-5所示。单击ok按钮，打开矢量波形编辑窗口，如图5-6
+所示。
+图5-5 波形文件
+
+
+--- Page 4 ---
+图5-6 波形窗口
+第11步：添加信号结点。在空波形文件中点击右键（或者直接双击），在图5-7中用鼠
+标左键点击insert Node or BUS....后，出现图5-8所示的窗口，单击“Node Finder...”
+图5-7 添加信号结点
+图5-8 加入要仿真的输入输出节点
+第12步：在出现的图5-9所示的窗口中，Fitter 选择Pin:all，单击List 按钮。出现结点列
+表。简单起见，可以直接点>>按钮，将所有结点加入右侧Select Nodes 栏中。完成后如图
+5-10所示, 单击OK 按钮返回图5-11所示的波形编辑窗口。
+
+
+--- Page 5 ---
+图5-9 节点搜索窗口
+图5-10 选中添加的节点
+第13步：在图5-11所示的波形窗口，根据需要设置输入波形如图5-12所示，以系统默认文件
+名保存。
+图5-11 波形编辑窗口
+
+
+--- Page 6 ---
+图5-12 波形输入设置
+第14步：仿真器ModelSim设置。
+仿真之前需设置好ModelSim 的位置，选择Tool>options>EDA Tool Options，确定
+ModelSim位置，本例位置如图5-13所示。
+图5-13 仿真器设置
+第15步：功能仿真。在波形编辑窗口，选择Simulation>Run Function Sinulation 或工具
+按钮
+启动功能仿真，得到如图5-14所示的功能仿真波形。
+图5-14 功能仿真波形
+第16步：时序仿真。其主要用途是查看实际设计的电路运行时是否满足延时要求，时序
+仿真考虑了电路实际运行的延时等因素。在波形编辑窗口，选择Simulation>Run Timing
+Sinulation 或工具按钮
+启动时序仿真，得到如图5-15所示的时序仿真波形。与功能仿真结
+
+
+--- Page 7 ---
+果图相比较，可以看出时序仿真的输出带有一定的延迟。
+图5-15 时序仿真波形
+注：如果仿真过程中出现“ Error: (vsim-19) Failed to access library "cyclone_ver" at
+"cyclone_ver"”，则可以进行如下操作：
+回到主窗口中，选择Tool>Launch Simulation Library Compiler，如图5-16 所示，底部
+“Output directory”选择‘simulation’文件夹下的‘qsim’文件夹，如图5-17 所示为本例
+输出目录，然后点击“Start Compilation”，等待成功后，重新运行VWF 文件即可。
+图5-16 仿真库编译器
+
+
+--- Page 8 ---
+图5-17仿真库编译
+第17步：引脚分配。
+在软件主界面选择Assigments->Pin命令或者单击菜单栏中的快捷键“
+”，打开引脚规划
+器（Pin Planner），如图5-18所示。接着双击信号a的Location栏，在下拉框中选择PIN_AB28，
+其他信号可以参考表5-1进行分配。所有引脚输入输出对应开关和指示灯见附录五。完成引
+脚分配后，重新按“
+”全编译，生成目标sof文件。
+表5-1 引脚分配
+信号
+FPGA引脚
+DE2板上器件
+a
+PIN_AB28
+SW0
+b
+PIN_AC28
+SW1
+y
+PIN_G19
+LEDG0
+
+
+--- Page 9 ---
+图5-18 引脚分配
+第18步：程序下载。首先确定已经用USB连接线连接DE2-115的USB Blaster端口和计算
+机，才可进行程序的下载。在DE2-115平台上，可以对FPGA进行两种模式配置：一种是JTAG
+模式，通过USB Blaster直接配置FPGA，但掉电后，FPGA中的配置内容会丢失，再次上电
+需要用电脑重新配置；另一种是在AS模式下，通过USB Blaster对DE2-115平台上的串行配置
+器件EPCS64进行编程，平台上电后，EPCS64会自动配置FPGA。通过DE2-115平台上的SW19
+选择配置模式，SW19置于RUN位置，即选择JTAG模式配置；置于PROG位置，则选择AS
+模式对EPCS64进行编程。本次实验采用JTAG模式，具体步骤如下。
+（1）将DE2-115开发板上左边的RUN/PROG开关（SW19）置于RUN位置。按下红色按钮
+SW18接通电源，查看设备管理中有无“USB-Blaster”连接。图5-19所示，USB-Blaster上有
+黄色感叹号，说明没有安装设备驱动程序，用鼠标右键单击USB-Blaster，选择更新驱动程
+序，驱动程序一般在Quartus安装目录下面，本机目录如图5-20所示，安装成功后，黄色感叹
+号消失，如图5-21所示。
+
+
+--- Page 10 ---
+图5-19 设备管理器
+图5-20 驱动程序安装目录
+图5-21 USB-Blaster驱动安装成功
+至此便完成了USB Blaster 下载器驱动的安装程序，注意不要在上电期间拔插USB
+Blaster，不然很可能由于静电或其他原因将板卡烧坏。
+（2）回到Quartus软件主界面，选择Tools->Programmer命令，打开配置窗口，如图5-22
+所示。
+
+
+--- Page 11 ---
+图5-22下载配置窗口
+（3）图5-22中第一列显示“No Hardware”，说明未指定硬件设备，单击Hardware Setup
+按钮，打开硬件设置窗口，如图5-23所示。双击列表框中的USB-Blaster，然后点击Close按
+钮，完成硬件设置。
+图5-23 硬件设置窗口
+（4）从图5-23可以看出，硬件已经设置完成，而且待配置的文件也已经在文件列表中。
+然后选中Program/Config选项，单击Start按钮，开始编程，如图5-24所示。编程结束后，即
+可在DE2-115上验证，将SW0和SW1置于1的位置，可以看到LEDG0灯亮。
+
+
+--- Page 12 ---
+图5-24 下载配置窗口
+2 混合输入法完成层次化设计实例
+采用混合输入法完成由与门和三态门组合成的三态与门。
+(1) 三态门
+电路中共有2个输入信号：数据输入信号din和三态使能信号en。还有一个输出信号dout。
+三态门的逻辑功能是：当en='1'时，dout<=din；当en='0'时，dout<='Z'。
+Verilog HDL程序如下：
+module
+trigate ( dout, din,en );
+input
+din, en;
+output
+dout;
+reg
+dout;
+always @ ( en or din)
+begin
+if (en)
+dout<=din;
+else
+dout<=1'bZ;
+end
+endmodule
+实验步骤如下：
+第1步：在前面那个项目的基础上新建一个verilog HDL文件，起名为trigate.v，并输入上
+面的源程序。
+第2步：在项目导向（Project Navigator）窗口中，如图5-25所示。选择文件（Files）管
+理页面，点开Device Design Files项，右击trigate.v文件，选择“Set as Top-Level Entity”选项。
+目的是将trigate.v文件设为项目的顶层实体。
+
+
+--- Page 13 ---
+图5-25 项目导向（Project Navigator）窗口
+第3步：对源程序trigate.v，单击菜单栏中的快捷键“
+”进行全编译，进行语法检查，
+直到程序无误。
+第4步：功能仿真，新建波形文件，以默认文件名保存，仿真结果如图5-26所示。
+图5-26
+仿真结果
+第5步：按照表5-2进行引脚分配。重新编译，并下载。
+表5-2引脚分配
+信号
+FPGA引脚
+DE2-115板上器件
+din
+PIN_AB28
+SW0
+en
+PIN_AC28
+SW1
+dout
+PIN_G19
+LEDG0
+(2) 三态与门
+利用前面已完成的与门和三态门组合成一个三态与门。与前面两个例子不同的是，在
+这里不是采用文本编辑器完成设计输入，而是采用图形编辑器。QuartusII 的原理图输入设
+计法可以与传统的数字电路设计法接轨，即把传统方法得到的设计电路的原理图, 用EDA
+平台完成设计电路的输入、仿真验证和综合, 最后编程下载到可编程逻辑器件(FPGA/CPLD)
+或专用集成电路(ASIC)中。在EDA 设计中,不必进行传统电路设计过程的布局布线、绘制
+印刷电路板、电路焊接、电路加电测试等, 从而提高了设计效率, 降低了设计成本, 减轻了
+设计者的劳动强度。然而, 原理图输入设计法的优点不仅如此, 它还可以方便地实现数字系
+统的层次化设计, 这是传统设计方法无法比拟的。层次化设计也称为“自底向上”的设计，
+
+
+--- Page 14 ---
+即将一个大的设计项目分解为若干个子项目或若干个层次来完成。先从底层的电路设计开始,
+然后从高层次的设计中逐级调用低层次的设计结果，直至顶层系统电路的实现。对于每个层
+次的设计结果, 都经过严格的仿真验证, 以尽量减少系统设计中的错误。每个层次的设计均
+可以用原理图输入法实现, 也可以用其他方法(如HDL文本输入法)实现, 这种方法称为“混
+合设计输入法”。层次化设计为大型系统设计及SOC或SOPC的设计提供了方便、直观的设
+计途径。
+操作步骤如下：
+第1步：首先将上述两个Verilog HDL文件生成为符号（Symbol），以供后续步骤使用。
+在图5-27所示的项目导向（Project Navigator）窗口中，右击and2gate.v，选择Create Symbol Files
+for Current File命令，即生成了and2gate符号。用同样的方法生成trigate符号。
+图5-27 项目导向（Project Navigator）窗口
+第2步：新建一个图形文件。选择File->New命令，选择“Block Diagram/Schematic File”，
+单击OK按钮完成，生成一个空白的图形文件，将该图形文件另存为tri_and_gate.bdf。图形编
+辑窗口如图5-28所示，窗口上面是图形编辑工具条。
+
+
+--- Page 15 ---
+图5-28 图形编辑窗口
+第3步：在图形编辑窗口的空白处双击，打开符号库，如图5-29所示。展开Project项，可
+以看到有两个之前生成的符号分别是and2gate和trigate。选择and2gate，单击OK按钮，该符
+号就会出现在图形编辑窗口，单击左键即在窗口内放置该符号。用同样的方法放置trigate符
+号。
+图5-29符号库
+第4步：再次打开符号库，在name输入栏中输入“input”，符号库自动在库中找到输入
+（input）符号，并选中“Repeat-insert mode”点击OK按钮，如图5-30所示。可反复在编辑
+窗口中放入输入符号，直到单击右键取消放置为止。由于输入信号一共有3个，所以需要放
+入3个输入符号，并将3个输入符号命名为dina、dinb和en。用同样的方法放置1个输出（output）
+符号，并命名为dout。再选择工具栏中的
+按钮，将各符号连接起来，结果如图5-31所示。
+
+
+--- Page 16 ---
+图5-30
+input 输入端符号
+图5-31 三态与门原理图
+第5步：保存图形文件，并将tri_and_gate.bdf设置为顶层实体。再次编译项目文件，并
+进行功能仿真，仿真结果如图5-32所示。
+图5-32 仿真结果
+第6步：按照表5-3分配引脚，重新编译并下载验证。
+表5-3 引脚分配
+信号
+FPGA引脚
+DE2上的器件
+dina
+PIN_AB28
+SW0
+dinb
+PIN_AC28
+SW1
+en
+PIN_AC27
+SW2
+
+
+--- Page 17 ---
+dout
+PIN_G19
+LEDG0
+3.在Quartus II 中调用ModelSim 进行仿真
+(1) 代码准备：按照前面的步骤建立一个新的Quartus II 工程，并在工程中输入两个代
+码，源代码counter.v 和测试代码counter_test.v。
+在Quartus II 工程中输入顶层文件counter.v 代码
+`timescale 1ns/1ps
+//时间单位/时间精度
+module counter(
+input
+clk,
+input
+rst,
+output reg[3:0]
+cnt,
+//时间计数器
+output
+div_2,
+//2 分频
+output
+div_4,
+//4 分频
+output
+div_8
+//8 分频
+);
+always @ (posedge clk or posedge rst)
+begin
+if(rst) begin
+cnt<=4'h0;
+end
+else begin
+cnt<=cnt+1'b1;
+end
+end
+assign div_2=cnt[0];
+assign
+div_4=cnt[1];
+assign
+div_8=cnt[2];
+endmodule
+在上述工程中输入testbench 文件counter_test.v 代码
+`timescale 1ns/1ps
+//仿真时间单位/时间精度
+module counter_test();
+reg
+clk;
+reg
+rst;
+wire[3:0] cnt;
+wire
+div_2;
+wire
+div_4;
+wire
+div_8;
+parameter
+clk_cycle=10;
+//20M 时钟
+parameter
+clk_hcycle=5;
+counter
+dut(
+//实例化待测试模块
+.clk(clk),
+.rst(rst),
+
+
+--- Page 18 ---
+.cnt(cnt),
+.div_2(div_2),
+.div_4(div_4),
+.div_8(div_8)
+);
+initial begin
+clk=1'b1;
+end
+always
+#clk_hcycle
+clk=~clk;
+//产生时钟信号
+initial begin
+//产生复位信号
+rst=1'b1;
+#10
+//延时10ns 即10 个时间单位后,rst 从1 变为0
+rst=1'b0;
+end
+initial begin
+$monitor($time,,clk,,rst,,cnt,,div_2,,div_4,,div_8);
+#10000
+$stop;
+end
+endmodule
+（2）选择菜单栏Assignments→Settings 或工具栏中Settings 按钮，进入设置界面，如图
+5-33 所示，选择菜单栏Simulation 选项，单选Compile test bench，点击Test Benches，在弹
+出的对话框中点击New，填写Test bench name，按照目录添加测试文件，并点击Add 按钮，
+如图5-34 所示，最后点击OK 回到设计界面。
+图5-33 测试文件设置
+
+
+--- Page 19 ---
+图5-34 加入测试文件
+（3）将测试文件添加到工程，对源代码counter.v 进行全编译后，分析通过，则准备启动仿
+真。
+（4）前仿真：选择菜单栏Tools→Run Simulation Tool→RTL Simulation 选项或工具栏中
+RTL Simulation 按钮，Quartus 会自动启动Modelsim 软件并完成前仿真。前仿真结果如图
+5-35 所示。
+图5-35 前仿真结果
+7)后仿真：在Quartus II 中执行Tools→Run Simulation Tool→Gate Level Simulation 会自动启
+动并完成后仿真。后仿真结果如图5-36 所示。
+图5-36
+后仿真结果
+三、实验报告与要求
+(1)完成实验内容中要求的各项任务。
+
+
+--- Page 20 ---
+(2)记录每个步骤的软件仿真波形和硬件验证结果。并总结调试过程中出现的问题和解决方
+案。
+
+

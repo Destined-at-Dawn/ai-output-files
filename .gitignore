@@ -1,0 +1,55 @@
+# === 大文件目录（不纳入版本控制） ===
+# 百大认知书籍（PDF/EPUB，约 2GB）
+个人/百大认知书籍/
+
+# 归档目录（历史文件，不需要版本控制）
+归档/
+
+# 原始牛马目录（已迁移，保留作参考）
+牛马/
+
+# === 临时文件 ===
+*.tmp
+*.log
+*.bak
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Python ===
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# === Node.js ===
+node_modules/
+.npm
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === 敏感文件 ===
+*.env
+.env.local
+.env.*.local
+
+# === 微信数据（隐私） ===
+创作/output/wechat_decrypted/
+创作/output/wechat_exports/
+
+# === 训练数据（大文件） ===
+竞赛/runs/
+竞赛/weights/
+竞赛/datasets/
+
+# === 临时项目目录 ===
+mutual/projects/proj-*/outputs/*.json
+mutual/projects/proj-*/outputs/*.csv

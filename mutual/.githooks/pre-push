@@ -1,0 +1,26 @@
+#!/bin/sh
+# Pre-push hook: Prevent direct push to main branch
+# Based on AGENT.md Git workflow rules
+
+protected_branch='main'
+current_branch=$(git symbolic-ref HEAD | sed -s 's/refs\/heads\///')
+
+if [ "$current_branch" = "$protected_branch" ]; then
+    # Check if commit message contains WIP (checkpoint commit is allowed)
+    last_commit_msg=$(git log -1 --pretty=%B)
+    if echo "$last_commit_msg" | grep -q "WIP"; then
+        echo "✅ [WIP] Checkpoint commit - push allowed"
+        exit 0
+    fi
+
+    echo "❌ ERROR: Direct push to '$protected_branch' branch is not allowed!"
+    echo ""
+    echo "Please follow the Git workflow (see AGENT.md):"
+    echo "  1. Create a feature branch: git checkout -b agent/<task-id>-<description>"
+    echo "  2. Make your changes and commit"
+    echo "  3. Push the feature branch: git push origin <branch-name>"
+    echo "  4. Create a Pull Request to main"
+    echo ""
+    echo "Only [WIP] checkpoint commits are allowed to push to main directly."
+    exit 1
+fi

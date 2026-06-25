@@ -1,0 +1,98 @@
+{
+  "id": "9b997b40-e6ec-4664-b272-5982d69551ad",
+  "title": "",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "反脆弱系统在波动中获益。杠铃策略：一端消除毁灭性风险，一端捕获正向黑天鹅。你帮我好好解释这句话，以去找工作，向我的董事长阐明我自己在学校实验室一直在做研究，而且对他们工商有了解，最后成功被董事长录取的视力。",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": null,
+      "id": "29aac635-2279-4beb-abd4-7a8c4d2663cf",
+      "mentionables": [],
+      "selectedSkills": [],
+      "selectedModelIds": [],
+      "reasoningLevel": "off",
+      "timeContext": "2026-06-05 21:47 (Friday)"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "反脆弱系统在波动中获益。杠铃策略：一端消除毁灭性风险，一端捕获正向黑天鹅。你帮我好好解释这句话，以去找工作，向我的董事长阐明我自己在学校实验室一直在做研究，而且对他们工商有了解，最后成功被董事长录取的视力。",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": null,
+      "id": "a212104a-0a80-4ec2-8461-1800740e158c",
+      "mentionables": [],
+      "selectedSkills": [],
+      "selectedModelIds": [],
+      "reasoningLevel": "off",
+      "timeContext": "2026-06-05 21:47 (Friday)"
+    }
+  ],
+  "createdAt": 1780667254208,
+  "updatedAt": 1780667273080,
+  "schemaVersion": 1,
+  "compaction": [],
+  "overrides": {
+    "chatMode": "chat"
+  },
+  "conversationModelId": "",
+  "assistantGroupBoundaryMessageIds": [],
+  "reasoningLevel": "off"
+}

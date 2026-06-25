@@ -1,0 +1,642 @@
+Vivado 2020.1 TCL + Verilog 速查表
+整理自实际开发踩坑经验，直接复制粘贴能用
+
+======================================================================
+
+一、工程管理
+----------------------------------------------------------------------
+
+pwd
+  显示当前工作目录
+
+cd D:/AMD/tft_logo
+  切换到工程目录
+  注意：用正斜杠/，反斜杠\t会被解释成tab
+
+open_project tft_logo.xpr
+  打开已有工程
+
+close_project -quiet
+  关闭当前工程，没有工程也不报错
+
+file delete -force D:/AMD/lcd_logo
+  删除旧工程目录（重建工程前用）
+
+source create_project.tcl
+  运行TCL脚本创建工程
+
+
+二、综合（Synthesis）
+----------------------------------------------------------------------
+
+launch_runs synth_1 -jobs 16
+  启动综合，默认用 -jobs 16 加速
+
+wait_on_run synth_1
+  等综合跑完，阻塞到结束
+  不加的话命令立即返回，你不知道结果
+
+reset_run synth_1
+  重置综合状态
+  代码改了之后必须先reset再跑
+
+open_run synth_1
+  打开综合结果（综合完成后才能用）
+
+report_utilization
+  查看资源占用（BRAM/LUT/FF/DSP/IO）
+  必须先open_run，否则报"No open design"
+
+report_timing
+  查看时序报告（setup/hold违例）
+
+
+三、实现（Implementation）
+----------------------------------------------------------------------
+
+launch_runs impl_1 -jobs 16
+  启动布局布线
+
+wait_on_run impl_1
+  等实现跑完
+
+launch_runs impl_1 -to_step write_bitstream -jobs 16
+  从实现直接跑到生成bit（一步到位）
+  -to_step write_bitstream 到写bit文件就停
+
+
+四、比特流（Bitstream）
+----------------------------------------------------------------------
+
+set_property SEVERITY {Warning} [get_drc_checks NSTD-1]
+  DRC NSTD-1 降级（没设IOSTANDARD的引脚）
+  用于：先生成bit再补约束
+
+set_property SEVERITY {Warning} [get_drc_checks UCIO-1]
+  DRC UCIO-1 降级（没设LOC的引脚）
+  注意：这两个必须在 reset_run + launch 之前跑
+  跑完后DRC只报Warning不报Error
+
+reset_run impl_1
+  重置实现状态（DRC降级后必须reset再跑）
+
+
+五、IP核操作
+----------------------------------------------------------------------
+
+generate_target all [get_ips blk_mem_logo]
+  生成IP核全部输出（综合/仿真/模板）
+
+generate_target simulation [get_ips blk_mem_logo]
+  只生成仿真模型（跑仿真前必须有这个）
+
+report_property [get_ips blk_mem_logo]
+  查看IP核配置参数
+
+
+六、仿真（Simulation）
+----------------------------------------------------------------------
+
+launch_simulation
+  启动行为仿真
+  2020.1不支持 -behavioral 参数，直接跑
+
+close_sim -quiet -force
+  关闭当前仿真（改了代码要先关再重开）
+
+close_sim -quiet -force
+set_property top tb_lcd_top [get_filesets sim_1]
+launch_simulation
+  三连：关旧→设顶层→开新
+
+run all
+  在xsim仿真控制台输入，跑到$finish
+  不是工程TCL Console，是仿真弹出窗口底部
+
+run 300ms
+  跑300毫秒
+
+
+七、调试诊断
+----------------------------------------------------------------------
+
+report_drc
+  运行DRC检查（bit生成失败先跑这个）
+
+report_property [current_project]
+  查看工程属性
+
+get_files -of_objects [get_ips blk_mem_logo]
+  列出IP核关联的所有文件
+
+get_property DIRECTORY [current_project]
+  获取工程目录路径
+
+update_compile_order -fileset sources_1
+  更新编译顺序（加了新文件后跑一下）
+  GUI模式会提示不需要手动跑，不影响功能
+
+
+八、文件操作
+----------------------------------------------------------------------
+
+add_files -norecurse D:/AMD/spi_master.v
+  把文件加入工程
+
+add_files -fileset sim_1 -norecurse D:/AMD/lcd_top_tb.v
+  把文件加入仿真集
+
+add_files -fileset constrs_1 -norecurse D:/AMD/lcd_top.xdc
+  把XDC约束文件加入工程
+
+file copy -force 源路径 目标路径
+  复制文件（-force 覆盖已有）
+
+
+九、常用组合拳（直接复制粘贴）
+----------------------------------------------------------------------
+
+# 从零建工程 + 综合 + 仿真
+cd D:/AMD/spi_XC7A35T-2FGG484I
+source create_project.tcl
+launch_runs synth_1 -jobs 16
+wait_on_run synth_1
+set_property top tb_lcd_top [get_filesets sim_1]
+launch_simulation
+# 然后在xsim控制台输入: run all
+
+# 代码改了之后重新综合 + 仿真
+reset_run synth_1
+launch_runs synth_1 -jobs 16
+wait_on_run synth_1
+close_sim -quiet -force
+set_property top tb_lcd_top [get_filesets sim_1]
+launch_simulation
+
+# DRC降级后生成bit
+set_property SEVERITY {Warning} [get_drc_checks NSTD-1]
+set_property SEVERITY {Warning} [get_drc_checks UCIO-1]
+reset_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 16
+wait_on_run impl_1
+
+
+# 修改IP参数后强制重生成 (解决Stale Content导致IP被锁)
+file delete -force 工程名.cache/ip
+set_property is_locked false [get_files blk_mem_gen_0.xci]
+# 注意：若有 .xml 缓存，必须一起删除
+file delete -force 工程名.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xml
+# 然后用 set_property -dict 重配参数
+reset_target all [get_ips blk_mem_gen_0]
+generate_target all [get_ips blk_mem_gen_0]
+
+
+十、踩过的坑
+----------------------------------------------------------------------
+
+1. 路径用正斜杠不用反斜杠
+   cd D:/AMD/tft_logo     对
+   cd D:\AMD\tft_logo     错（\t被解释为tab）
+
+2. Vivado 2020.1 不支持 launch_simulation -behavioral
+   直接用 launch_simulation
+
+3. $display 的输出不在TCL Console里，在 simulate.log 文件里
+   路径: 工程目录/xxx.sim/sim_1/behav/xsim/simulate.log
+
+4. generate_synth_checkpoint 在IP文件生成之前调用会报错
+   要放在 generate_target all 之后
+
+5. IP核的文件不用手动add_files
+   .xci 自动管理内部文件，手动加会出 CRITICAL WARNING
+
+6. TB的module名要和 set_property top 一致
+   module tb_lcd_top → set_property top tb_lcd_top
+
+7. 仿真只跑了1000ns是默认值
+   要在xsim控制台输入 run all 跑到$finish
+
+8. logo_rom.v 等 wrapper 文件必须 add_files 到工程
+   不然综合报 "module not found"
+
+9. DRC降级命令必须在 reset_run 之前跑
+   顺序：降级 → reset → launch
+
+
+10. 修改IP配置不要手动改 .xci 文件
+    Vivado内部缓存（.xml）不一致会导致IP锁死。必须用 `set_property -dict` 修改。
+    改完后如果遇到 `stale content` 报错，必须删掉对应IP的 `.xml` 文件，并强制 `is_locked false`。
+
+11. IP单独综合必须先跑完
+    含有IP的工程，必须先单独跑完IP的综合 (`launch_runs blk_mem_gen_0_synth_1` 并 `wait_on_run`)，
+    然后再跑顶层综合 `launch_runs synth_1`，否则会报错找不到 module。
+
+12. XSIM 报错语法错误（如 fork/join_any）
+    Vivado XSIM 默认解析器严格遵守 Verilog-2001。不要在 `.v` 里使用 SystemVerilog 语法。
+
+
+======================================================================
+======================================================================
+
+第二部分：create_project.tcl 模板
+复制这个模板，改3个地方就能用：工程名、器件型号、文件路径
+
+======================================================================
+
+# ---- 复制从这里开始 ----
+
+set ::env(USERNAME) "vivado_user"
+# 中文Windows用户名会污染.Xil临时目录，这行强制覆盖
+
+set script_dir [file dirname [file normalize [info script]]]
+set project_name "lcd_logo"
+set part_name    "xc7a35tfgg484-2"
+
+catch {close_project -quiet}
+file delete -force ${script_dir}/${project_name}
+
+create_project $project_name ${script_dir}/${project_name} -part $part_name -force
+
+# 添加RTL源文件（改成你自己的文件列表）
+add_files -norecurse [list \
+    ${script_dir}/lcd_top.v \
+    ${script_dir}/lcd_ctrl.v \
+    ${script_dir}/spi_master.v \
+    ${script_dir}/logo_rom.v \
+]
+set_property top lcd_top [current_fileset]
+
+# 添加约束文件
+add_files -fileset constrs_1 -norecurse ${script_dir}/lcd_top.xdc
+
+# 添加仿真文件
+add_files -fileset sim_1 -norecurse ${script_dir}/lcd_top_tb.v
+set_property top tb_lcd_top [get_filesets sim_1]
+
+# 创建BMG IP核（Block Memory Generator）
+set bmg_versions {8.4 8.3}
+set bmg_created 0
+foreach ver $bmg_versions {
+    if {![catch {create_ip -name blk_mem_gen -vendor xilinx.com -library ip \
+        -version $ver -module_name blk_mem_logo} err]} {
+        set bmg_created 1
+        break
+    }
+}
+if {!$bmg_created} {
+    create_ip -name blk_mem_gen -vendor xilinx.com -library ip \
+        -module_name blk_mem_logo
+}
+
+# 复制COE文件到工程目录
+set proj_dir [get_property DIRECTORY [current_project]]
+file copy -force ${script_dir}/logo_rom_data.coe ${proj_dir}/logo_rom_data.coe
+
+# 配置IP核参数
+set_property -dict [list \
+    CONFIG.Memory_Type {Single_Port_ROM} \
+    CONFIG.Write_Width_A {16} \
+    CONFIG.Write_Depth_A {29583} \
+    CONFIG.Read_Width_A {16} \
+    CONFIG.Enable_A {Use_ENA_Pin} \
+    CONFIG.Register_PortA_Output_of_Memory_Primitives {true} \
+    CONFIG.Load_Init_File {true} \
+    CONFIG.Coe_File ${proj_dir}/logo_rom_data.coe \
+] [get_ips blk_mem_logo]
+
+# 生成IP核全部输出（必须在generate之后才能综合）
+generate_target all [get_ips blk_mem_logo]
+
+# 禁用OOC综合（中文路径会导致OOC子进程崩溃）
+foreach f [get_files -of_objects [get_ips blk_mem_logo]] {
+    catch {set_property generate_synth_checkpoint false $f}
+}
+
+update_compile_order -fileset sources_1
+
+# ---- 复制到这里结束 ----
+
+
+模板说明：
+  改的地方1：set project_name "你的工程名"
+  改的地方2：set part_name "你的器件型号"
+  改的地方3：add_files 列表换成你的文件
+  改的地方4：IP核宽度和深度（Write_Width_A, Write_Depth_A）
+  改的地方5：COE文件名（logo_rom_data.coe 换成你的）
+
+
+======================================================================
+======================================================================
+
+第三部分：Verilog 注释规范
+======================================================================
+
+
+原则：注释写给3个月后的自己看，不写给编译器看
+
+----------------------------------------------------------------------
+3.1 文件头 —— 不写
+----------------------------------------------------------------------
+
+禁止这种写法：
+  //=============================================================
+  // 模块名：lcd_ctrl
+  // 作者：xxx
+  // 日期：xxxx-xx-xx
+  // 描述：LCD控制器
+  // 版本：v1.0
+  //=============================================================
+
+直接从module开始：
+  module lcd_ctrl (
+      input  wire        clk,
+      ...
+
+
+----------------------------------------------------------------------
+3.2 模块端口 —— 不加行内注释
+----------------------------------------------------------------------
+
+不要这种：
+  input  wire        clk,        // 系统时钟
+  input  wire        rst_n,      // 低电平复位
+  output reg  [7:0]  data_out,   // 输出数据
+
+端口名本身就该自解释。只有非直觉的才加，比如：
+  input  wire [9:0] rom_dout,   // 10bit: {delay_flag, data_flag, value[7:0]}
+
+
+----------------------------------------------------------------------
+3.3 状态机 —— 注释状态含义
+----------------------------------------------------------------------
+
+// 状态编码
+localparam S_RST_HIGH    = 4'd0;
+localparam S_RST_LOW     = 4'd1;
+localparam S_RESET_WAIT  = 4'd2;
+localparam S_INIT_CMD    = 4'd3;   // 取命令
+localparam S_INIT_SEND   = 4'd4;   // 送SPI
+localparam S_SET_WINDOW  = 4'd5;   // 0x2A/0x2B窗口设置
+localparam S_PIXEL_DATA  = 4'd6;   // 逐像素发送
+localparam S_DONE        = 4'd7;
+
+
+----------------------------------------------------------------------
+3.4 关键时序 —— 注释时钟周期关系
+----------------------------------------------------------------------
+
+// BRAM预读：提前1拍给地址，补偿输出寄存器的2拍延迟
+// byte_sel=0时算下一地址，byte_sel=1时BRAM正在读，byte_sel=0时数据就绪
+if (byte_sel == 2'd0 && spi_done)
+    logo_addr_next <= logo_rel_y * LOGO_W + logo_rel_x + 1;
+
+
+----------------------------------------------------------------------
+3.5 硬件协议相关 —— 注释协议来源
+----------------------------------------------------------------------
+
+// ST7796S复位时序: 高10ms→低20ms→等120ms（手册Section 11.2）
+// 比手册最小值(5ms/10ms/120ms)保守，留裕量
+
+
+----------------------------------------------------------------------
+3.6 一行搞定的注释 —— 不要写两行
+----------------------------------------------------------------------
+
+不要这种：
+  // 延时计数器
+  // 用于在复位阶段
+  // 计时等待
+
+一行搞定：
+  // 复位延时计数器
+
+
+----------------------------------------------------------------------
+3.7 变量声明 —— 不加注释
+----------------------------------------------------------------------
+
+不要这种：
+  reg [15:0] pixel_color;  // 当前像素颜色RGB565
+  reg [14:0] logo_addr;    // ROM地址
+
+变量名本身就说清楚了。只加不直觉的：
+  reg [9:0] rom_dout;  // {delay, data_flag, value[7:0]}，从ROM取出的命令字
+
+
+----------------------------------------------------------------------
+3.8 分隔线 —— 不用
+----------------------------------------------------------------------
+
+禁止：
+  // =====================================================
+  // ================== 第二段 ========================
+  // ---------- SPI发送逻辑 ----------
+
+需要分段就空一行加个短注释：
+  // SPI发送
+
+
+----------------------------------------------------------------------
+3.9 常用模块模板
+----------------------------------------------------------------------
+
+--- 两级同步器（异步信号同步到时钟域）---
+
+reg [1:0] rst_sync;
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n)
+        rst_sync <= 2'b00;
+    else
+        rst_sync <= {rst_sync[0], 1'b1};
+end
+wire rst_n_sync = rst_sync[1];
+
+
+--- 分频器 ---
+
+reg [1:0] div_cnt;
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n)
+        div_cnt <= 2'd0;
+    else if (div_cnt == 2'd3)
+        div_cnt <= 2'd0;
+    else
+        div_cnt <= div_cnt + 1'b1;
+end
+wire spi_clk_en = (div_cnt == 2'd0);
+
+
+--- 状态机模板（三段式）---
+
+// 状态寄存器
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n)
+        state <= S_IDLE;
+    else
+        state <= next_state;
+end
+
+// 状态转移
+always @(*) begin
+    next_state = state;
+    case (state)
+        S_IDLE:     if (start) next_state = S_WORK;
+        S_WORK:     if (done)  next_state = S_DONE;
+        S_DONE:     next_state = S_IDLE;
+        default:    next_state = S_IDLE;
+    endcase
+end
+
+// 输出逻辑
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        // 复位值
+    end else begin
+        case (state)
+            S_IDLE: begin
+                // 待机处理
+            end
+            S_WORK: begin
+                // 工作处理
+            end
+        endcase
+    end
+end
+
+
+--- SPI Master 框架 ---
+
+module spi_master (
+    input  wire       clk,
+    input  wire       rst_n,
+    input  wire       start,
+    input  wire [8:0] data_in,  // bit[8]=D/C, bit[7:0]=payload
+    output reg        spi_sclk,
+    output reg        spi_mosi,
+    output reg        spi_cs,
+    output reg        done
+);
+
+// 50MHz/4 = 12.5MHz SPI时钟
+localparam DIV = 4;
+
+reg [1:0]  state;
+reg [1:0]  div_cnt;
+reg [3:0]  bit_cnt;
+reg [8:0]  shift_reg;
+
+localparam S_IDLE = 2'd0;
+localparam S_SEND = 2'd1;
+localparam S_DONE = 2'd2;
+
+// 分频
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        div_cnt <= 0;
+        spi_sclk <= 0;
+    end else if (state == S_SEND) begin
+        if (div_cnt == DIV/2 - 1) begin
+            div_cnt <= 0;
+            spi_sclk <= ~spi_sclk;
+        end else
+            div_cnt <= div_cnt + 1;
+    end else begin
+        div_cnt <= 0;
+        spi_sclk <= 0;
+    end
+end
+
+endmodule
+
+
+======================================================================
+======================================================================
+
+第四部分：文件修改备忘
+======================================================================
+
+4.1 朱工工程文件位置
+----------------------------------------------------------------------
+
+朱工的源码不在工程根目录，在：
+  tft_logo.srcs/sources_1/imports/code/*.v
+Vivado实际编译的是这个路径下的文件，不是根目录的副本。
+改代码要改这里的，不然白改。
+
+4.2 IP核配置文件
+----------------------------------------------------------------------
+
+.xci 文件路径：
+  tft_logo.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+改IP参数要改这个文件，改完之后在Vivado里 Generate Output Products。
+
+4.3 COE文件位置
+----------------------------------------------------------------------
+
+IP核的COE文件在：
+  tft_logo.srcs/sources_1/ip/blk_mem_gen_0/
+替换COE后要重新 Generate（右键IP → Generate Output Products）
+
+4.4 bit文件位置
+----------------------------------------------------------------------
+
+生成成功后在这里：
+  tft_logo.runs/impl_1/lcd_top.bit
+
+
+======================================================================
+======================================================================
+
+第五部分：Verilog 语法速查（XSIM踩坑版）
+======================================================================
+
+5.1 XSIM不支持的SystemVerilog语法（.v文件里不能用）
+----------------------------------------------------------------------
+
+不支持：
+  fork/join_any     → 用 fork:name ... disable name; ... join
+  disable fork      → 用 disable 块名
+  break             → 用 块名+disable 或者 flag
+  return            → 不支持
+  always_comb       → 用 always @(*)
+  always_ff         → 用 always @(posedge clk)
+  logic             → 用 reg / wire
+
+支持的：
+  reg / wire / integer / genvar
+  always @(*) / always @(posedge clk)
+  generate / for / if
+  $display / $finish / $time / $readmemh
+  task / function
+
+
+5.2 $display 输出在哪
+----------------------------------------------------------------------
+
+不在TCL Console里（被INFO消息淹没了），在：
+  工程目录/xxx.sim/sim_1/behav/xsim/simulate.log
+用记事本打开，Ctrl+F搜你要找的关键词。
+
+
+5.3 TB验证守卫
+----------------------------------------------------------------------
+
+LCD仿真的TB必须在收到0x2C（Memory Write）命令后才开始抓像素。
+不然初始化阶段的参数字节会被当成像素，报假错。
+
+reg pixel_started;
+always @(posedge clk) begin
+    if (cmd_byte_received && spi_byte == 8'h2C)
+        pixel_started <= 1'b1;
+end
+
+// 验证时
+if (pixel_started && ...) begin
+    // 此时才是真正的像素数据
+end
+
+
+======================================================================
+整理日期：2026年5月15日
+来源：XC7A35T TFT-LCD SPI驱动开发实战踩坑

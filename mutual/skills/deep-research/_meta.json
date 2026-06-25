@@ -1,0 +1,67 @@
+{
+  "name": "deep-research",
+  "version": "3.0.0",
+  "created": "2026-05-31",
+  "updated": "2026-05-31",
+  "author": "小黎",
+  "description": "深度调研+迭代打磨双模式智能体，Ecosystem-Aware 一鱼多吃架构",
+  "tags": ["research", "iteration", "ecosystem", "multi-platform", "one-fish-many-meals"],
+  "modes": {
+    "research": {
+      "triggers": ["调研", "竞品调研", "市场调研", "帮我调研", "搜竞品", "产品调研", "需求调研", "deep research", "帮我搜一下类似的"],
+      "phases": [0, 1, 2, 3, 4, 6]
+    },
+    "iteration": {
+      "triggers": ["迭代", "继续优化", "再深入", "迭代打磨", "不要节约token", "再来一轮", "继续搜", "加深", "续跑"],
+      "phases": [0, 5, 6],
+      "requires": "outputs/已有调研报告"
+    }
+  },
+  "ecosystem": {
+    "reads": [
+      "memory/research-profile.md",
+      "memory/long-term.md",
+      "memory/{today}.md",
+      "outputs/*调研*.md",
+      "skill-routing-table.json",
+      "artifact-registry.md"
+    ],
+    "writes": [
+      "outputs/{主题}-调研报告-{日期}.md",
+      "memory/{today}.md",
+      "memory/research-profile.md",
+      "memory/skill-usage-log.md",
+      "artifact-registry.md",
+      "memory/long-term.md (候选)",
+      "evolution-calendar.md (信号)"
+    ],
+    "side_effects_count": 7
+  },
+  "reference_skills": {
+    "downloaded": [
+      "jc-clarifier",
+      "skill-creator",
+      "write-a-skill",
+      "deep-review",
+      "li-workflow",
+      "handoff",
+      "diagnose",
+      "chinese-natural-voice-revision"
+    ],
+    "ecosystem_builtin": [
+      "auto-evolution",
+      "context-compression",
+      "10-engineering-laws",
+      "百大认知书籍"
+    ],
+    "total": 12
+  },
+  "key_design_decisions": [
+    "行动锁：来源 jc-clarifier，不澄清不搜索",
+    "1.25倍递增：来源 auto-evolution + 用户要求",
+    "一鱼多吃：每次调研产出 7 个生态副作用",
+    "生态预热：启动时读取 research-profile 不重新问偏好",
+    "搜索饱和检测：来源 diagnose 反馈环思路",
+    "道法术器穿透：来源 dao-fa-shu-qi"
+  ]
+}

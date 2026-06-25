@@ -1,0 +1,16 @@
+{
+  "name": "wechat-distiller",
+  "version": "1.0",
+  "author": "小黎",
+  "created": "2026-06-09",
+  "updated": "2026-06-09",
+  "knowledge_sources": [
+    "Camellia 深度心理分析（24,144条消息）",
+    "米蛋糕深度心理分析（11,890条消息）",
+    "ex-skill 蒸馏框架",
+    "nuwa-skill 造人术",
+    "大五人格模型",
+    "依恋理论"
+  ],
+  "related_skills": ["wechat-analysis", "wechat-exporter", "niuma-voice-dna"]
+}
