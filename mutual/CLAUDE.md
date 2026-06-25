@@ -1,6 +1,6 @@
 # ⛔ 启动序列（每次对话强制，不可跳过）
 
-**根目录**：`E:\ai产出文件\牛马\mutual\mutual`
+**根目录**：`${WORKSPACE_ROOT}`
 
 | Step | 操作 | 触发条件 |
 |------|------|----------|
@@ -54,8 +54,8 @@ PreCompact→`pre-compact.py`写检查点；SessionStart(compact)→`on-compact.
 → 详见 `skills/context-compression/SKILL.md`
 
 ## 🌐 跨工作区感知（mutual = 管理/优化区）
-- 全局地图：`E:\ai产出文件\牛马\知识中枢\00-注册表\工作区注册表.md`
-- 共享规则：`E:\ai产出文件\牛马\知识中枢\02-共享规则\`
+- 全局地图：`${AI_ROOT}\知识中枢\00-注册表\工作区注册表.md`
+- 共享规则：`${AI_ROOT}\知识中枢\02-共享规则\`
 - 新建目录/文件前先查注册表
 
 ## 🔍 地图优先（R13）
