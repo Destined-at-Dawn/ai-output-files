@@ -8,6 +8,21 @@
 # 原始牛马目录（已迁移，保留作参考）
 牛马/
 
+# 大文件（>50MB）
+个人/projects/20260425-成长历程/
+个人/_system/conversations/
+日常学习/projects/20260603-大学物理/shared/教辅/
+日常学习/projects/20260603-大学物理/shared/教材/
+日常学习/projects/20260603-大学物理/outputs/*.zip
+日常学习/projects/20260603-大学物理/outputs/ch06_static_review_v3_imagegen/
+日常学习/projects/20260603-电路分析/shared/
+日常学习/projects/20260603-电路分析/outputs/*.zip
+创作/skills/tools/wx_key/*.zip
+创作/skills/tools/wx_key/flutter_windows.dll
+竞赛/outputs/2026跨校协作新场景赛项.zip
+竞赛/_system/conversations/
+mutual/scripts/language-server-proxy-wrapper/bin/
+
 # === 临时文件 ===
 *.tmp
 *.log
